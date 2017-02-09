@@ -9,6 +9,8 @@ MemeScript {
                    |  TryCatch
                    |  TryCatchFinally
                    |  Switch
+                   |  Call
+                   |  Assignment
 
   Block            =  (newline indent Stmnt)*
   Body             =  Block | Stmnt
@@ -28,15 +30,51 @@ MemeScript {
   Bill             =  "bill has a" Literal ":" | "bill is a" Literal ":"
   Default          =  "bill is smart" ":" Block newline indent "be like bill;"
 
+  Exp              =  NonemptyListOf<Exp1, "||">
+  Exp1             =  NonemptyListOf<Exp2, "&&">
+  Exp2             =  Exp3 (relop Exp3)?
+  Exp3             =  NonemptyListOf<Exp4, addop>
+  Exp4             =  NonemptyListOf<Exp5, mulop>
+  Exp5             =  prefixop? Exp6
+  Exp6             =  Literal
+                   |  Var
+                   |  "(" Exp ")"
+
+  Literal          =  "null"
+                   |  "true"
+                   |  "false"
+                   |  strlit
+                   |  numlit
+
   Assignment       =  id "=" Exp ";"
+  Call             =  id "(" Args ")"
+
+  Args             =  ListOf<Exp, ",">
+  Var              =  Var "[" Exp "]"
+                   |  Var "." id
+                   |  Call
+                   |  id
 
   Params           =  (id ("," id)*)?
 
   mulop            =  "*" | "/" | "%"
   prefixop         =  "!" | "-"
+  relop            =  "<=" | "<" | "==" | "===" | "!=" | ">=" | ">"
+  addop            =  "+" | "-"
 
+  char             =  escape
+                   |  ~"\n" ~"\"" ~"'" any
+
+  strlit           =  "\"" char* "\"" | "'" char* "'"
+  intlit           =  digit+
+  floatlit         =  digt+ "." digit+
+  numlit           =  intlit | floatlit
+
+  escape           =  "\\n" | "\\\"" | "\'"
   space           :=  "\x20"
   newline          =  "\n"
   indent           =  space space space space
-  keyword          =  "Beyoncé"
+  keyword          =  ("Beyoncé" | "false" | "true" | "null") ~idrest
+  id               =  ~keyword letter idrest*
+  idrest           =  "_" | alnum
 }
