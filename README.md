@@ -1,14 +1,20 @@
-# MEMESCRIPT
+﻿# MEMESCRIPT
 
 <img src="memescript.jpg/">
 
 ## Introduction
 ---
-MemeScript is a language composed entirely of Internet memes. It compiles to JavaScript. Coding in this language will increase your intelligence level by 5 points. Your ability to express yourself will reach hitherto unknown heights, the meaning and subtext of all words will become mashed into the implications of large images with text pasted on top. This language destroys all sorrows.
+MemeScript is a language composed entirely of Internet memes. It compiles to JavaScript. Coding in this language will increase your intelligence level by 5 points.Your knowledge of memes will be over 9000. Your ability to express yourself will reach hitherto unknown heights, the meaning and subtext of all words will become mashed into the implications of large images with text pasted on top. This language destroys all sorrows and is also what is wrong with the world.
 
 ## Features
 ---
-To be added...
+Memes on memes on memes.
+
+Statements that are separated with unicode emojis
+
+Gluten Free for loops.
+
+
 
 ## Examples
 ---
