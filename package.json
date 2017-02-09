@@ -1,0 +1,37 @@
+{
+  "name": "memescript",
+  "version": "1.0.0",
+  "description": "Programming language composed entirely of memes. Compiles to JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NAnguiano/memescript.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Kek",
+    "meme",
+    "memes",
+    "4chan",
+    "Internet",
+    "troll",
+    "slang",
+    "image",
+    "macro"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NAnguiano/memescript/issues"
+  },
+  "homepage": "https://github.com/NAnguiano/memescript#readme",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
+  }
+}
