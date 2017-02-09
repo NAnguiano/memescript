@@ -56,3 +56,20 @@ much students;                                      var students = new Array();
 ```
 such book;                                          var book;
 ```
+
+### Try, Catch, and Finally
+```
+Chuck Norris doesn't:                               try {
+    console.doge("testing testing");                    console.doge("testing testing");
+or (err):                                           } catch (err) {
+    console.error(err);                                 console.error(err);
+he:                                                 } finally {
+    console.log("testing testing");                     console.log("testing testing");
+                                                    }
+
+Chuck Norris doesn't:                               try {
+    such me;                                            var me = null;
+    me = null;                                          me.wakeUp();  
+    me.wakeUp();                                    } catch (err) {
+he (err):                                               console.error(err); 
+    console.error(err);                             }
