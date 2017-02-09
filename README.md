@@ -1,6 +1,6 @@
 # MEMESCRIPT
 
-<img src="images/memescript.jpg/">
+<img src="memescript/memescript.jpg/">
 
 ## Introduction
 ---
