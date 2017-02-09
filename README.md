@@ -73,3 +73,11 @@ Chuck Norris doesn't:                               try {
     me.wakeUp();                                    } catch (err) {
 he (err):                                               console.error(err); 
     console.error(err);                             }
+```
+
+### For Loop
+```
+yo, I'mma let you finish for (10):                  for (var i = 0; i < 10; i++) {
+   but: console.log(Beyoncé);                           console.log(i);
+                                                    }
+```
