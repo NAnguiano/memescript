@@ -1,0 +1,42 @@
+MemeScript {
+  Program          =  Stmnt+
+  Stmnt            =  ArrayDec
+                   |  VarDec
+                   |  FunDec
+                   |  If
+                   |  While
+                   |  For
+                   |  TryCatch
+                   |  TryCatchFinally
+                   |  Switch
+
+  Block            =  (newline indent Stmnt)*
+  Body             =  Block | Stmnt
+  
+  ArrayDec         =  "much" id ";"
+  VarDec           =  "such" id ";"
+  
+  FunDec           =  "you:" id "(" Params ")" ":" newline indent "me, an intellectual:" Body
+  If               =  "I don't always" "(" Exp ")" ":" newline indent "but when I do" ":" Body
+  While            =  "yo, I'mma let you finish" "(" Exp ")" ":" newline indent "but" ":" Body
+  For              =  "yo, I'mma let you finish for" "(" Exp ")" ":" newline indent "but" ":" Body
+  TryCatch         =  "Chuck Norris doesn't" ":" Block "he" ":" Block
+  TryCatchFinally  =  "Chuck Norris doesn't" ":" Block "or" ":" Block "he" ":" Block
+  Switch           =  "this is bill" "(" id ")" ":" (newline indent SwitchBody)* Default
+
+  SwitchBody       =  Bill Block newline indent "be like bill;"
+  Bill             =  "bill has a" Literal ":" | "bill is a" Literal ":"
+  Default          =  "bill is smart" ":" Block newline indent "be like bill;"
+
+  Assignment       =  id "=" Exp ";"
+
+  Params           =  (id ("," id)*)?
+
+  mulop            =  "*" | "/" | "%"
+  prefixop         =  "!" | "-"
+
+  space           :=  "\x20"
+  newline          =  "\n"
+  indent           =  space space space space
+  keyword          =  "Beyoncé"
+}
