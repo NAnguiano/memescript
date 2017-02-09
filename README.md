@@ -4,7 +4,7 @@
 
 ## Introduction
 ---
-To be added...
+MemeScript is a language composed entirely of Internet memes. It compiles to JavaScript. Coding in this language will increase your intelligence level by 5 points. Your ability to express yourself will reach hitherto unknown heights, the meaning and subtext of all words will become mashed into the implications of large images with text pasted on top. This language destroys all sorrows.
 
 ## Features
 ---
