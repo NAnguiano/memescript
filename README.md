@@ -1,4 +1,6 @@
-# MemeScript
+# MEMESCRIPT
+
+<img src="images/memescript.jpg/">
 
 ## Introduction
 ---
