@@ -105,8 +105,8 @@ MemeScript {
   TypeDeclare       = "This is" type VarName "kappa"
   Return 			      =	"me, an intellectual: " VarName "kappa"
   						      |		"me, an intellectual: " FunctionCall "kappa"
-  Loop              = "yo, I'mma let you finish ("  boolean  "): \n but:"
-                    | "yo, I'mma let you finish ("  numb  "): \n but:"
+  Loop              = "yo, I'mma let you finish ("  boolean  "): \n but:" FunctionBody "kappa"
+                    | "yo, I'mma let you finish ("  numb  "): \n but:" FunctionBody "kappa"
   
   Exp               =  Exp "I don't always " "("Exp "):" "but when I do:" FunctionBody "kappa"
   Exp2              =  Exp2 addop Exp3                 -- binary
