@@ -24,7 +24,7 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 
 ### Function Declarations
 ```
-you: add(x, y):                                  function add(x, y) {
+you: an add(x, y):                                  function add(x, y) {
     me, an intellectual: x + y;                         return x + y;
                                                     }
 ```
