@@ -62,7 +62,7 @@ much students;                                      var students = new Array();
 
 ### Variable Declaration
 ```
-such book;                                          var book;
+This is type book;                                          var type book;
 ```
 
 ### Try, Catch, and Finally
