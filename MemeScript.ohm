@@ -1,6 +1,6 @@
 MemeScript {
   Program          =  Stmnt+
-  Stmnt            =  ArrayDec
+  Stmnt            =  ConstDec 
                    |  VarDec
                    |  FunDec
                    |  If
@@ -15,19 +15,21 @@ MemeScript {
   Block            =  (newline indent Stmnt)*
   Body             =  Block | Stmnt
   
-  ArrayDec         =  "much" id ";"
-  VarDec           =  "such" id ";"
+  ConstDec         =  "overlyattachedgirlfriend.jpg" id ";"
+  VarDec           =  "ermahgerd" id ";"
   
   FunDec           =  "you:" id "(" Params ")" ":" newline indent "me, an intellectual:" Body
-  If               =  "I don't always" "(" Exp ")" ":" newline indent "but when I do" ":" Body
+  If               =  "I don't always" "(" Exp ")" ":" newline indent "but when I do" ":" Body (ElseIf)* (Else)?
+  ElseIf           =  "but sometimes I" "(" Exp ")" ":" Body
+  Else             =  "otherwise I do" ":" Body
   While            =  "yo, I'mma let you finish" "(" Exp ")" ":" newline indent "but" ":" Body
-  For              =  "yo, I'mma let you finish for" "(" Exp ")" ":" newline indent "but" ":" Body
+  For              =  "one does not simply" ":" Body "without" "(" VarDec ";" Exp ";" Exp ")"
   TryCatch         =  "Chuck Norris doesn't" ":" Block "he" ":" Block
   TryCatchFinally  =  "Chuck Norris doesn't" ":" Block "or" ":" Block "he" ":" Block
   Switch           =  "this is bill" "(" id ")" ":" (newline indent SwitchBody)* Default
 
-  SwitchBody       =  Bill Block newline indent "be like bill;"
-  Bill             =  "bill has a" Literal ":" | "bill is a" Literal ":"
+  SwitchBody       =  SwitchCase Block newline indent "be like bill;"
+  SwitchCase       =  "bill has a" Literal ":" | "bill is a" Literal ":"
   Default          =  "bill is smart" ":" Block newline indent "be like bill;"
 
   Exp              =  NonemptyListOf<Exp1, "||">
@@ -55,7 +57,11 @@ MemeScript {
                    |  Call
                    |  id
 
-  Params           =  (id ("," id)*)?
+  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," SplatParam)?)?
+  
+  Param            = id
+  OptionalParam    = id "=" Exp
+  SplatParam       = id "..."
 
   mulop            =  "*" | "/" | "%"
   prefixop         =  "!" | "-"
@@ -67,14 +73,15 @@ MemeScript {
 
   strlit           =  "\"" char* "\"" | "'" char* "'"
   intlit           =  digit+
-  floatlit         =  digt+ "." digit+
+  floatlit         =  digit+ "." digit+
   numlit           =  intlit | floatlit
 
   escape           =  "\\n" | "\\\"" | "\'"
   space           :=  "\x20"
   newline          =  "\n"
   indent           =  space space space space
-  keyword          =  ("Beyoncé" | "false" | "true" | "null") ~idrest
+  keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very" 
+                      | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum
 }
