@@ -25,15 +25,26 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 ### Function Declarations
 ```
 you: add(x, y):                                     function add(x, y) {
-    me, an intellectual: x + y;                         return x + y;
-                                                    }
+    me, an intellectual:                                return x + y;
+        x + y;                                      }
 ```
 
 ### If Statement
 ```
 I don't always (homework.isFinished()):             if (homework.isFinished()) {
-    but when I do: me.goToSleep();                      me.goToSleep();
-                                                    }
+    but when I do:                                      me.goToSleep();
+        me.goToSleep();                             }
+```
+
+### If-ElseIf-Else Statement
+```
+I don't always (homework.isFinished()):             if (homework.iseFinished() {
+    but when I do:                                      me.goToSleep();
+        me.goToSleep();                             } else if (homework.procrastinating()) {
+    but sometimes I (homework.procrastinating()):       me.procrastinate();
+        me.procrastinate();                         } else {
+    otherwise I do:                                     me.readBook();
+        me.readBook();                              }
 ```
 
 ### Switch Statement
