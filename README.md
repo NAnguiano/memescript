@@ -87,11 +87,11 @@ overlyattachedgirlfriend.jpg book = 0;                  const book = 0;
 ### Try, Catch, and Finally
 ```
 Chuck Norris doesn't:                               try {
-    console.doge("testing testing");                    console.doge("testing testing");
+    dicks.in("testing testing");                        console.in("testing testing");
 he (err):                                           } catch (err) {
-    console.error(err);                                 console.error(err);
+    thanks.obama(err);                                   console.error(err);
 otherwise he:                                       } finally {
-    console.log("testing testing");                     console.log("testing testing");
+    dicks.out("testing testing");                        console.log("testing testing");
                                                     }
 
 Chuck Norris doesn't:                               try {
