@@ -26,7 +26,15 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 ```
 you: add(x, y):                                     function add(x, y) {
     me, an intellectual:                                return x + y;
-        x + y;                                      }
+        can i haz x + y;                            }
+        
+you: add(x = 10, y = 10):                           function add(x = 10, y = 10) {
+    me, an intellectual:                                return x + y;
+        can i haz x + y;                            }
+        
+you: add(x, y...):                                  
+    me, an intellectual:
+        can i haz x + y;
 ```
 
 ### If Statement
@@ -65,8 +73,8 @@ this is bill(x):                                    switch (x) {
 ### While Loop
 ```
 yo, I'mma let you finish (weather.isRaining()):     while (weather.isRaining()) {
-    but: me.stayInside();                               me.stayInside();
-                                                    }
+    but:                                                me.stayInside();
+        me.stayInside();                            }
 ```
 
 ### Array Declaration
@@ -83,9 +91,9 @@ such book;                                          var type book;
 ```
 Chuck Norris doesn't:                               try {
     console.doge("testing testing");                    console.doge("testing testing");
-or (err):                                           } catch (err) {
+he (err):                                           } catch (err) {
     console.error(err);                                 console.error(err);
-he:                                                 } finally {
+otherwise he:                                       } finally {
     console.log("testing testing");                     console.log("testing testing");
                                                     }
 
@@ -99,7 +107,9 @@ he (err):                                               console.error(err);
 
 ### For Loop
 ```
-yo, I'mma let you finish for (10):                  for (var i = 0; i < 10; i++) {
-   but: console.log(Beyoncé);                           console.log(i);
-                                                    }
+one does not simply:                                for (var i = 0; i < 10; i++) {
+    me.doHomework();                                    me.doHomework();
+    me.manageTimeProperly();                            me.manageTimeProperly();
+    me.goToSleep();                                     me.goToSleep();
+without (such i; i < 10; i++)                       }
 ```
