@@ -115,8 +115,8 @@ without (ermahgerd i; i < 10; i++)                  }
 ```
 wow Stack:                                          class Stack {                  
     such(length = 0):                                   constructor (length = 0) {
-        much.length = length                                this.length = length;
-    very getLength():                                   }
+        much.length = length;                               this.length = length;
+    so getLength():                                     }
         can i haz much.length;                          getLength() {
                                                             return this.length;
 ermergerd newStack = very Stack();                      }
