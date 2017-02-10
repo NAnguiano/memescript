@@ -32,9 +32,10 @@ you: add(x = 10, y = 10):                           function add(x = 10, y = 10)
     me, an intellectual:                                return x + y;
         can i haz x + y;                            }
         
-you: add(x, y...):                                  
-    me, an intellectual:
-        can i haz x + y;
+you: add(x, y...):                                  function add(x, y...) {                         
+    me, an intellectual:                                alert(y);
+        here come dat boi (y);                          console.log("For Harambe");
+        dicks.out("For Harambe");                   }
 ```
 
 ### If Statement
@@ -77,14 +78,10 @@ yo, I'mma let you finish (weather.isRaining()):     while (weather.isRaining()) 
         me.stayInside();                            }
 ```
 
-### Array Declaration
-```
-much students;                                      var students = new Array();
-```
-
 ### Variable Declaration
 ```
-such book;                                          var type book;
+ermahgerd book = 0;                                     let book = 0;
+overlyattachedgirlfriend.jpg book = 0;                  const book = 0;
 ```
 
 ### Try, Catch, and Finally
@@ -112,4 +109,36 @@ one does not simply:                                for (var i = 0; i < 10; i++)
     me.manageTimeProperly();                            me.manageTimeProperly();
     me.goToSleep();                                     me.goToSleep();
 without (such i; i < 10; i++)                       }
+```
+### Arrays
+```
+spliced
+indexed
+foreach
+length
+concat
+sort
+map
+filter
+pop
+push
+remove
+insert
+```
+
+### String
+```
+substring
+charat
+length
+indexof
+concat
+```
+
+### Objects
+```
+this is Stack:
+    much asddasda
+constructor (doge)
+methods
 ```
