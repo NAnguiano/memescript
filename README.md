@@ -80,8 +80,8 @@ yo, I'mma let you finish (weather.isRaining()):     while (weather.isRaining()) 
 
 ### Variable Declaration
 ```
-ermahgerd book = 0;                                     let book = 0;
-overlyattachedgirlfriend.jpg book = 0;                  const book = 0;
+ermahgerd book = 0;                                 let book = 0;
+overlyattachedgirlfriend.jpg book = 0;              const book = 0;
 ```
 
 ### Try, Catch, and Finally
@@ -89,9 +89,9 @@ overlyattachedgirlfriend.jpg book = 0;                  const book = 0;
 Chuck Norris doesn't:                               try {
     dicks.in("testing testing");                        console.in("testing testing");
 he (err):                                           } catch (err) {
-    thanks.obama(err);                                   console.error(err);
+    thanks.obama(err);                                  console.error(err);
 otherwise he:                                       } finally {
-    dicks.out("testing testing");                        console.log("testing testing");
+    dicks.out("testing testing");                       console.log("testing testing");
                                                     }
 
 Chuck Norris doesn't:                               try {
@@ -119,10 +119,10 @@ wow Stack:                                          class Stack {
     so getLength():                                     }
         can i haz much.length;                          getLength() {
                                                             return this.length;
-ermergerd newStack = very Stack();                      }
+                                                        }
                                                     }
 
-                                                    let newStack = new Stack();
+ermergerd newStack = very Stack();                  let newStack = new Stack();
 ```
 
 ### Errors
