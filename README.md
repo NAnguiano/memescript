@@ -95,7 +95,7 @@ otherwise he:                                       } finally {
                                                     }
 
 Chuck Norris doesn't:                               try {
-    such me;                                            var me = null;
+    ermahgerd me;                                       var me = null;
     me = null;                                          me.wakeUp();  
     me.wakeUp();                                    } catch (err) {
 he (err):                                               console.error(err);
@@ -104,41 +104,32 @@ he (err):                                               console.error(err);
 
 ### For Loop
 ```
-one does not simply:                                for (var i = 0; i < 10; i++) {
+one does not simply:                                for (let i = 0; i < 10; i++) {
     me.doHomework();                                    me.doHomework();
     me.manageTimeProperly();                            me.manageTimeProperly();
     me.goToSleep();                                     me.goToSleep();
-without (such i; i < 10; i++)                       }
-```
-### Arrays
-```
-spliced
-indexed
-foreach
-length
-concat
-sort
-map
-filter
-pop
-push
-remove
-insert
-```
-
-### String
-```
-substring
-charat
-length
-indexof
-concat
+without (ermahgerd i; i < 10; i++)                  }
 ```
 
 ### Objects
 ```
-this is Stack:
-    much asddasda
-constructor (doge)
-methods
+wow Stack:                                          class Stack {                  
+    such(length = 0):                                   constructor (length = 0) {
+        much.length = length                                this.length = length;
+    very getLength():                                   }
+        can i haz much.length;                          getLength() {
+                                                            return this.length;
+ermergerd newStack = very Stack();                      }
+                                                    }
+
+                                                    let newStack = new Stack();
+```
+
+### Errors
+```
+CONGRATULATIONS! You played yourself.
+Hold the door.
+RIP.
+FUUUUUUUUUUU-
+WHY YOU NO WORK
 ```
