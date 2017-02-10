@@ -11,6 +11,8 @@ MemeScript {
                    |  Switch
                    |  Call
                    |  Assignment
+                   |  Return
+                   |  Print
 
   Block            =  (newline indent Stmnt)*
   Body             =  Block | Stmnt
@@ -35,6 +37,9 @@ MemeScript {
   SwitchBody       =  SwitchCase Block newline indent "be like bill;"
   SwitchCase       =  "bill has a" Literal ":" | "bill is a" Literal ":"
   Default          =  "bill is smart" ":" Block newline indent "be like bill;"
+  
+  Return           =  "i can haz" Exp ";"
+  Print            =  "dicks.out" "(" Exp ")" ";"
 
   Exp              =  NonemptyListOf<Exp1, "||">
   Exp1             =  NonemptyListOf<Exp2, "&&">
@@ -57,7 +62,7 @@ MemeScript {
 
   Args             =  ListOf<Exp, ",">
   Var              =  Var "[" Exp "]"
-                   |  Var "." id
+                   |  Var "." id    -- select
                    |  Call
                    |  id
 
