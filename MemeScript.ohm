@@ -49,7 +49,7 @@ MemeScript {
   Exp5             =  prefixop? Exp6
   Exp6             =  Literal
                    |  Var
-                   |  "(" Exp ")"
+                   |  "(" Exp ")"            -- parens
 
   Literal          =  "null"
                    |  "true"
@@ -61,16 +61,16 @@ MemeScript {
   Call             =  id "(" Args ")"
 
   Args             =  ListOf<Exp, ",">
-  Var              =  Var "[" Exp "]"
-                   |  Var "." id    -- select
+  Var              =  Var "[" Exp "]"       -- subscript
+                   |  Var "." id            -- select
                    |  Call
                    |  id
 
-  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," SplatParam)?)?
+  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
   
   Param            = id
   OptionalParam    = id "=" Exp
-  SplatParam       = id "..."
+  splatparam       = id "..."
 
   mulop            =  "*" | "/" | "%"
   prefixop         =  "!" | "-"
