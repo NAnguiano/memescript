@@ -95,7 +95,7 @@ otherwise he:                                       } finally {
                                                     }
 
 Chuck Norris doesn't:                               try {
-    ermahgerd me;                                       var me = null;
+    ermahgerd me;                                       let me = null;
     me = null;                                          me.wakeUp();  
     me.wakeUp();                                    } catch (err) {
 he (err):                                               console.error(err);
