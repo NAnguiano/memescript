@@ -1,6 +1,6 @@
 MemeScript {
   Program          =  Stmnt+
-  Stmnt            =  ConstDec 
+  Stmnt            =  ConstDec
                    |  VarDec
                    |  FunDec
                    |  If
@@ -16,14 +16,14 @@ MemeScript {
 
   Block            =  (newline indent Stmnt)*
   Body             =  Block | Stmnt
-  
+
   ConstDec         =  "overlyattachedgirlfriend.jpg" id ";"
   VarDec           =  "ermahgerd" id ";"
   ObjDec           =  "wow" id ":" newline indent Constructor newline indent ObjMethods*
-  
+
   Constructor      =  "such" "(" Params ")" ":" Body
   ObjMethods       =  "so" id "(" Params ")" ":" Body
-  
+
   FunDec           =  "you:" id "(" Params ")" ":" newline indent "me, an intellectual:" Body
   If               =  "I don't always" "(" Exp ")" ":" newline indent "but when I do" ":" Body (ElseIf)* (Else)?
   ElseIf           =  "but sometimes I" "(" Exp ")" ":" Body
@@ -37,7 +37,7 @@ MemeScript {
   SwitchBody       =  SwitchCase Block newline indent "be like bill;"
   SwitchCase       =  "bill has a" Literal ":" | "bill is a" Literal ":"
   Default          =  "bill is smart" ":" Block newline indent "be like bill;"
-  
+
   Return           =  "i can haz" Exp ";"
   Print            =  "dicks.out" "(" Exp ")" ";"
 
@@ -67,7 +67,7 @@ MemeScript {
                    |  id
 
   Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
-  
+
   Param            = id
   OptionalParam    = id "=" Exp
   splatparam       = id "..."
@@ -89,7 +89,7 @@ MemeScript {
   space           :=  "\x20"
   newline          =  "\n"
   indent           =  space space space space
-  keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very" 
+  keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
                       | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum
