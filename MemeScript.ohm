@@ -1,52 +1,51 @@
 MemeScript {
   Program          =  Block
   Block            =  (Stmnt)+
-  
-  Stmnt            =  ConstDec ";"
-                   |  VarDec ";"
-                   |  FunDec
-                   |  If
-                   |  While
-                   |  For
-                   |  TryCatch
-                   |  TryCatchFinally
-                   |  Switch
-                   |  Call ";"
-                   |  Assignment ";"
-                   |  Return ";"
-                   |  Print ";"
 
-  Body             =  "{" Block "}"
-                   |  "{" "}"
-  
-  ConstDec         =  "overlyattachedgirlfriend.jpg" id
-  VarDec           =  "ermahgerd" id
-  
+  Stmnt            =  ConstDec                                         -- constdec
+                   |  VarDec                                           -- vardec
+                   |  FunDec                                           -- fundec
+                   |  If                                               -- if
+                   |  While                                            -- while
+                   |  For                                              -- for
+                   |  TryCatch                                         -- trycatch
+                   |  TryCatchFinally                                  -- trycatchfinally
+                   |  Switch                                           -- switch
+                   |  Call                                             -- funcall
+                   |  Assignment                                       -- assignment
+                   |  Return                                           -- return
+                   |  Print                                            -- print
+
+  Body             =  "{" Block? "}"
+
+  ConstDec         =  "overlyattachedgirlfriend.jpg" id ";"
+  VarDec           =  "ermahgerd" id ";"
+
   ObjDec           =  "wow" id "{" Constructor ObjMethods* "}"
   Constructor      =  "such" "(" Params ")" Body
   ObjMethods       =  "so" id "(" Params ")" Body
-  
+
   FunDec           =  "you" id "(" Params ")" "me, an intellectual" Body
-  
+
   If               =  "I don't always" "(" Exp ")" "but when I do" Body (ElseIf)* (Else)?
   ElseIf           =  "but sometimes I" "(" Exp ")" Body
   Else             =  "otherwise I do" Body
-  
+
   While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
-  
+
   For              =  "one does not simply" Body "without" "(" VarDec ";" Exp ";" Exp ")"
-  
+
   TryCatch         =  "Chuck Norris doesn't" Body "he" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
-  
+
   Switch           =  "this is bill" "(" id ")" "{" (SwitchCase SwitchBody)* Default "}"
-  
+
   SwitchCase       =  "bill has a" Literal | "bill is a" Literal
   SwitchBody       =  "{" Block "be like bill;" "}"
   Default          =  "bill is smart" SwitchBody
-  
-  Return           =  "i can haz" Exp
-  Print            =  "dicks.out" "(" Exp ")"
+
+  Return           =  "i can haz" Exp ";"
+  Print            =  "dicks.out" "(" Exp ")" ";"
 
   Exp              =  NonemptyListOf<Exp1, "||">
   Exp1             =  NonemptyListOf<Exp2, "&&">
@@ -56,7 +55,7 @@ MemeScript {
   Exp5             =  prefixop? Exp6
   Exp6             =  Literal
                    |  Var
-                   |  "(" Exp ")"            -- parens
+                   |  "(" Exp ")"                                      -- parens
 
   Literal          =  "null"
                    |  "true"
@@ -64,20 +63,20 @@ MemeScript {
                    |  strlit
                    |  numlit
 
-  Assignment       =  id "=" Exp
-  Call             =  id "(" Args ")"
+  Assignment       =  id "=" Exp ";"
+  Call             =  id "(" Args ")" ";"
 
   Args             =  ListOf<Exp, ",">
-  Var              =  Var "[" Exp "]"       -- subscript
-                   |  Var "." id            -- select
+  Var              =  Var "[" Exp "]"                                  -- subscript
+                   |  Var "." id                                       -- select
                    |  Call
                    |  id
 
-  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
-  
+  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," SplatParam)?)?
+
   Param            = id
   OptionalParam    = id "=" Exp
-  Splatparam       = id "..."
+  SplatParam       = id "..."
 
   mulop            =  "*" | "/" | "%"
   prefixop         =  "!" | "-"
@@ -93,10 +92,10 @@ MemeScript {
   numlit           =  intlit | floatlit
 
   escape           =  "\\n" | "\\\"" | "\\'"
-  
+
   keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
                       | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
-                      
+
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum
 }
