@@ -1,5 +1,6 @@
 MemeScript {
-  Program          =  Stmnt+
+  Program          =  Block
+  Block            =  (Stmnt ";")+
   Stmnt            =  ConstDec 
                    |  VarDec
                    |  FunDec
@@ -14,32 +15,37 @@ MemeScript {
                    |  Return
                    |  Print
 
-  Block            =  (newline indent Stmnt)*
-  Body             =  Block | Stmnt
+  Body             =  "{" Block "}"
+                   |  "{" "}"
   
-  ConstDec         =  "overlyattachedgirlfriend.jpg" id ";"
-  VarDec           =  "ermahgerd" id ";"
-  ObjDec           =  "wow" id ":" newline indent Constructor newline indent ObjMethods*
+  ConstDec         =  "overlyattachedgirlfriend.jpg" id
+  VarDec           =  "ermahgerd" id
   
-  Constructor      =  "such" "(" Params ")" ":" Body
-  ObjMethods       =  "so" id "(" Params ")" ":" Body
+  ObjDec           =  "wow" id "{" Constructor ObjMethods* "}"
+  Constructor      =  "such" "(" Params ")" Body
+  ObjMethods       =  "so" id "(" Params ")" Body
   
-  FunDec           =  "you:" id "(" Params ")" ":" newline indent "me, an intellectual:" Body
-  If               =  "I don't always" "(" Exp ")" ":" newline indent "but when I do" ":" Body (ElseIf)* (Else)?
-  ElseIf           =  "but sometimes I" "(" Exp ")" ":" Body
-  Else             =  "otherwise I do" ":" Body
-  While            =  "yo, I'mma let you finish" "(" Exp ")" ":" newline indent "but" ":" Body
-  For              =  "one does not simply" ":" Body "without" "(" VarDec ";" Exp ";" Exp ")"
-  TryCatch         =  "Chuck Norris doesn't" ":" Block "he" ":" Block
-  TryCatchFinally  =  "Chuck Norris doesn't" ":" Block "or" ":" Block "he" ":" Block
-  Switch           =  "this is bill" "(" id ")" ":" (newline indent SwitchBody)* Default
-
-  SwitchBody       =  SwitchCase Block newline indent "be like bill;"
-  SwitchCase       =  "bill has a" Literal ":" | "bill is a" Literal ":"
-  Default          =  "bill is smart" ":" Block newline indent "be like bill;"
+  FunDec           =  "you" id "(" Params ")" "me, an intellectual" Body
   
-  Return           =  "i can haz" Exp ";"
-  Print            =  "dicks.out" "(" Exp ")" ";"
+  If               =  "I don't always" "(" Exp ")" "but when I do" Body (ElseIf)* (Else)?
+  ElseIf           =  "but sometimes I" "(" Exp ")" Body
+  Else             =  "otherwise I do" Body
+  
+  While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
+  
+  For              =  "one does not simply" Body "without" "(" VarDec ";" Exp ";" Exp ")"
+  
+  TryCatch         =  "Chuck Norris doesn't" Body "he" Body
+  TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
+  
+  Switch           =  "this is bill" "(" id ")" "{" (SwitchCase SwitchBody)* Default "}"
+  
+  SwitchCase       =  "bill has a" Literal | "bill is a" Literal
+  SwitchBody       =  "{" Block "be like bill;" "}"
+  Default          =  "bill is smart" SwitchBody
+  
+  Return           =  "i can haz" Exp
+  Print            =  "dicks.out" "(" Exp ")"
 
   Exp              =  NonemptyListOf<Exp1, "||">
   Exp1             =  NonemptyListOf<Exp2, "&&">
@@ -57,7 +63,7 @@ MemeScript {
                    |  strlit
                    |  numlit
 
-  Assignment       =  id "=" Exp ";"
+  Assignment       =  id "=" Exp
   Call             =  id "(" Args ")"
 
   Args             =  ListOf<Exp, ",">
@@ -85,7 +91,7 @@ MemeScript {
   floatlit         =  digit+ "." digit+
   numlit           =  intlit | floatlit
 
-  escape           =  "\\n" | "\\\"" | "\'"
+  escape           =  "\\n" | "\\\"" | "\\'"
   space           :=  "\x20"
   newline          =  "\n"
   indent           =  space space space space
