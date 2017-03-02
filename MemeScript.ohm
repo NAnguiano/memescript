@@ -65,18 +65,12 @@ MemeScript {
                    |  numlit
 
   Assignment       =  id "=" Exp
-  Call             =  EndVar "(" Args ")"
+  Call             =  id "(" Args ")"
 
   Args             =  ListOf<Exp, ",">
-  
-  ArrVar           =  Var "[" Exp "]"       -- subscript
-                   |  id
-                   
-  Var              =  Var "." ArrVar        -- select
-                   |  ArrVar
+  Var              =  Var "[" Exp "]"       -- subscript
+                   |  Var "." id            -- select
                    |  Call
-  
-  EndVar           =  Var "." id            -- endselect
                    |  id
 
   Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
