@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha ./tests --recursive",
     "lint": "./node_modules/.bin/eslint . --ext .js",
-    "start": "node app.js"
+    "start": "node memescript.js"
   },
   "repository": {
     "type": "git",
