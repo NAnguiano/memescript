@@ -1,9 +1,9 @@
 MemeScript {
   Program          =  Block
-  Block            =  (Stmnt ";")+
+  Block            =  (Stmnt)+
   
-  Stmnt            =  ConstDec 
-                   |  VarDec
+  Stmnt            =  ConstDec ";"
+                   |  VarDec ";"
                    |  FunDec
                    |  If
                    |  While
@@ -11,10 +11,10 @@ MemeScript {
                    |  TryCatch
                    |  TryCatchFinally
                    |  Switch
-                   |  Call
-                   |  Assignment
-                   |  Return
-                   |  Print
+                   |  Call ";"
+                   |  Assignment ";"
+                   |  Return ";"
+                   |  Print ";"
 
   Body             =  "{" Block "}"
                    |  "{" "}"
@@ -65,19 +65,25 @@ MemeScript {
                    |  numlit
 
   Assignment       =  id "=" Exp
-  Call             =  id "(" Args ")"
+  Call             =  EndVar "(" Args ")"
 
   Args             =  ListOf<Exp, ",">
-  Var              =  Var "[" Exp "]"       -- subscript
-                   |  Var "." id            -- select
+  
+  ArrVar           =  Var "[" Exp "]"       -- subscript
+                   |  id
+                   
+  Var              =  Var "." ArrVar        -- select
+                   |  ArrVar
                    |  Call
+  
+  EndVar           =  Var "." id            -- endselect
                    |  id
 
   Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
-
+  
   Param            = id
   OptionalParam    = id "=" Exp
-  splatparam       = id "..."
+  Splatparam       = id "..."
 
   mulop            =  "*" | "/" | "%"
   prefixop         =  "!" | "-"
@@ -93,11 +99,10 @@ MemeScript {
   numlit           =  intlit | floatlit
 
   escape           =  "\\n" | "\\\"" | "\\'"
-  space           :=  "\x20"
-  newline          =  "\n"
-  indent           =  space space space space
+  
   keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
                       | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
+                      
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum
 }
