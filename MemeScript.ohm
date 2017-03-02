@@ -1,6 +1,7 @@
 MemeScript {
   Program          =  Block
   Block            =  (Stmnt ";")+
+  
   Stmnt            =  ConstDec 
                    |  VarDec
                    |  FunDec
@@ -73,7 +74,7 @@ MemeScript {
                    |  id
 
   Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," splatparam)?)?
-  
+
   Param            = id
   OptionalParam    = id "=" Exp
   splatparam       = id "..."
@@ -95,7 +96,7 @@ MemeScript {
   space           :=  "\x20"
   newline          =  "\n"
   indent           =  space space space space
-  keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very" 
+  keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
                       | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum
