@@ -1,6 +1,6 @@
 class ElseStatement{
 	constructor(body) {
-		this.body;
+		this.body = body;
 	}
 
 	toString() {

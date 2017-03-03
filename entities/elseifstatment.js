@@ -1,11 +1,10 @@
-class IfStatement{
-	
+class ElseIfStatement{
 	constructor(expression,body) {
 		this.expression = expression;
 		this.body = body;
 	}
 
 	toString() {
-		return `IfStatement ${expression} ${body}`
+		return `ElseIfStatement (${expression}) ${this.body}`
 	}
 }
