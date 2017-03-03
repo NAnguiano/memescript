@@ -16,6 +16,9 @@ const VariableDeclaration = require('./entities/variabledeclaration.js');
 const SwitchStatement = require('./entities/switchstatement.js');
 const SwitchCase = require('./entities/switchcase.js');
 const SwitchDefault = require('./entities/switchdefault.js');
+const IfStatement = require('./entities/ifstatement.js');
+const ElseIfStatement = require('./entities/elseifstatement.js');
+const ElseStatement = require('./entities/elsestatement.js');
 // const FunctionCall = require('./entities/functioncall.js');
 const Assignment = require('./entities/assignment.js');
 // const ReturnStatement = require('./entities/returnstatement.js');
@@ -44,6 +47,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Block: (s) => {
     return new Block(s.ast());
+  },
+  Body: (b1, b, b2) => {
+    return b.ast();
   },
   ConstDec: (o, i, _) => {
     return new ConstantDeclaration(i.sourceString);
@@ -84,9 +90,18 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   SwitchDefault: (intro, b1, b, end, b2) => {
     return new SwitchDefault(b.ast());
   },
+  If: (intro, p1, e, p2, segue, b, elseif, elseStmnt) => {
+    return new IfStatement(e.ast(), b.ast(), elseif.ast(), elseStmnt.ast());
+  },
+  ElseIf: (intro, p1, e, p2, b) => {
+    return new ElseIfStatement(e.ast(), b.ast());
+  },
+  Else: (intro, b) => {
+    return new ElseStatement(b.ast());
+  },
   id: (l, r) => {
     return '' + l + r;
-  }
+  },
   strlit: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;

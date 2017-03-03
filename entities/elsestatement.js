@@ -1,4 +1,5 @@
 class ElseStatement {
+
   constructor(body) {
     this.body = body;
   }
@@ -6,6 +7,7 @@ class ElseStatement {
   toString() {
     return `(ElseStatement ${this.body})`;
   }
+
 }
 
 module.exports = ElseStatement;
