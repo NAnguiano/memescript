@@ -6,7 +6,7 @@ class Parameters {
   }
 
   toString() {
-    return `(Parameters ${this.firstParam} ${this.middleParams.join(' ')} ${this.splatParam})`;
+    return `(Parameters ${this.firstParam} ${this.middleParams[0].join(' ')} ${this.splatParam})`;
   }
 }
 

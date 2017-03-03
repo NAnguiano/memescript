@@ -75,7 +75,7 @@ MemeScript {
                    |  Call
                    |  id
 
-  Params           =  ((Param | OptionalParam) ("," (Param | OptionalParam))* ("," SplatParam)?)?
+  Params           =  ((OptionalParam | Param) ("," (OptionalParam | Param))* ("," SplatParam)?)?
 
   Param            = id
   OptionalParam    = id "=" Exp

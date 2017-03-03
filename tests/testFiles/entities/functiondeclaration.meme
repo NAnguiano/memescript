@@ -1,4 +1,4 @@
-you: getB (b)
+you: getB (b, c = 2, a, d, e, f = 2)
 me, an intellectual: {
  i can haz bagel;
 }
