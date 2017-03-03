@@ -9,7 +9,7 @@ const ConstantDeclaration = require('./entities/constantdeclaration.js');
 const VariableDeclaration = require('./entities/variabledeclaration.js');
 const FunctionDeclaration = require('./entities/functiondeclaration.js');
 // const IfStatement = require('./entities/ifstatement.js');
-// const WhileStatement = require('./entities/whilestatement.js');
+const WhileStatement = require('./entities/whilestatement.js');
 // const ForLoop = require('./entities/forloop.js')
 // const TryCatch = require('./entities/trycatch.js')
 // const TryCatchFinally = require(.'entities/trycatchfinally.js');
@@ -102,6 +102,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Else: (intro, b) => {
     return new ElseStatement(b.ast());
+  },
+  While: (y, rp, e, lp, _, b) => {
+    return new WhileStatement(e.ast(), b.ast());
   },
   Return: (i, e, _) => {
     return new ReturnStatement(e.ast());

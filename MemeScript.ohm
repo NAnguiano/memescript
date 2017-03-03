@@ -6,7 +6,7 @@ MemeScript {
                    |  VarDec
                    |  FunDec
                    |  If
-                   |  While                                            -- while
+                   |  While
                    |  For                                              -- for
                    |  TryCatch                                         -- trycatch
                    |  TryCatchFinally                                  -- trycatchfinally
