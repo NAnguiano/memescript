@@ -4,7 +4,7 @@ MemeScript {
 
   Stmnt            =  ConstDec
                    |  VarDec
-                   |  FunDec                                           -- fundec
+                   |  FunDec                                           
                    |  If                                               -- if
                    |  While                                            -- while
                    |  For                                              -- for
@@ -64,8 +64,7 @@ MemeScript {
                    |  "(" Exp ")"                                      -- parens
 
   Literal          =  "null"
-                   |  "true"
-                   |  "false"
+                   |  boollit
                    |  strlit
                    |  numlit
 
@@ -95,7 +94,8 @@ MemeScript {
   strlit           =  "\"" char* "\"" | "'" char* "'"
   intlit           =  digit+
   floatlit         =  digit+ "." digit+
-  numlit           =  intlit | floatlit
+  numlit           =  floatlit | intlit
+  boollit          = "true" |  "false"
 
   escape           =  "\\n" | "\\\"" | "\\'"
 

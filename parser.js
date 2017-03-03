@@ -19,6 +19,12 @@ const Assignment = require('./entities/assignment.js');
 // const ReturnStatement = require('./entities/returnstatement.js');
 // const PrintStatement = require('./entities/printstatement.js');
 const BinaryExpression = require('./entities/binaryexpression.js');
+const UnaryExpression = require('./entities/unaryexpression.js');
+// const VariableSubscript = require('./entities/variablesubscript.js');
+const StringLiteral = require('./entities/stringliteral.js');
+const IntegerLiteral = require('./entities/integerliteral.js');
+const FloatLiteral = require('./entities/floatliteral.js');
+const BooleanLiteral = require('./entities/booleanliteral.js');
 
 const error = require('./error.js');
 const ohm = require('ohm-js');
@@ -29,6 +35,7 @@ const grammar = ohm.grammar(fs.readFileSync('./MemeScript.ohm'));
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-new */
 /* eslint-disable arrow-body-style */
+/* eslint-disable no-underscore-dangle */
 const semantics = grammar.createSemantics().addOperation('ast', {
   Program: (b) => {
     return new Program(b.ast());
@@ -61,12 +68,34 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new BinaryExpression(l.ast(), o.sourceString, r.ast());
   },
   Exp5_unary: (p, e) => {
-    return new BinaryExpression(p.sourceString, e.ast());
+    return new UnaryExpression(p.sourceString, e.ast());
   },
   Exp6_parens: (l, e, r) => {
     return e.ast();
   },
+  strlit: (q, s, _) => {
+    const sourceString = s._baseInterval.sourceString;
+    const startIndex = s._baseInterval.startIdx;
+    const endIndex = s._baseInterval.endIdx;
+    return new StringLiteral(sourceString.substring(startIndex, endIndex));
+  },
+  intlit: (i) => {
+    const sourceString = i._baseInterval.sourceString;
+    const startIndex = i._baseInterval.startIdx;
+    const endIndex = i._baseInterval.endIdx;
+    return new IntegerLiteral(sourceString.substring(startIndex, endIndex));
+  },
+  floatlit: (f1, p, f2) => {
+    const sourceString = f1._baseInterval.sourceString;
+    const startIndex = f1._baseInterval.startIdx;
+    const endIndex = f1._baseInterval.endIdx;
+    return new FloatLiteral(sourceString.substring(startIndex, endIndex));
+  },
+  boollit: (b) => {
+    return new BooleanLiteral(b.sourceString);
+  },
 });
+/* eslint-enable no-underscore-dangle */
 /* eslint-enable arrow-body-style */
 /* eslint-enable no-new */
 /* eslint-enable no-unused-vars */

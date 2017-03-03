@@ -4,9 +4,9 @@
   "description": "Programming language composed entirely of memes. Compiles to JavaScript.",
   "main": "MemeScript.ohm",
   "scripts": {
-    "test": "mocha ./tests --recursive",
+    "test": "mocha ./tests/test.js",
     "lint": "./node_modules/.bin/eslint . --ext .js",
-    "start": "node memescript.js -a ./tests/testFiles/goodPrograms/declaration.meme"
+    "start": "node memescript.js -a ./tests/testFiles/entities/assignment.meme"
   },
   "repository": {
     "type": "git",
