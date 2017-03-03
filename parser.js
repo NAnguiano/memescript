@@ -7,7 +7,7 @@ const Program = require('./entities/program.js');
 const Block = require('./entities/block.js');
 const ConstantDeclaration = require('./entities/constantdeclaration.js');
 const VariableDeclaration = require('./entities/variabledeclaration.js');
-// const FunctionDeclaration = require('./entities/functiondeclaration.js');
+const FunctionDeclaration = require('./entities/functiondeclaration.js');
 // const IfStatement = require('./entities/ifstatement.js');
 // const WhileStatement = require('./entities/whilestatement.js');
 // const ForLoop = require('./entities/forloop.js')
@@ -18,11 +18,12 @@ const SwitchCase = require('./entities/switchcase.js');
 const SwitchDefault = require('./entities/switchdefault.js');
 // const FunctionCall = require('./entities/functioncall.js');
 const Assignment = require('./entities/assignment.js');
-// const ReturnStatement = require('./entities/returnstatement.js');
+const ReturnStatement = require('./entities/returnstatement.js');
 // const PrintStatement = require('./entities/printstatement.js');
 const BinaryExpression = require('./entities/binaryexpression.js');
 const UnaryExpression = require('./entities/unaryexpression.js');
 // const VariableSubscript = require('./entities/variablesubscript.js');
+const Parameters = require('./entities/parameters.js');
 const StringLiteral = require('./entities/stringliteral.js');
 const IntegerLiteral = require('./entities/integerliteral.js');
 const FloatLiteral = require('./entities/floatliteral.js');
@@ -51,8 +52,24 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   VarDec: (e, i, _) => {
     return new VariableDeclaration(i.sourceString);
   },
+  FunDec: (y, i, rp, p, lp, _, b) => {
+    return new FunctionDeclaration(i.sourceString, p.ast(), b.ast());
+  },
   Assignment: (i, q, e, _) => {
     return new Assignment(i.sourceString, e.ast());
+  },
+  Switch: (s, p1, e, p2, b1, c, d, b2) => {
+    console.log(e);
+    return new SwitchStatement(e.ast(), c.ast(), d.ast());
+  },
+  SwitchCase: (intro, l, b1, b, end, b2) => {
+    return new SwitchCase(l.ast(), b.ast());
+  },
+  SwitchDefault: (intro, b1, b, end, b2) => {
+    return new SwitchDefault(b.ast());
+  },
+  Return: (i, e, _) => {
+    return new ReturnStatement(e.ast());
   },
   Exp_binary: (l, _, r) => {
     return new BinaryExpression(l.ast(), '||', r.ast());
@@ -75,18 +92,12 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp6_parens: (l, e, r) => {
     return e.ast();
   },
-  Switch: (s, p1, e, p2, b1, c, d, b2) => {
-    return new SwitchStatement(e.ast(), c.ast(), d.ast());
-  },
-  SwitchCase: (intro, l, b1, b, end, b2) => {
-    return new SwitchCase(l.ast(), b.ast());
-  },
-  SwitchDefault: (intro, b1, b, end, b2) => {
-    return new SwitchDefault(b.ast());
+  Params: (p1, c, p2, c2, s) => {
+    return new Parameters(p1.ast(), p2.ast(), s.ast());
   },
   id: (l, r) => {
-    return '' + l + r;
-  }
+    return `${l}${r}`;
+  },
   strlit: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;
