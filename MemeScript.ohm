@@ -41,7 +41,7 @@ MemeScript {
   Switch           =  "this is bill" "(" id ")" "{" (SwitchCase SwitchBody)* Default "}"
 
   SwitchCase       =  "bill has a" Literal | "bill is a" Literal
-  SwitchBody       =  "{" Block "be like bill;" "}"
+  SwitchBody       =  "{" Block? "be like bill;" "}"
   Default          =  "bill is smart" SwitchBody
 
   Return           =  "i can haz" Exp ";"
