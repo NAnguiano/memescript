@@ -4,13 +4,13 @@ MemeScript {
 
   Stmnt            =  ConstDec
                    |  VarDec
-                   |  FunDec                                           
+                   |  FunDec
                    |  If                                               -- if
                    |  While                                            -- while
                    |  For                                              -- for
                    |  TryCatch                                         -- trycatch
                    |  TryCatchFinally                                  -- trycatchfinally
-                   |  Switch                                           -- switch
+                   |  Switch
                    |  Call                                             -- funcall
                    |  Assignment
                    |  Return                                           -- return
@@ -25,7 +25,7 @@ MemeScript {
   Constructor      =  "such" "(" Params ")" Body
   ObjMethods       =  "so" id "(" Params ")" Body
 
-  FunDec           =  "you" id "(" Params ")" "me, an intellectual" Body
+  FunDec           =  "you:" id "(" Params ")" "me, an intellectual:" Body
 
   If               =  "I don't always" "(" Exp ")" "but when I do" Body (ElseIf)* (Else)?
   ElseIf           =  "but sometimes I" "(" Exp ")" Body

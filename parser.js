@@ -20,13 +20,18 @@ const IfStatement = require('./entities/ifstatement.js');
 const ElseIfStatement = require('./entities/elseifstatement.js');
 const ElseStatement = require('./entities/elsestatement.js');
 // const FunctionCall = require('./entities/functioncall.js');
+const Literal = require('./entities/literal.js');
 const Assignment = require('./entities/assignment.js');
 const ReturnStatement = require('./entities/returnstatement.js');
 // const PrintStatement = require('./entities/printstatement.js');
 const BinaryExpression = require('./entities/binaryexpression.js');
 const UnaryExpression = require('./entities/unaryexpression.js');
-// const VariableSubscript = require('./entities/variablesubscript.js');
+const VariableSubscript = require('./entities/variablesubscript.js');
+const VariableSelect = require('./entities/variableselect.js');
 const Parameters = require('./entities/parameters.js');
+const Param = require('./entities/param.js');
+const OptionalParam = require('./entities/optionalparam.js');
+const SplatParam = require('./entities/splatparam.js');
 const StringLiteral = require('./entities/stringliteral.js');
 const IntegerLiteral = require('./entities/integerliteral.js');
 const FloatLiteral = require('./entities/floatliteral.js');
@@ -61,8 +66,17 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   FunDec: (y, i, rp, p, lp, _, b) => {
     return new FunctionDeclaration(i.sourceString, p.ast(), b.ast());
   },
+  Literal: (x) => {
+    return new Literal(x.sourceString);
+  },
   Assignment: (i, q, e, _) => {
     return new Assignment(i.sourceString, e.ast());
+  },
+  Var_subscript: (v, rb, e, _) => {
+    return new VariableSubscript(v.ast(), e.ast());
+  },
+  Var_select: (v, p, i) => {
+    return new VariableSelect(v.ast(), i.sourceString);
   },
   Switch: (s, p1, e, p2, b1, c, d, b2) => {
     return new SwitchStatement(e.ast(), c.ast(), d.ast());
@@ -100,6 +114,15 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Params: (p1, c, p2, c2, s) => {
     return new Parameters(p1.ast(), p2.ast(), s.ast());
   },
+  Param: (i) => {
+    return new Param(i.sourceString);
+  },
+  OptionalParam: (i, q, e) => {
+    return new OptionalParam(i.sourceString, e.ast());
+  },
+  SplatParam: (i, _) => {
+    return new SplatParam(i.sourceString);
+  },
   If: (intro, p1, e, p2, segue, b, elseif, elseStmnt) => {
     return new IfStatement(e.ast(), b.ast(), elseif.ast(), elseStmnt.ast());
   },
@@ -110,8 +133,12 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new ElseStatement(b.ast());
   },
   id: (l, r) => {
-    return `${l}${r}`;
+    const sourceString = r._baseInterval.sourceString;
+    const startIndex = r._baseInterval.startIdx;
+    const endIndex = r._baseInterval.endIdx;
+    return `${sourceString.substring(startIndex, endIndex)}`;
   },
+  // May be irrelevant due to Literal above.
   strlit: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;
