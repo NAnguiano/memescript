@@ -65,7 +65,6 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new Assignment(i.sourceString, e.ast());
   },
   Switch: (s, p1, e, p2, b1, c, d, b2) => {
-    console.log(e);
     return new SwitchStatement(e.ast(), c.ast(), d.ast());
   },
   SwitchCase: (intro, l, b1, b, end, b2) => {
