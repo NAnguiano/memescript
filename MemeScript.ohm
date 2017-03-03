@@ -2,8 +2,8 @@ MemeScript {
   Program          =  Block
   Block            =  (Stmnt)+
 
-  Stmnt            =  ConstDec                                         -- constdec
-                   |  VarDec                                           -- vardec
+  Stmnt            =  ConstDec
+                   |  VarDec
                    |  FunDec                                           -- fundec
                    |  If                                               -- if
                    |  While                                            -- while
@@ -12,7 +12,7 @@ MemeScript {
                    |  TryCatchFinally                                  -- trycatchfinally
                    |  Switch                                           -- switch
                    |  Call                                             -- funcall
-                   |  Assignment                                       -- assignment
+                   |  Assignment
                    |  Return                                           -- return
                    |  Print                                            -- print
 
@@ -47,12 +47,18 @@ MemeScript {
   Return           =  "i can haz" Exp ";"
   Print            =  "dicks.out" "(" Exp ")" ";"
 
-  Exp              =  NonemptyListOf<Exp1, "||">
-  Exp1             =  NonemptyListOf<Exp2, "&&">
-  Exp2             =  Exp3 (relop Exp3)?
-  Exp3             =  NonemptyListOf<Exp4, addop>
-  Exp4             =  NonemptyListOf<Exp5, mulop>
-  Exp5             =  prefixop? Exp6
+  Exp              =  Exp "||" Exp1                                    -- binary
+                   |  Exp1
+  Exp1             =  Exp1 "&&" Exp2                                   -- binary
+                   |  Exp2
+  Exp2             =  Exp2 relop Exp3                                  -- binary
+                   |  Exp3
+  Exp3             =  Exp3 addop Exp4                                  -- binary
+                   |  Exp4
+  Exp4             =  Exp4 mulop Exp5                                  -- binary
+                   |  Exp5
+  Exp5             =  prefixop Exp6                                    -- unary
+                   |  Exp6
   Exp6             =  Literal
                    |  Var
                    |  "(" Exp ")"                                      -- parens

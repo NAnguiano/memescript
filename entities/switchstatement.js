@@ -7,7 +7,7 @@ class SwitchStatement {
   }
 
   toString() {
-    return `Switch ${this.expression} ${this.cases.join(' ')} ${this.defaultCase}`;
+    return `(Switch ${this.expression} ${this.cases.join(' ')} ${this.defaultCase})`;
   }
 
 }

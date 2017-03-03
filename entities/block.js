@@ -5,7 +5,7 @@ class Block {
   }
 
   toString() {
-    return `Block ${this.statements.join(' ')}`;
+    return `(Block ${this.statements.join(' ')})`;
   }
 
 }

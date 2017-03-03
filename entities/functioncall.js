@@ -1,12 +1,12 @@
 class FunCall {
 
-  constructor(variable, expression) {
-    this.variable = variable;
-    this.expression = expression;
+  constructor(id, args) {
+    this.id = id;
+    this.args = args;
   }
 
   toString() {
-    return `FunCall ${this.variable} ${this.expression}`;
+    return `(FunCall ${this.id} ${this.args.join(' ')})`;
   }
 
 }

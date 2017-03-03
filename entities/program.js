@@ -5,7 +5,7 @@ class Program {
   }
 
   toString() {
-    return `Program ${this.block}`;
+    return `(Program ${this.block})`;
   }
 
 }
