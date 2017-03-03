@@ -5,7 +5,7 @@ class vardec{
 	}
 
 	toString() {
-		return "(Var " + this.id + ")";
+		return `(Var ${this.id})`;
   	}
 }
 module.exports = vardec;
