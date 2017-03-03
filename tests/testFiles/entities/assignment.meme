@@ -1,0 +1,6 @@
+test = 2;
+test = 2222222;
+test2 = "this is a string";
+test3 = 2.2;
+test4 = -2;
+test5 = !false;
