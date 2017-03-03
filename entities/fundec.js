@@ -10,3 +10,5 @@ class FunDec{
 		return `FunDec ${this.id} ${this.parameters} ${body}`
 	}
 }
+
+module.exports = FunDec;
