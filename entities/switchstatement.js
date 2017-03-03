@@ -1,6 +1,6 @@
 class SwitchStatement {
 
-  constructor(expression, cases, defaultCase) {
+  constructor(expression, literals, blocks, block) {
     this.expression = expression;
     this.cases = cases;
     this.defaultCase = defaultCase;
