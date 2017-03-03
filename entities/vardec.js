@@ -8,4 +8,4 @@ class vardec{
 		return "(Var " + this.id + ")";
   	}
 }
-module.exports = VariableDeclaration;
+module.exports = vardec;
