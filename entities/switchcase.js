@@ -1,11 +1,14 @@
 class SwitchCase {
 
-  constructor(literal) {
+  constructor(literal, block) {
     this.literal = literal;
+    this.block = block;
   }
 
   toString() {
-    return `SwitchCase ${this.literal}`;
+    return `(SwitchCase ${this.literal} ${this.block})`;
   }
 
 }
+
+module.exports = SwitchCase;

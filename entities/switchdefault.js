@@ -1,11 +1,13 @@
 class SwitchDefault {
 
-  constructor(body) {
-    this.body = body;
+  constructor(block) {
+    this.block = block;
   }
 
   toString() {
-    return `SwitchDefault ${this.body}`;
+    return `SwitchDefaut ${this.block}`;
   }
 
 }
+
+module.exports = SwitchDefault;

@@ -13,7 +13,9 @@ const VariableDeclaration = require('./entities/variabledeclaration.js');
 // const ForLoop = require('./entities/forloop.js')
 // const TryCatch = require('./entities/trycatch.js')
 // const TryCatchFinally = require(.'entities/trycatchfinally.js');
-// const SwitchStatement = require('./entities/switchstatement.js');
+const SwitchStatement = require('./entities/switchstatement.js');
+const SwitchCase = require('./entities/switchcase.js');
+const SwitchDefault = require('./entities/switchdefault.js');
 // const FunctionCall = require('./entities/functioncall.js');
 const Assignment = require('./entities/assignment.js');
 // const ReturnStatement = require('./entities/returnstatement.js');
@@ -73,6 +75,18 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp6_parens: (l, e, r) => {
     return e.ast();
   },
+  Switch: (s, p1, e, p2, b1, c, d, b2) => {
+    return new SwitchStatement(e.ast(), c.ast(), d.ast());
+  },
+  SwitchCase: (intro, l, b1, b, end, b2) => {
+    return new SwitchCase(l.ast(), b.ast());
+  },
+  SwitchDefault: (intro, b1, b, end, b2) => {
+    return new SwitchDefault(b.ast());
+  },
+  id: (l, r) => {
+    return '' + l + r;
+  }
   strlit: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;
