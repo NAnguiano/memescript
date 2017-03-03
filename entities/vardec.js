@@ -1,5 +1,11 @@
 class vardec{
 	
-	constructor()
+	constructor(id) {
+		this.id = id;
+	}
+
+	toString() {
+		return "(Var " + this.id + ")";
+  	}
 }
 module.exports = VariableDeclaration;
