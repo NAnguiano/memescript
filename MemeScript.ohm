@@ -27,9 +27,7 @@ MemeScript {
 
   FunDec           =  "you" id "(" Params ")" "me, an intellectual" Body
 
-  If               =  "I don't always" "(" Exp ")" "but when I do" Body (ElseIf)* (Else)?
-  ElseIf           =  "but sometimes I" "(" Exp ")" Body
-  Else             =  "otherwise I do" Body
+  If               =  "I don't always" "(" Exp ")" "but when I do" Body ("but sometimes I" "(" Exp ")" Body)* ("otherwise I do" Body)? 
 
   While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
 
@@ -38,11 +36,7 @@ MemeScript {
   TryCatch         =  "Chuck Norris doesn't" Body "he" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
 
-  Switch           =  "this is bill" "(" id ")" "{" (SwitchCase SwitchBody)* Default "}"
-
-  SwitchCase       =  "bill has a" Literal | "bill is a" Literal
-  SwitchBody       =  "{" Block? "be like bill;" "}"
-  Default          =  "bill is smart" SwitchBody
+  Switch           =  "this is bill" "(" id ")" "{" (("bill has a" | "bill is a") Literal "{" Block? "be like bill;" "}")* "bill is smart" "{" Block? "be like bill;" "}" "}"
 
   Return           =  "i can haz" Exp ";"
   Print            =  "dicks.out" "(" Exp ")" ";"
