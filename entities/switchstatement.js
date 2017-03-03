@@ -1,17 +1,15 @@
 class SwitchStatement {
 
   constructor(expression, cases, defaultCase) {
-
     this.expression = expression;
     this.cases = cases;
     this.defaultCase = defaultCase;
-
   }
 
   toString() {
-  
-    return `Switch ${this.expression} ${this.cases.join(' ')} ${this.defaultCase}`;  
-
+    return `Switch ${this.expression} ${this.cases.join(' ')} ${this.defaultCase}`;
   }
 
 }
+
+module.exports = SwitchStatement;

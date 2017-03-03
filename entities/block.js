@@ -1,11 +1,13 @@
 class Block {
 
   constructor(statements) {
-    this.statements = statements
+    this.statements = statements;
   }
 
   toString() {
-    return `Block statements.join(' ')`;
+    return `Block ${this.statements.join(' ')}`;
   }
 
 }
+
+module.exports = Block;
