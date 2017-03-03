@@ -5,15 +5,15 @@ MemeScript {
   Stmnt            =  ConstDec
                    |  VarDec
                    |  FunDec
-                   |  If                                               -- if
+                   |  If
                    |  While                                            -- while
                    |  For                                              -- for
                    |  TryCatch                                         -- trycatch
                    |  TryCatchFinally                                  -- trycatchfinally
                    |  Switch
-                   |  Call                                             -- funcall
+                   |  Call
                    |  Assignment
-                   |  Return                                           -- return
+                   |  Return
                    |  Print                                            -- print
 
   Body             =  "{" Block? "}"
@@ -69,7 +69,7 @@ MemeScript {
   Assignment       =  id "=" Exp ";"
   Call             =  id "(" Args ")" ";"
 
-  Args             =  ListOf<Exp, ",">
+  Args             =  (Exp ("," Exp)*)?
   Var              =  Var "[" Exp "]"                                  -- subscript
                    |  Var "." id                                       -- select
                    |  Call

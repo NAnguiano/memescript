@@ -19,9 +19,10 @@ const SwitchDefault = require('./entities/switchdefault.js');
 const IfStatement = require('./entities/ifstatement.js');
 const ElseIfStatement = require('./entities/elseifstatement.js');
 const ElseStatement = require('./entities/elsestatement.js');
-// const FunctionCall = require('./entities/functioncall.js');
 const Literal = require('./entities/literal.js');
 const Assignment = require('./entities/assignment.js');
+const FunctionCall = require('./entities/functioncall.js');
+const FunctionArguments = require('./entities/functionarguments.js');
 const ReturnStatement = require('./entities/returnstatement.js');
 // const PrintStatement = require('./entities/printstatement.js');
 const BinaryExpression = require('./entities/binaryexpression.js');
@@ -72,6 +73,12 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Assignment: (i, q, e, _) => {
     return new Assignment(i.sourceString, e.ast());
   },
+  Call: (i, rp, a, lp, _) => {
+    return new FunctionCall(i.sourceString, a.ast());
+  },
+  Args: (e, c, r) => {
+    return new FunctionArguments(e.ast(), r.ast());
+  },
   Var_subscript: (v, rb, e, _) => {
     return new VariableSubscript(v.ast(), e.ast());
   },
@@ -86,6 +93,15 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   SwitchDefault: (intro, b1, b, end, b2) => {
     return new SwitchDefault(b.ast());
+  },
+  If: (intro, p1, e, p2, segue, b, elseif, elseStmnt) => {
+    return new IfStatement(e.ast(), b.ast(), elseif.ast(), elseStmnt.ast());
+  },
+  ElseIf: (intro, p1, e, p2, b) => {
+    return new ElseIfStatement(e.ast(), b.ast());
+  },
+  Else: (intro, b) => {
+    return new ElseStatement(b.ast());
   },
   Return: (i, e, _) => {
     return new ReturnStatement(e.ast());
@@ -122,15 +138,6 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   SplatParam: (i, _) => {
     return new SplatParam(i.sourceString);
-  },
-  If: (intro, p1, e, p2, segue, b, elseif, elseStmnt) => {
-    return new IfStatement(e.ast(), b.ast(), elseif.ast(), elseStmnt.ast());
-  },
-  ElseIf: (intro, p1, e, p2, b) => {
-    return new ElseIfStatement(e.ast(), b.ast());
-  },
-  Else: (intro, b) => {
-    return new ElseStatement(b.ast());
   },
   id: (l, r) => {
     const sourceString = r._baseInterval.sourceString;

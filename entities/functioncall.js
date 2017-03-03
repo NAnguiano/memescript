@@ -1,4 +1,4 @@
-class FunCall {
+class FuntionCall {
 
   constructor(id, args) {
     this.id = id;
@@ -6,9 +6,9 @@ class FunCall {
   }
 
   toString() {
-    return `(FunCall ${this.id} ${this.args.join(' ')})`;
+    return `(FunCall ${this.id} ${this.args})`;
   }
 
 }
 
-module.exports = FunCall;
+module.exports = FuntionCall;
