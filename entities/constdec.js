@@ -1,4 +1,4 @@
-class ConstDec{
+class ConstDec {
 	
 	constructor(id) {
 		this.id = id;

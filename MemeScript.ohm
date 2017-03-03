@@ -38,7 +38,7 @@ MemeScript {
   TryCatch         =  "Chuck Norris doesn't" Body "he" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
 
-  Switch           =  "this is bill" "(" id ")" "{" (SwitchCase SwitchBody)* Default "}"
+  Switch           =  "this is bill" "(" Exp ")" "{" (SwitchCase SwitchBody)* Default "}"
 
   SwitchCase       =  "bill has a" Literal | "bill is a" Literal
   SwitchBody       =  "{" Block? "be like bill;" "}"

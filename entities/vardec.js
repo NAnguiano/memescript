@@ -1,4 +1,4 @@
-class VarDec{
+class VarDec {
 	
 	constructor(id) {
 		this.id = id;
