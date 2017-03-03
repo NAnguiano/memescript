@@ -1,11 +1,11 @@
-class vardec{
+class VarDec{
 	
 	constructor(id) {
 		this.id = id;
 	}
 
 	toString() {
-		return `(Var ${this.id})`;
+		return `(VarDec ${this.id})`;
   	}
 }
-module.exports = vardec;
+module.exports = VarDec;
