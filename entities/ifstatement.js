@@ -1,11 +1,13 @@
-class IfStatement{
-	
-	constructor(expression,body) {
-		this.expression = expression;
-		this.body = body;
-	}
+class IfStatement {
 
-	toString() {
-		return `IfStatement ${expression} ${body}`
-	}
+  constructor(expression, body) {
+    this.expression = expression;
+    this.body = body;
+  }
+
+  toString() {
+    return `(IfStatement ${this.expression} ${this.body})`;
+  }
 }
+
+module.exports = IfStatement;
