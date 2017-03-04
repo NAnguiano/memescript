@@ -14,7 +14,7 @@ MemeScript {
                    |  Call
                    |  Assignment
                    |  Return
-                   |  Print                                            -- print
+                   |  Print
 
   Body             =  "{" Block? "}"
 
