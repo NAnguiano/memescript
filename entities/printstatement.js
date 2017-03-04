@@ -1,7 +1,7 @@
 class PrintStatement {
 
   constructor(expression) {
-    this.block = expression;
+    this.expression = expression;
   }
 
   toString() {
