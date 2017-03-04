@@ -116,11 +116,11 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Else: (intro, b) => {
     return new ElseStatement(b.ast());
   },
-  TryCatch: (intro, trybody, segue, catchbody) => {
-    return new TryCatchStatement(trybody.ast(), catchbody.ast());
+  TryCatch: (intro, trybody, segue, lp, err, rp, catchbody) => {
+    return new TryCatchStatement(trybody.ast(), err.ast(), catchbody.ast());
   },
-  TryCatchFinally: (intro, trybody, segue, catchbody, segue2, finallybody) => {
-    return new TryCatchFinallyStatement(trybody.ast(), catchbody.ast(), finallybody.ast());
+  TryCatchFinally: (intro, trybody, segue, lp, err, rp, cb, segue2, finallybody) => {
+    return new TryCatchFinallyStatement(trybody.ast(), err.ast(), cb.ast(), finallybody.ast());
   },
   While: (y, rp, e, lp, _, b) => {
     return new WhileStatement(e.ast(), b.ast());

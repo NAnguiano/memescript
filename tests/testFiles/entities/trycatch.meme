@@ -1,7 +1,7 @@
 Chuck Norris doesn't {
   ermahgerd playsWithKnives;
   playsWithKnives = true;
-} he {
+} he (err) {
   ermahgerd knivesPlayWithChuckNorris;
   knivesPlayWithChuckNorris = true;
 }
