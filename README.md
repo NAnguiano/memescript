@@ -26,7 +26,7 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 ```
 you: add(x, y)                                      function add(x, y) {
 me, an intellectual: {                                  return x + y;
-  can i haz x + y;                                  }
+  i can haz x + y;                                  }
 }
         
 you: add(x = 10, y = 10)                            function add(x = 10, y = 10) {
@@ -96,7 +96,7 @@ overlyattachedgirlfriend.jpg book = 0;              const book = 0;
 Chuck Norris doesn't {                              try {
   dicks.in("testing testing");                          console.in("testing testing");
 } or (err) {                                        } catch (err) {
-  thanks.obama(err);                                    console.error(err);
+  thanks.obama(err);                                    console.obama(err);
 } he {                                              } finally {
   dicks.out("testing testing");                         console.log("testing testing");
 }                                                   }
@@ -130,7 +130,7 @@ wow Stack {                                         class Stack {
   }                                                     }
 }                                                   }
 
-ermergerd newStack = very Stack();                  let newStack = new Stack();
+ermahgerd newStack = very Stack();                  let newStack = new Stack();
 ```
 
 ### Errors
