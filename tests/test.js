@@ -48,16 +48,22 @@ const AST_TESTS = [
     '(Program (Block FunDec beep (Parameters (Param horn) (OptionalParam stop false) ) (Block (IfStatement horn (Block (Assignment stop (UnaryExpression ! stop)))  )) (FunCall beep (FunctionArguments true )) (FunCall beep (FunctionArguments true true))))'],
   ['wow stairs { such (height, width, numSteps) { dicks.out(height); dicks.out(width); dicks.out(numSteps); } so walkUp () { here comes dat boi("You walked up" + numSteps + "steps."); } }',
     '(Program (Block ObjDec stairs ObjConstructor (Parameters (Param height) (Param width) (Param numSteps) ) (Block (Print height) (Print width) (Print numSteps)) ObjMethods walkUp (Parameters   ) (Block (Alert (BinaryExpression (BinaryExpression "You walked up" + numSteps) + "steps.")))))'],
-  /*
-    return
-    switch with only defualt
-    switch with both kinds of cases
-    switch with one kind of case
-    switch with other kind of case
-    try catch
-    try catch finally
-    while
-  */
+  ['i can haz aReturnStatement;',
+    '(Program (Block (Return aReturnStatement)))'],
+  ['this is bill (currentTime) { bill is smart { dicks.out("The sun is somewhere out there!"); be like bill; } }',
+    '(Program (Block (Switch currentTime  SwitchDefaut (Block (Print "The sun is somewhere out there!")))))'],
+  ['this is bill (currentTime) { bill has a "4:20" { console.error("You should be in class!"); be like bill; } bill is smart { dicks.out("Looks like you missed class!"); be like bill; } }',
+    '(Program (Block (Switch currentTime (SwitchCase "4:20" (Block (Error "You should be in class!"))) SwitchDefaut (Block (Print "Looks like you missed class!")))))'],
+  ['this is bill (currentTime) { bill is a "4:20" { console.error("You should be in class!"); be like bill; } bill is smart { dicks.out("Looks like you missed class!"); be like bill; } }',
+    '(Program (Block (Switch currentTime (SwitchCase "4:20" (Block (Error "You should be in class!"))) SwitchDefaut (Block (Print "Looks like you missed class!")))))'],
+  ['this is bill (currentTime) { bill is a "4:20" { console.error("You should DEFINITELY be in class!"); be like bill; } bill has a "11:20" { console.error("You should be in class!"); be like bill; } bill is smart { dicks.out("Looks like you missed to class!"); be like bill; } }',
+    '(Program (Block (Switch currentTime (SwitchCase "4:20" (Block (Error "You should DEFINITELY be in class!"))) (SwitchCase "11:20" (Block (Error "You should be in class!"))) SwitchDefaut (Block (Print "Looks like you missed to class!")))))'],
+  ['Chuck Norris doesn\'t { ermahgerd swimInWater; swimInWater = true; } or (err) { console.error(err); ermahgerd swimsOnLand; swimsOnLand = true; } he { ermahgerd person; person = "Chuck Norris"; swim(person); }',
+    '(Program (Block (Try (Block (VarDec swimInWater) (Assignment swimInWater true)) Catch err (Block (Error err) (VarDec swimsOnLand) (Assignment swimsOnLand true)) Finally (Block (VarDec person) (Assignment person "Chuck Norris") (FunCall swim (FunctionArguments person ))))))'],
+  ['Chuck Norris doesn\'t { overlyattachedgirlfriend.jpg cannotChange; cannotChange = true; cannotChange = false; } he (err) { console.error(err); dicks.out("You cannot change a constant!"); }',
+    '(Program (Block (Try (Block (ConstDec cannotChange) (Assignment cannotChange true) (Assignment cannotChange false)) Catch err (Block (Error err) (Print "You cannot change a constant!")))))'],
+  ['yo, I\'mma let you finish (talking) but { here comes dat boi("INFINITE LOOP, BABY"); }',
+    '(Program (Block (While talking (Block (Alert "INFINITE LOOP, BABY")))))'],
 ];
 
 describe('Entity Tests', () => {
