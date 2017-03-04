@@ -1,11 +1,12 @@
 class TryCatchStatement {
 
-  constructor(body) {
-    this.body = body;
+  constructor(trybody, catchbody) {
+    this.trybody = trybody;
+    this.catchbody = catchbody;
   }
 
   toString() {
-    return `(Try ${this.body} Catch ${this.body})`;
+    return `(Try ${this.trybody} Catch ${this.catchbody})`;
   }
 
 }

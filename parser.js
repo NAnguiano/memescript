@@ -8,11 +8,10 @@ const Block = require('./entities/block.js');
 const ConstantDeclaration = require('./entities/constantdeclaration.js');
 const VariableDeclaration = require('./entities/variabledeclaration.js');
 const FunctionDeclaration = require('./entities/functiondeclaration.js');
-// const IfStatement = require('./entities/ifstatement.js');
 // const WhileStatement = require('./entities/whilestatement.js');
 // const ForLoop = require('./entities/forloop.js')
-// const TryCatch = require('./entities/trycatch.js')
-// const TryCatchFinally = require(.'entities/trycatchfinally.js');
+const TryCatchStatement = require('./entities/trycatchstatement.js')
+const TryCatchFinallyStatement = require(.'entities/trycatchfinallystatement.js');
 const SwitchStatement = require('./entities/switchstatement.js');
 const SwitchCase = require('./entities/switchcase.js');
 const SwitchDefault = require('./entities/switchdefault.js');
@@ -102,6 +101,12 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Else: (intro, b) => {
     return new ElseStatement(b.ast());
+  },
+  TryCatch: (intro, trybody, segue, catchbody) => {
+    return new TryCatchStatement(trybody.ast(), catchbody.ast());
+  },
+  TryCatchFinally: (intro, trybody, segue, catchbody, segue2, finallybody) => {
+    return new TryCatchFinallyStatement(trybody.ast(), catchbody.ast(), finallybody.ast());
   },
   Return: (i, e, _) => {
     return new ReturnStatement(e.ast());

@@ -1,11 +1,13 @@
 class TryCatchFinallyStatement {
 
-  constructor(body) {
-    this.body = body;
+  constructor(trybody, catchbody, finallybody) {
+    this.trybody = trybody;
+    this.catchbody = catchbody;
+    this.finallybody = finallybody;
   }
 
   toString() {
-    return `(Try ${this.body} Catch ${this.body} Finally ${this.body})`;
+    return `(Try ${this.trybody} Catch ${this.catchbody} Finally ${this.finallybody})`;
   }
 
 }
