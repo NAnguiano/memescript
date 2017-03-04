@@ -24,58 +24,65 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 
 ### Function Declarations
 ```
-you: add(x, y):                                     function add(x, y) {
-    me, an intellectual:                                return x + y;
-        can i haz x + y;                            }
+you: add(x, y)                                      function add(x, y) {
+me, an intellectual: {                                  return x + y;
+  can i haz x + y;                                  }
+}
         
-you: add(x = 10, y = 10):                           function add(x = 10, y = 10) {
-    me, an intellectual:                                return x + y;
-        can i haz x + y;                            }
+you: add(x = 10, y = 10)                            function add(x = 10, y = 10) {
+me, an intellectual: {                                  return x + y;
+  i can haz x + y;                                  }
+}
         
-you: add(x, y...):                                  function add(x, y...) {                         
-    me, an intellectual:                                alert(y);
-        here come dat boi (y);                          console.log("For Harambe");
-        dicks.out("For Harambe");                   }
+you: add(x, y...)                                   function add(x, y...) {                         
+me, an intellectual: {                                  alert(y);
+  here come dat boi (y);                                console.log("For Harambe");
+  dicks.out("For Harambe");                         }
+}
 ```
 
 ### If Statement
 ```
-I don't always (homework.isFinished()):             if (homework.isFinished()) {
-    but when I do:                                      me.goToSleep();
-        me.goToSleep();                             }
+I don't always (homework.isFinished())              if (homework.isFinished()) {
+but when I do {                                         me.goToSleep();
+  me.goToSleep();                                   }
+}
 ```
 
 ### If-ElseIf-Else Statement
 ```
-I don't always (homework.isFinished()):             if (homework.iseFinished() {
-    but when I do:                                      me.goToSleep();
-        me.goToSleep();                             } else if (homework.procrastinating()) {
-    but sometimes I (homework.procrastinating()):       me.procrastinate();
-        me.procrastinate();                         } else {
-    otherwise I do:                                     me.readBook();
-        me.readBook();                              }
+I don't always (homework.isFinished())              if (homework.iseFinished() {
+but when I do {                                         me.goToSleep();
+  me.goToSleep();                                   } else if (homework.procrastinating()) {
+} but sometimes I (homework.procrastinating()) {        me.procrastinate();
+  me.procrastinate();                               } else {
+} otherwise I do {                                      me.readBook(); 
+  me.readBook();                                    }
+}
 ```
 
 ### Switch Statement
 ```
-this is bill(x):                                    switch (x) {
-    bill has a "banana":                                case "banana":
-        me.eat(x);                                          me.eat(x);
-        be like bill;                                       break;
-    bill is a "cheeseburger":                           case "cheeseburger":
-        me.eat(x);                                          me.eat(x);
-        be like bill;                                       break;
-    bill is smart:                                      default:
-        me.buyFood();                                       me.buyFood();
-        be like bill;                                       break;
-                                                    }
+this is bill (x) {                                  switch (x) {
+  bill has a "banana" {                                 case "banana":
+    me.eat(x);                                              me.eat(x);
+    be like bill;                                           break;
+  } bill is a "cheeseburger" {                          case "cheeseburger":
+    me.eat(x);                                              me.eat(x);
+    be like bill;                                           break;
+  } bill is smart {                                     default:
+    me.buyFood();                                           me.buyFood();
+    be like bill;                                           break;
+  }                                                 }
+}
 ```
 
 ### While Loop
 ```
-yo, I'mma let you finish (weather.isRaining()):     while (weather.isRaining()) {
-    but:                                                me.stayInside();
-        me.stayInside();                            }
+yo, I'mma let you finish (weather.isRaining())      while (weather.isRaining()) {
+but {                                                   me.stayInside();
+  me.stayInside();                                  }
+}
 ```
 
 ### Variable Declaration
@@ -86,41 +93,42 @@ overlyattachedgirlfriend.jpg book = 0;              const book = 0;
 
 ### Try, Catch, and Finally
 ```
-Chuck Norris doesn't:                               try {
-    dicks.in("testing testing");                        console.in("testing testing");
-he (err):                                           } catch (err) {
-    thanks.obama(err);                                  console.error(err);
-otherwise he:                                       } finally {
-    dicks.out("testing testing");                       console.log("testing testing");
-                                                    }
+Chuck Norris doesn't {                              try {
+  dicks.in("testing testing");                          console.in("testing testing");
+} or (err) {                                        } catch (err) {
+  thanks.obama(err);                                    console.error(err);
+} he {                                              } finally {
+  dicks.out("testing testing");                         console.log("testing testing");
+}                                                   }
 
-Chuck Norris doesn't:                               try {
-    ermahgerd me;                                       let me = null;
-    me = null;                                          me.wakeUp();  
-    me.wakeUp();                                    } catch (err) {
-he (err):                                               console.error(err);
-    console.error(err);                             }
+Chuck Norris doesn't {                              try {
+  ermahgerd me;                                         let me = null;
+  me = null;                                            me.wakeUp();  
+  me.wakeUp();                                      } catch (err) {
+} he (err) {                                            console.error(err);
+  console.error(err);                               }
+}
 ```
 
 ### For Loop
 ```
-one does not simply:                                for (let i = 0; i < 10; i++) {
+one does not simply {                               for (let i = 0; i < 10; i++) {
     me.doHomework();                                    me.doHomework();
     me.manageTimeProperly();                            me.manageTimeProperly();
     me.goToSleep();                                     me.goToSleep();
-without (ermahgerd i; i < 10; i++)                  }
+} without (ermahgerd i; i < 10; i++)                }
 ```
 
 ### Objects
 ```
-wow Stack:                                          class Stack {                  
-    such(length = 0):                                   constructor (length = 0) {
-        much.length = length;                               this.length = length;
-    so getLength():                                     }
-        can i haz much.length;                          getLength() {
-                                                            return this.length;
-                                                        }
-                                                    }
+wow Stack {                                         class Stack {                  
+  such (length = 0) {                                   constructor (length = 0) {
+    much.length = length;                                   this.length = length;
+  }                                                     }
+  so getLength() {                                      getLength { 
+    i can haz much.length;                                  return this.length;
+  }                                                     }
+}                                                   }
 
 ermergerd newStack = very Stack();                  let newStack = new Stack();
 ```
