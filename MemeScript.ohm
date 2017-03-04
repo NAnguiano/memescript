@@ -7,7 +7,7 @@ MemeScript {
                    |  FunDec
                    |  If
                    |  While
-                   |  For                                              -- for
+                   |  For
                    |  TryCatch                                         -- trycatch
                    |  TryCatchFinally                                  -- trycatchfinally
                    |  Switch
@@ -33,7 +33,7 @@ MemeScript {
 
   While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
 
-  For              =  "one does not simply" Body "without" "(" VarDec ";" Exp ";" Exp ")"
+  For              =  "one does not simply" Body "without" "(" VarDec Exp ";" Exp ")"
 
   TryCatch         =  "Chuck Norris doesn't" Body "he" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
