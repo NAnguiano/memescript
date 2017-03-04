@@ -113,9 +113,9 @@ Chuck Norris doesn't {                              try {
 ### For Loop
 ```
 one does not simply {                               for (let i = 0; i < 10; i++) {
-    me.doHomework();                                    me.doHomework();
-    me.manageTimeProperly();                            me.manageTimeProperly();
-    me.goToSleep();                                     me.goToSleep();
+  me.doHomework();                                      me.doHomework();
+  me.manageTimeProperly();                              me.manageTimeProperly();
+  me.goToSleep();                                       me.goToSleep();
 } without (ermahgerd i; i < 10; i++)                }
 ```
 
