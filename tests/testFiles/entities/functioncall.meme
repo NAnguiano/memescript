@@ -1,6 +1,6 @@
 you: getB (b, c, a, o)
 me, an intellectual: {
- i can haz bagel;
+  i can haz bagel;
 }
 
 getB();

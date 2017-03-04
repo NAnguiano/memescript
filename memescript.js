@@ -2,6 +2,7 @@
   Modified from https://github.com/rtoal/iki-compiler/blob/master/iki.coffee
   Thanks Dr. Toal!
 */
+
 const argv = require('yargs')
              .usage('$0 [-a] [-o] [-i] [--target [x86|c|js]]')
              .boolean(['a', 'o', 'i'])
@@ -25,21 +26,19 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
     console.log(program.toString());
     // return;
   }
-  // program.analyze();
-  // if (error.count > 0) return;
-  // if (argv.o) {
-  //   program = program.optimize;
-  // }
-  // if (argv.i) {
-  //   program.showSemanticGraph();
-  //   return;
-  // }
-  // return generate(program);
+  /* program.analyze();
+  if (error.count > 0) return;
+  if (argv.o) {
+    program = program.optimize;
+  }
+  if (argv.i) {
+    program.showSemanticGraph();
+    return;
+  }
+  return generate(program); */
 });
 
-/*
-
-fs = require 'fs'
+/* fs = require 'fs'
 parse = require './parser'
 generate = (require './generator') argv.target
 error = require './error'
@@ -57,6 +56,4 @@ fs.readFile argv._[0], 'utf-8', (err, text) ->
   if argv.i
     program.showSemanticGraph()
     return
-  generate program
-
-*/
+  generate program */
