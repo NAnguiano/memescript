@@ -1,13 +1,14 @@
 class ForStatement {
 
-  constructor(body, varDec, expression) {
+  constructor(body, variable, expression, iterator) {
     this.body = body;
-    this.varDeclaration = varDec;
+    this.variable = variable;
     this.expression = expression;
+    this.iterator = iterator;
   }
 
   toString() {
-    return `(For ${this.body} ${this.varDec} ${this.expression} ${this.expression})`;
+    return `(For ${this.body} ${this.variable} ${this.expression} ${this.iterator})`;
   }
 
 }

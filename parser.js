@@ -9,9 +9,9 @@ const ConstantDeclaration = require('./entities/constantdeclaration.js');
 const VariableDeclaration = require('./entities/variabledeclaration.js');
 const FunctionDeclaration = require('./entities/functiondeclaration.js');
 const WhileStatement = require('./entities/whilestatement.js');
-// const ForLoop = require('./entities/forloop.js')
 const TryCatchStatement = require('./entities/trycatchstatement.js')
 const TryCatchFinallyStatement = require('./entities/trycatchfinallystatement.js');
+const ForLoop = require('./entities/forstatement.js')
 const SwitchStatement = require('./entities/switchstatement.js');
 const SwitchCase = require('./entities/switchcase.js');
 const SwitchDefault = require('./entities/switchdefault.js');
@@ -110,6 +110,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   While: (y, rp, e, lp, _, b) => {
     return new WhileStatement(e.ast(), b.ast());
+  },
+  For: (o, b, w, lp, v, e, s, i, rp) => {
+    return new ForLoop(b.ast(), v.ast(), e.ast(), i.ast());
   },
   Return: (i, e, _) => {
     return new ReturnStatement(e.ast());
