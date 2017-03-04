@@ -27,6 +27,8 @@ const FunctionCall = require('./entities/functioncall.js');
 const FunctionArguments = require('./entities/functionarguments.js');
 const ReturnStatement = require('./entities/returnstatement.js');
 const PrintStatement = require('./entities/printstatement.js');
+const ErrorStatement = require('./entities/printerror.js');
+const Alert = require('./entities/alert.js');
 const BinaryExpression = require('./entities/binaryexpression.js');
 const UnaryExpression = require('./entities/unaryexpression.js');
 const VariableSubscript = require('./entities/variablesubscript.js');
@@ -131,6 +133,12 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Print: (d, lp, e, rp, s) => {
     return new PrintStatement(e.ast());
+  },
+  Error: (c, lp, e, rp, s) => {
+    return new ErrorStatement(e.ast());
+  },
+  Alert: (h, lp, e, rp, s) => {
+    return new Alert(e.ast());
   },
   Exp_binary: (l, _, r) => {
     return new BinaryExpression(l.ast(), '||', r.ast());

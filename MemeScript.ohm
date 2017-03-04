@@ -16,6 +16,8 @@ MemeScript {
                    |  Assignment
                    |  Return
                    |  Print
+                   |  Error
+                   |  Alert
 
   Body             =  "{" Block? "}"
 
@@ -34,7 +36,7 @@ MemeScript {
 
   While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
 
-  For              =  "one does not simply" Body "without" "(" VarDec Exp ";" Exp ")"
+  For              =  "one does not simply" Body "without" "(" VarDec Exp ";" Assignment ")"
 
   TryCatch         =  "Chuck Norris doesn't" Body "he" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" Body "he" Body
@@ -45,6 +47,8 @@ MemeScript {
 
   Return           =  "i can haz" Exp ";"
   Print            =  "dicks.out" "(" Exp ")" ";"
+  Error            =  "console.error" "(" Exp ")" ";"
+  Alert            =  "here comes dat boi" "(" Exp ")" ";"
 
   Exp              =  Exp "||" Exp1                                    -- binary
                    |  Exp1
