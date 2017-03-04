@@ -7,6 +7,9 @@ const Program = require('./entities/program.js');
 const Block = require('./entities/block.js');
 const ConstantDeclaration = require('./entities/constantdeclaration.js');
 const VariableDeclaration = require('./entities/variabledeclaration.js');
+const ObjectDeclaration = require('./entities/objectdeclaration.js');
+const ObjectConstructor = require('./entities/objectconstructor.js');
+const ObjectMethods = require('./entities/objectmethods.js');
 const FunctionDeclaration = require('./entities/functiondeclaration.js');
 const WhileStatement = require('./entities/whilestatement.js');
 const TryCatchStatement = require('./entities/trycatchstatement.js');
@@ -62,6 +65,15 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   VarDec: (e, i, _) => {
     return new VariableDeclaration(i.sourceString);
+  },
+  ObjDec: (w, i, rcb, c, o, lcb) => {
+    return new ObjectDeclaration(i.sourceString, c.ast(), o.ast());
+  },
+  ObjConst: (s, lp, p, rp, b) => {
+    return new ObjectConstructor(p.ast(), b.ast());
+  },
+  ObjMethods: (s, i, lp, p, rp, b) => {
+    return new ObjectMethods(i.sourceString, p.ast(), b.ast());
   },
   FunDec: (y, i, rp, p, lp, _, b) => {
     return new FunctionDeclaration(i.sourceString, p.ast(), b.ast());
