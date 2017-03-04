@@ -1,0 +1,83 @@
+overlyattachedgirlfriend.jpg ARGH;
+argh = true;
+ermahgerd brbcrying;
+brbcrying = true;
+
+wow doge {
+  such (paw, color, tail) {
+    dicks.out(paw);
+    dicks.out(color);
+    dicks.out(tail);
+  }
+  so grace (me) {
+    dicks.out(me);
+  }
+}
+
+you: think(thought)
+me, an intellectual: {
+  dicks.out("You had a thought.");
+  dicks.out("It was about" + thought);
+  here comes dat boi("you decide to never think again.");
+}
+
+ermahgerd haveThoughts;
+haveThoughts = true;
+
+I don't always (haveThoughts) but when I do {
+  think("puppies");
+} but sometimes I (!haveThoughts) {
+  think("nothing ):");
+} otherwise I do {
+  dicks.out("Nothing, because this code is unreachable");
+}
+
+ermahgerd c;
+c = 20;
+
+yo, I'mma let you finish (c > 10) but {
+  c = c - 1;
+}
+
+Chuck Norris doesn't {
+  one does not simply {
+    here comes dat boi("You cannot assign and declare on the same line!");
+  } without (ermahgerd d; d > 10; d = d + 10;)
+} or (err) {
+  console.error(err);
+} he {
+  this is bill (b) {
+    bill has a "clock" {
+      dicks.out("tick tock");
+      be like bill;
+    }
+    bill is a "person" {
+      here comes dat boi("hi!");
+      be like bill;
+    }
+    bill is smart {
+      dicks.out(-2.222222);
+      be like bill;
+    }
+  }
+  i can haz 10;
+}
+
+ermahgerd math;
+
+math = 0;
+math = 0 || 1;
+math = 0 && 1;
+math = 1 + 2;
+math = 2 - 3;
+math = 2.2 * 3.3;
+math = !10;
+math = -2 / -3;
+math = 5 % 100;
+math = 3 === 2;
+math = 2 == 3;
+math = 2 != 2;
+math = 2 > 2;
+math = 4 < 2;
+math = 2 >= 2;
+math = 4 <= 2;
