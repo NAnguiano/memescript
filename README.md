@@ -1,6 +1,6 @@
 # MEMESCRIPT
 
-<img src="memescript.jpg/">
+<img src="/memescript/memescript.jpg/">
 
 ## Introduction
 ---
@@ -28,12 +28,12 @@ you: add(x, y)                                      function add(x, y) {
 me, an intellectual: {                                  return x + y;
   i can haz x + y;                                  }
 }
-        
+
 you: add(x = 10, y = 10)                            function add(x = 10, y = 10) {
 me, an intellectual: {                                  return x + y;
   i can haz x + y;                                  }
 }
-        
+
 you: add(x, y...)                                   function add(x, y...) {                         
 me, an intellectual: {                                  alert(y);
   here come dat boi (y);                                console.log("For Harambe");
@@ -56,7 +56,7 @@ but when I do {                                         me.goToSleep();
   me.goToSleep();                                   } else if (homework.procrastinating()) {
 } but sometimes I (homework.procrastinating()) {        me.procrastinate();
   me.procrastinate();                               } else {
-} otherwise I do {                                      me.readBook(); 
+} otherwise I do {                                      me.readBook();
   me.readBook();                                    }
 }
 ```
@@ -125,7 +125,7 @@ wow Stack {                                         class Stack {
   such (length = 0) {                                   constructor (length = 0) {
     much.length = length;                                   this.length = length;
   }                                                     }
-  so getLength() {                                      getLength { 
+  so getLength() {                                      getLength {
     i can haz much.length;                                  return this.length;
   }                                                     }
 }                                                   }
