@@ -1,0 +1,6 @@
+Reassigning to a constant.
+Using undeclared variables (or undeclared anything).
+
+Typing for loops? (Only use booleans, not integers or strings.)
+
+Parameter checking, what if they use less than or more than the required amount of parameters?
