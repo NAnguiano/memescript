@@ -3,55 +3,52 @@
   Thanks Dr. Toal!
 */
 
-const Program = require('./entities/program.js');
-const Block = require('./entities/block.js');
-const ConstantDeclaration = require('./entities/constantdeclaration.js');
-const VariableDeclaration = require('./entities/variabledeclaration.js');
-const ObjectDeclaration = require('./entities/objectdeclaration.js');
-const ObjectConstructor = require('./entities/objectconstructor.js');
-const ObjectMethods = require('./entities/objectmethods.js');
-const FunctionDeclaration = require('./entities/functiondeclaration.js');
-const WhileStatement = require('./entities/whilestatement.js');
-const TryCatchStatement = require('./entities/trycatchstatement.js');
-const TryCatchFinallyStatement = require('./entities/trycatchfinallystatement.js');
-const ForLoop = require('./entities/forstatement.js');
-const SwitchStatement = require('./entities/switchstatement.js');
-const SwitchCase = require('./entities/switchcase.js');
-const SwitchDefault = require('./entities/switchdefault.js');
-const IfStatement = require('./entities/ifstatement.js');
-const ElseIfStatement = require('./entities/elseifstatement.js');
-const ElseStatement = require('./entities/elsestatement.js');
-const Literal = require('./entities/literal.js');
-const Assignment = require('./entities/assignment.js');
-const FunctionCall = require('./entities/functioncall.js');
-const FunctionArguments = require('./entities/functionarguments.js');
-const ReturnStatement = require('./entities/returnstatement.js');
-const PrintStatement = require('./entities/printstatement.js');
-const ErrorStatement = require('./entities/printerror.js');
-const Alert = require('./entities/alert.js');
-const BinaryExpression = require('./entities/binaryexpression.js');
-const UnaryExpression = require('./entities/unaryexpression.js');
-const VariableSubscript = require('./entities/variablesubscript.js');
-const VariableSelect = require('./entities/variableselect.js');
-const Parameters = require('./entities/parameters.js');
-const Param = require('./entities/param.js');
-const OptionalParam = require('./entities/optionalparam.js');
-const SplatParam = require('./entities/splatparam.js');
-const StringLiteral = require('./entities/stringliteral.js');
-const IntegerLiteral = require('./entities/integerliteral.js');
-const FloatLiteral = require('./entities/floatliteral.js');
-const BooleanLiteral = require('./entities/booleanliteral.js');
+const Program = require('./entities/program');
+const Block = require('./entities/block');
+const ConstantDeclaration = require('./entities/constantdeclaration');
+const VariableDeclaration = require('./entities/variabledeclaration');
+const ObjectDeclaration = require('./entities/objectdeclaration');
+const ObjectConstructor = require('./entities/objectconstructor');
+const ObjectMethods = require('./entities/objectmethods');
+const FunctionDeclaration = require('./entities/functiondeclaration');
+const WhileStatement = require('./entities/whilestatement');
+const TryCatchStatement = require('./entities/trycatchstatement');
+const TryCatchFinallyStatement = require('./entities/trycatchfinallystatement');
+const ForLoop = require('./entities/forstatement');
+const SwitchStatement = require('./entities/switchstatement');
+const SwitchCase = require('./entities/switchcase');
+const SwitchDefault = require('./entities/switchdefault');
+const IfStatement = require('./entities/ifstatement');
+const ElseIfStatement = require('./entities/elseifstatement');
+const ElseStatement = require('./entities/elsestatement');
+const Literal = require('./entities/literal');
+const Assignment = require('./entities/assignment');
+const FunctionCall = require('./entities/functioncall');
+const FunctionArguments = require('./entities/functionarguments');
+const ReturnStatement = require('./entities/returnstatement');
+const PrintStatement = require('./entities/printstatement');
+const ErrorStatement = require('./entities/printerror');
+const Alert = require('./entities/alert');
+const BinaryExpression = require('./entities/binaryexpression');
+const UnaryExpression = require('./entities/unaryexpression');
+const VariableSubscript = require('./entities/variablesubscript');
+const VariableSelect = require('./entities/variableselect');
+const Parameters = require('./entities/parameters');
+const Param = require('./entities/param');
+const OptionalParam = require('./entities/optionalparam');
+const SplatParam = require('./entities/splatparam');
+const StringLiteral = require('./entities/stringliteral');
+const IntegerLiteral = require('./entities/integerliteral');
+const FloatLiteral = require('./entities/floatliteral');
+const BooleanLiteral = require('./entities/booleanliteral');
 
-const error = require('./error.js');
+const error = require('./error');
 const ohm = require('ohm-js');
 const fs = require('fs');
 
 const grammar = ohm.grammar(fs.readFileSync('./MemeScript.ohm'));
 
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-new */
-/* eslint-disable arrow-body-style */
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars, no-new, arrow-body-style, no-underscore-dangle */
 const semantics = grammar.createSemantics().addOperation('ast', {
   Program: (b) => {
     return new Program(b.ast());
@@ -179,7 +176,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     const endIndex = r._baseInterval.endIdx;
     return `${sourceString.substring(startIndex, endIndex)}`;
   },
-  // May be irrelevant due to Literal above.
+  // Maybe split ohm into Literal for some things and string/int/float/bool lit for others.. hmm...
   strlit: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;
@@ -202,10 +199,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new BooleanLiteral(b.sourceString);
   },
 });
-/* eslint-enable no-underscore-dangle */
-/* eslint-enable arrow-body-style */
-/* eslint-enable no-new */
-/* eslint-enable no-unused-vars */
+/* eslint-enable no-unused-vars, no-new, arrow-body-style, no-underscore-dangle */
 
 const parse = (text) => {
   const match = grammar.match(text);
