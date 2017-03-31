@@ -1,4 +1,12 @@
-const error = require('../error');
+class Variable {
+
+  constructor(id, type, isConstant) {
+    this.id = id;
+    this.type = type;
+    this.isConstant = isConstant;
+  }
+
+}
 
 class Context {
 
@@ -6,20 +14,11 @@ class Context {
     this.inFunction = inFunction;
     this.parent = parent;
     this.inLoop = inLoop;
-    this.localVariables = Object.create(null);
-  }
-
-  declare(id, value) {
-    if (id in this.localVariables) {
-      error(`${id} already declared`); // ONLY IN CONSTANTS... need to come up with a way to distinguish
-    }
-    // May not need value because it is dynamically typed...
-    this.localVariables[id] = value;
+    this.variablesInScope = Object.create(null);
   }
 
   hasBeenDeclared(id) {
-    // we may need to look in the parent context for params and globals!
-    if (id in this.localVariables) {
+    if (id in this.variablesInScope) {
       return true;
     }
     if (this.parent === null) {
@@ -28,9 +27,26 @@ class Context {
     return this.parent.hasBeenDeclared(id);
   }
 
+  initialize(id, type, isConstant) {
+    if (id in this.variablesInScope) {
+      throw new Error(`${id} already declared.`);
+    }
+    this.variablesInScope[id] = new Variable(id, type, isConstant);
+  }
+
+  declare(id, type) {
+    if (!(id in this.variablesInScope)) {
+      throw new Error(`${id} has not been declared.`);
+    }
+    if (this.variablesInScope[id].isConstant) {
+      throw new Error(`Constant ${id} cannot be re-initialized.`);
+    }
+    this.variablesInScope[id].type = type;
+  }
+
   lookup(id) {
     if (this.hasBeenDeclared(id)) {
-      return this.localVariables[id];
+      return this.variablesInScope[id];
     }
     return null;
   }

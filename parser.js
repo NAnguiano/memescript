@@ -139,19 +139,19 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new Alert(e.ast());
   },
   Exp_binary: (l, _, r) => {
-    return new BinaryExpression(l.ast(), '||', r.ast());
+    return new BinaryExpression('||', l.ast(), r.ast());
   },
   Exp1_binary: (l, _, r) => {
-    return new BinaryExpression(l.ast(), '&&', r.ast());
+    return new BinaryExpression('&&', l.ast(), r.ast());
   },
   Exp2_binary: (l, o, r) => {
-    return new BinaryExpression(l.ast(), o.sourceString, r.ast());
+    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
   },
   Exp3_binary: (l, o, r) => {
-    return new BinaryExpression(l.ast(), o.sourceString, r.ast());
+    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
   },
   Exp4_binary: (l, o, r) => {
-    return new BinaryExpression(l.ast(), o.sourceString, r.ast());
+    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
   },
   Exp5_unary: (p, e) => {
     return new UnaryExpression(p.sourceString, e.ast());

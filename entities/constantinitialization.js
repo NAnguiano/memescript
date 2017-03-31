@@ -1,22 +1,22 @@
-const error = require('../error');
+class ConstantInitialization {
 
-class ConstantDeclaration {
-
-  constructor(id, value) {
+  constructor(id, expression) {
     this.id = id;
-    this.value = value;
+    this.expression = expression;
   }
 
   analyze(context) {
     if (context.hasBeenDeclared(this.id)) {
-      error(`${this.idValue} has not been declared.`);
+      throw new Error(`${this.id} has already been declared.`);
     }
+    const type = this.expression.analyze();
+    context.initialize(this.id, type, true);
   }
 
   toString() {
-    return `(ConstInit ${this.id} ${this.value})`;
+    return `(ConstInit ${this.id} ${this.expression})`;
   }
 
 }
 
-module.exports = ConstantDeclaration;
+module.exports = ConstantInitialization;

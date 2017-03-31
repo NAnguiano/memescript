@@ -1,16 +1,20 @@
 class VarInit {
 
-  constructor(id, value) {
+  constructor(id, expression) {
     this.id = id;
-    this.value = value;
+    this.expression = expression;
   }
 
   analyze(context) {
-    context.declare(this.id, this.value); // If we're doing typing, we'd do this as second arg
+    if (context.hasBeenDeclared(this.id)) {
+      throw new Error(`${this.id} has already been declared.`);
+    }
+    const type = this.expression.analyze();
+    context.initialize(this.id, type, false);
   }
 
   toString() {
-    return `(VarInit ${this.id} ${this.value})`;
+    return `(VarInit ${this.id} ${this.expression})`;
   }
 
 }

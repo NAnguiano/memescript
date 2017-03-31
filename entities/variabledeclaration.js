@@ -1,14 +1,16 @@
-const Null = require('./null');
+const Type = require('../semantics/type');
 
 class VarDec {
 
   constructor(id) {
     this.id = id;
-    this.value = new Null();
   }
 
   analyze(context) {
-    context.declare(this.id, this.value); // If we're doing typing, we'd do this as second arg
+    if (context.hasBeenDeclared(this.id)) {
+      throw new Error(`${this.id} has already been declared.`);
+    }
+    context.initialize(this.id, Type.NULL, false);
   }
 
   toString() {
