@@ -5,7 +5,8 @@
 
 const Program = require('./entities/program');
 const Block = require('./entities/block');
-const ConstantDeclaration = require('./entities/constantdeclaration');
+const ConstantInitialization = require('./entities/constantinitialization');
+const VariableInitialization = require('./entities/variableinitialization');
 const VariableDeclaration = require('./entities/variabledeclaration');
 const ObjectDeclaration = require('./entities/objectdeclaration');
 const ObjectConstructor = require('./entities/objectconstructor');
@@ -21,7 +22,6 @@ const SwitchDefault = require('./entities/switchdefault');
 const IfStatement = require('./entities/ifstatement');
 const ElseIfStatement = require('./entities/elseifstatement');
 const ElseStatement = require('./entities/elsestatement');
-const Literal = require('./entities/literal');
 const Assignment = require('./entities/assignment');
 const FunctionCall = require('./entities/functioncall');
 const FunctionArguments = require('./entities/functionarguments');
@@ -41,6 +41,7 @@ const StringLiteral = require('./entities/stringliteral');
 const IntegerLiteral = require('./entities/integerliteral');
 const FloatLiteral = require('./entities/floatliteral');
 const BooleanLiteral = require('./entities/booleanliteral');
+const Null = require('./entities/null');
 
 const error = require('./error');
 const ohm = require('ohm-js');
@@ -59,8 +60,11 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Body: (b1, b, b2) => {
     return b.ast();
   },
-  ConstDec: (o, i, _) => {
-    return new ConstantDeclaration(i.sourceString);
+  ConstInit: (o, i, _, e, s) => {
+    return new ConstantInitialization(i.sourceString, e.ast());
+  },
+  VarInit: (e, i, _, v, s) => {
+    return new VariableInitialization(i.sourceString, v.ast());
   },
   VarDec: (e, i, _) => {
     return new VariableDeclaration(i.sourceString);
@@ -76,9 +80,6 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   FunDec: (y, i, rp, p, lp, _, b) => {
     return new FunctionDeclaration(i.sourceString, p.ast(), b.ast());
-  },
-  Literal: (x) => {
-    return new Literal(x.sourceString);
   },
   Assignment: (i, q, e, _) => {
     return new Assignment(i.sourceString, e.ast());
@@ -158,8 +159,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp6_parens: (l, e, r) => {
     return e.ast();
   },
-  Params: (p1, c, p2, c2, s) => {
-    return new Parameters(p1.ast(), p2.ast(), s.ast());
+  Params: (p1, c, pm) => {
+    return new Parameters(p1.ast(), pm.ast());
   },
   Param: (i) => {
     return new Param(i.sourceString);
@@ -170,33 +171,35 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   SplatParam: (i, _) => {
     return new SplatParam(i.sourceString);
   },
-  id: (l, r) => {
-    const sourceString = r._baseInterval.sourceString;
-    const startIndex = r._baseInterval.startIdx;
-    const endIndex = r._baseInterval.endIdx;
-    return `${sourceString.substring(startIndex, endIndex)}`;
+  Literal_null: (s) => {
+    return new Null(s);
   },
-  // Maybe split ohm into Literal for some things and string/int/float/bool lit for others.. hmm...
-  strlit: (q, s, _) => {
+  Literal_str: (q, s, _) => {
     const sourceString = s._baseInterval.sourceString;
     const startIndex = s._baseInterval.startIdx;
     const endIndex = s._baseInterval.endIdx;
     return new StringLiteral(sourceString.substring(startIndex, endIndex));
   },
-  intlit: (i) => {
+  Literal_int: (i) => {
     const sourceString = i._baseInterval.sourceString;
     const startIndex = i._baseInterval.startIdx;
     const endIndex = i._baseInterval.endIdx;
     return new IntegerLiteral(sourceString.substring(startIndex, endIndex));
   },
-  floatlit: (f1, p, f2) => {
+  Literal_float: (f1, p, f2) => {
     const sourceString = f1._baseInterval.sourceString;
     const startIndex = f1._baseInterval.startIdx;
     const endIndex = f1._baseInterval.endIdx;
     return new FloatLiteral(sourceString.substring(startIndex, endIndex));
   },
-  boollit: (b) => {
+  Literal_bool: (b) => {
     return new BooleanLiteral(b.sourceString);
+  },
+  id: (l, r) => {
+    const sourceString = r._baseInterval.sourceString;
+    const startIndex = r._baseInterval.startIdx;
+    const endIndex = r._baseInterval.endIdx;
+    return `${sourceString.substring(startIndex, endIndex)}`;
   },
 });
 /* eslint-enable no-unused-vars, no-new, arrow-body-style, no-underscore-dangle */

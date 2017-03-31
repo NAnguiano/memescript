@@ -1,10 +1,8 @@
-const Null = require('./null');
+class VarInit {
 
-class VarDec {
-
-  constructor(id) {
+  constructor(id, value) {
     this.id = id;
-    this.value = new Null();
+    this.value = value;
   }
 
   analyze(context) {
@@ -12,9 +10,9 @@ class VarDec {
   }
 
   toString() {
-    return `(VarDec ${this.id})`;
+    return `(VarInit ${this.id} ${this.value})`;
   }
 
 }
 
-module.exports = VarDec;
+module.exports = VarInit;

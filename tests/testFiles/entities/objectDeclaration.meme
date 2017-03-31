@@ -8,4 +8,8 @@ wow testClass {
   so shine () {
   	dicks.out("Double rainbow");
   }
+
+  so woah () {
+    ermahgerd x = 10;
+  }
 }

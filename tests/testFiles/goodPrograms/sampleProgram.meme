@@ -1,7 +1,8 @@
-overlyattachedgirlfriend.jpg ARGH;
-argh = true;
+overlyattachedgirlfriend.jpg ARGH = true;
 ermahgerd brbcrying;
 brbcrying = true;
+ermahgerd hi = "hello";
+overlyattachedgirlfriend.jpg lolno = 'hi';
 
 wow doge {
   such (paw, color, tail) {
@@ -14,7 +15,14 @@ wow doge {
   }
 }
 
-you: think(thought)
+you: think(thought, h, p = 2, p...)
+me, an intellectual: {
+  dicks.out("You had a thought.");
+  dicks.out("It was about" + thought);
+  here comes dat boi("you decide to never think again.");
+}
+
+you: think(thought, h, a = 10)
 me, an intellectual: {
   dicks.out("You had a thought.");
   dicks.out("It was about" + thought);

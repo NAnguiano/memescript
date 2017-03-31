@@ -2,7 +2,8 @@ MemeScript {
   Program          =  Block
   Block            =  (Stmnt)+
 
-  Stmnt            =  ConstDec
+  Stmnt            =  ConstInit
+                   |  VarInit
                    |  VarDec
                    |  FunDec
                    |  ObjDec
@@ -21,7 +22,8 @@ MemeScript {
 
   Body             =  "{" Block? "}"
 
-  ConstDec         =  "overlyattachedgirlfriend.jpg" id ";"
+  ConstInit        =  "overlyattachedgirlfriend.jpg" id "=" Exp ";"
+  VarInit          =  "ermahgerd" id "=" Exp ";"
   VarDec           =  "ermahgerd" id ";"
 
   ObjDec           =  "wow" id "{" ObjConst ObjMethods* "}"
@@ -66,10 +68,11 @@ MemeScript {
                    |  Var
                    |  "(" Exp ")"                                      -- parens
 
-  Literal          =  "null"
-                   |  boollit
-                   |  strlit
-                   |  numlit
+  Literal          =  "null"                                           -- null
+                   |  boollit                                          -- bool
+                   |  ("\"" char* "\"" | "'" char* "'")                -- str
+                   |  (digit* "." digit+)                              -- float
+                   |  intlit                                           -- int
 
   Assignment       =  id "=" Exp ";"
   Call             =  id "(" Args ")" ";"
@@ -80,7 +83,7 @@ MemeScript {
                    |  Call
                    |  id
 
-  Params           =  ((OptionalParam | Param) ("," (OptionalParam | Param))* ("," SplatParam)?)?
+  Params           =  ((OptionalParam | SplatParam | Param) ("," (OptionalParam | SplatParam | Param))*)?
 
   Param            = id
   OptionalParam    = id "=" Exp
@@ -96,7 +99,7 @@ MemeScript {
 
   strlit           =  "\"" char* "\"" | "'" char* "'"
   intlit           =  digit+
-  floatlit         =  digit+ "." digit+
+  floatlit         =  digit* "." digit+
   numlit           =  floatlit | intlit
   boollit          = "true" |  "false"
 
