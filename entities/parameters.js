@@ -1,10 +1,10 @@
 class Parameters {
   constructor(firstParam, middleParams) {
-    this.params = firstParam.concat(middleParams[0]);
+    this.params = firstParam.concat((middleParams.length > 0) ? middleParams[0] : middleParams);
   }
 
   analyze(context) {
-    if (this.params[0] !== undefined) {
+    if (this.params.length > 0) {
       this.params.forEach(p => p.analyze(context));
       for (let i = 0; i < this.params.length - 1; i += 1) {
         if (this.params[i].type === 'optional' && this.params[i + 1].type === 'required') {

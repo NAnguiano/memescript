@@ -19,22 +19,22 @@ class FunctionDeclaration {
     // Create a new context for the function.
     const innerContext = new Context({ parent: context, inFunction: true, functionId: this.id });
 
-    // If we have parameters, analyze them.
-    if (this.parameters.params[0] !== undefined) {
-      // Ensure the parameters are in the proper order.
-      this.parameters.analyze(context);
+    this.numRequiredParams = 0;
 
-      // Finally, declare.
-      this.parameters.params.forEach((p) => {
-        if (p.type === 'optional') {
-          innerContext.initialize(p.id, p.exprType, false);
-        } else if (p.type === 'splat') {
-          innerContext.initialize(p.id, Type.OBJECT, false);
-        } else {
-          innerContext.initialize(p.id, Type.NULL, false);
-        }
-      });
-    }
+    // Ensure the parameters are in the proper order.
+    this.parameters.analyze(context);
+
+    // Finally, declare.
+    this.parameters.params.forEach((p) => {
+      if (p.type === 'optional') {
+        innerContext.initialize(p.id, p.exprType, false);
+      } else if (p.type === 'splat') {
+        innerContext.initialize(p.id, Type.OBJECT, false);
+      } else {
+        innerContext.initialize(p.id, Type.NULL, false);
+        this.numRequiredParams += 1;
+      }
+    });
 
     // Evaluate body, setting type if possible.
     this.body.analyze(innerContext);

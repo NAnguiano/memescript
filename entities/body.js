@@ -9,7 +9,7 @@ class Body {
   }
 
   toString() {
-    return `(Body ${this.block})`;
+    return `(Body ${this.statements.join(' ')})`;
   }
 
 }

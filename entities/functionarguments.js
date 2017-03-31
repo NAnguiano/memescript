@@ -1,12 +1,7 @@
 class FunctionArguments {
 
-  constructor(expression, args) {
-    this.expression = expression;
-    if (args[0] && args[0].length > 0) {
-      this.args = args[0];
-    } else {
-      this.args = args;
-    }
+  constructor(firstArg, rest) {
+    this.args = firstArg.concat((rest.length > 0) ? rest[0] : rest);
   }
 
   toString() {
