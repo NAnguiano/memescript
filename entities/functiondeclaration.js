@@ -18,8 +18,9 @@ class FunctionDeclaration {
 
     // Create a new context for the function.
     const innerContext = new Context({ parent: context, inFunction: true, functionId: this.id });
+
     // If we have parameters, analyze them.
-    if (this.parameters.params.length > 0) {
+    if (this.parameters.params[0] !== undefined) {
       // Ensure the parameters are in the proper order.
       this.parameters.analyze(context);
 
