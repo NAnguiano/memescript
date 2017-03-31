@@ -1,8 +1,11 @@
+const Type = require('./type');
+
 class Variable {
 
-  constructor(id, type, isConstant) {
+  constructor(id, type, isConstant, func = null) {
     this.id = id;
     this.type = type;
+    this.func = func;
     this.isConstant = isConstant;
   }
 
@@ -10,9 +13,10 @@ class Variable {
 
 class Context {
 
-  constructor({ parent = null, inFunction = false, inLoop = false } = {}) {
-    this.inFunction = inFunction;
+  constructor({ parent = null, inFunction = false, functionId = null, inLoop = false } = {}) {
     this.parent = parent;
+    this.inFunction = inFunction;
+    this.functionId = functionId;
     this.inLoop = inLoop;
     this.variablesInScope = Object.create(null);
   }
@@ -29,23 +33,41 @@ class Context {
 
   initialize(id, type, isConstant) {
     if (id in this.variablesInScope) {
-      throw new Error(`${id} already declared.`);
+      throw new Error(`${id} has already been declared.`);
     }
     this.variablesInScope[id] = new Variable(id, type, isConstant);
   }
 
-  declare(id, type) {
-    if (!(id in this.variablesInScope)) {
-      throw new Error(`${id} has not been declared.`);
+  initializeFunction(id, func) {
+    if (id in this.variablesInScope) {
+      throw new Error(`${id} has already been declared.`);
     }
-    if (this.variablesInScope[id].isConstant) {
-      throw new Error(`Constant ${id} cannot be re-initialized.`);
+    this.variablesInScope[id] = new Variable(id, Type.NULL, true, func);
+  }
+
+  setFunctionType(id, type) {
+    if (!this.variablesInScope[id].func) {
+      throw new Error('Cannot set function type of non-function variable.');
     }
     this.variablesInScope[id].type = type;
   }
 
+  reassign(id, type) {
+    if (!(this.lookup(id))) {
+      throw new Error(`${id} has not been declared.`);
+    }
+    if (this.lookup(id).isConstant) {
+      throw new Error(`Constant ${id} cannot be re-initialized.`);
+    }
+    this.lookup(id).type = type;
+  }
+
   lookup(id) {
     if (this.hasBeenDeclared(id)) {
+      // If I'm declared, but not in this context...
+      if (!(id in this.variablesInScope)) {
+        return this.parent.lookup(id);
+      }
       return this.variablesInScope[id];
     }
     return null;

@@ -1,3 +1,4 @@
 overlyattachedgirlfriend.jpg x = 23.4 + -23 + 12.4 - 2 * 23 / 2;
 ermahgerd y = 0;
 ermahgerd z;
+z = "hello " + "world!";

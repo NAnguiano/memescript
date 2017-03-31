@@ -5,6 +5,7 @@
 
 const Program = require('./entities/program');
 const Block = require('./entities/block');
+const Body = require('./entities/body');
 const ConstantInitialization = require('./entities/constantinitialization');
 const VariableInitialization = require('./entities/variableinitialization');
 const VariableDeclaration = require('./entities/variabledeclaration');
@@ -58,7 +59,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new Block(s.ast());
   },
   Body: (b1, b, b2) => {
-    return b.ast();
+    return new Body(b.ast());
   },
   ConstInit: (o, i, _, e, s) => {
     return new ConstantInitialization(i.sourceString, e.ast());

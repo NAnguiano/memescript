@@ -13,7 +13,7 @@ class Assignment {
       throw new Error(`Constant ${this.id} cannot be reassigned.`);
     }
     const type = this.expression.analyze(context);
-    context.declare(this.id, type);
+    context.reassign(this.id, type);
   }
 
   toString() {

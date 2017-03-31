@@ -2,6 +2,12 @@ class OptionalParam {
   constructor(id, expression) {
     this.id = id;
     this.expression = expression;
+    this.type = 'optional';
+  }
+
+  analyze(context) {
+    const type = this.expression.analyze(context);
+    this.exprType = type;
   }
 
   toString() {

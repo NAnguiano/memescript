@@ -1,7 +1,11 @@
 class Body {
 
-  constructor(block) {
-    this.statements = block;
+  constructor(statements) {
+    this.statements = statements;
+  }
+
+  analyze(context) {
+    this.statements.forEach(s => s.analyze(context));
   }
 
   toString() {

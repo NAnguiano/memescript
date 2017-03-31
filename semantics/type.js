@@ -3,6 +3,7 @@ const FLOAT_ID = 'float';
 const STRING_ID = 'string';
 const INT_ID = 'int';
 const NULL_ID = 'null';
+const OBJECT_ID = 'object';
 
 class Type {
 
@@ -49,6 +50,7 @@ const FLOAT = new Type(FLOAT_ID);
 const INT = new Type(INT_ID);
 const NULL = new Type(NULL_ID);
 const STRING = new Type(STRING_ID);
+const OBJECT = new Type(OBJECT_ID);
 
 module.exports = {
   BOOL,
@@ -56,5 +58,6 @@ module.exports = {
   INT,
   NULL,
   STRING,
+  OBJECT,
   Type,
 };
