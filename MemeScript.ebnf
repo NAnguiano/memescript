@@ -1,0 +1,79 @@
+  Program          ::=  Block
+  Block            ::=  (Stmnt)+
+
+  Stmnt            ::=  ( ConstInit | VarInit | VarDec | FunDec | ObjDec | If | While | For | TryCatch | TryCatchFinally | Switch | Call | Assignment | Return | Print | Error | Alert )
+
+  Body             ::=  "{" Block? "}"
+
+  ConstInit        ::=  "overlyattachedgirlfriend.jpg" id "=" Exp ";"
+  VarInit          ::=  "ermahgerd" id "=" Exp ";"
+  VarDec           ::=  "ermahgerd" id ";"
+
+  ObjDec           ::=  "wow" id "{" ObjConst ObjMethods* "}"
+  ObjConst         ::=  "such" "(" Params ")" Body
+  ObjMethods       ::=  "so" id "(" Params ")" Body
+
+  FunDec           ::=  "you:" id "(" Params ")" "me, an intellectual:" Body
+
+  If               ::=  "I don't always" "(" Exp ")" "but when I do" Body (ElseIf)* (Else)?
+  ElseIf           ::=  "but sometimes I" "(" Exp ")" Body
+  Else             ::=  "otherwise I do" Body
+
+  While            ::=  "yo, I'mma let you finish" "(" Exp ")" "but" Body
+
+  For              ::=  "one does not simply" Body "without" "(" VarDec Exp ";" Assignment ")"
+
+  TryCatch         ::=  "Chuck Norris doesn't" Body "he" "(" id ")" Body
+  TryCatchFinally  ::=  "Chuck Norris doesn't" Body "or" "(" id ")" Body "he" Body
+
+  Switch           ::=  "this is bill" "(" Exp ")" "{" (SwitchCase)* SwitchDefault "}"
+  SwitchCase       ::=  ("bill has a" | "bill is a") Literal "{" Block? "be like bill;" "}"
+  SwitchDefault    ::=  "bill is smart" "{" Block? "be like bill;" "}"
+
+  Return           ::=  "i can haz" Exp ";"
+  Print            ::=  "dicks.out" "(" Exp ")" ";"
+  Error            ::=  "console.error" "(" Exp ")" ";"
+  Alert            ::=  "here comes dat boi" "(" Exp ")" ";"
+
+  Exp              ::=  Exp "||" Exp1 | Exp1
+  Exp1             ::=  Exp1 "&&" Exp2 | Exp2
+  Exp2             ::=  Exp2 relop Exp3 | Exp3
+  Exp3             ::=  Exp3 addop Exp4 | Exp4
+  Exp4             ::=  Exp4 mulop Exp5 | Exp5
+  Exp5             ::=  prefixop Exp6 | Exp6
+  Exp6             ::=  Literal | Var | "(" Exp ")"
+
+  Literal          ::=  "null" | boollit | ('"' char* '"' | "'" char* "'") | (digit* "." digit+) | intlit
+
+  Assignment       ::=  id "=" Exp ";"
+  Call             ::=  id "(" Args ")" ";"
+
+  Args             ::=  (Exp ("," Exp)*)?
+  Var              ::=  Var "[" Exp "]" | Var "." id | Call | id
+
+  Params           ::=  ((OptionalParam | SplatParam | Param) ("," (OptionalParam | SplatParam | Param))*)?
+
+  Param            ::= id
+  OptionalParam    ::= id "=" Exp
+  SplatParam       ::= id "..."
+
+  mulop            ::=  "*" | "/" | "%"                                                                                                                                   /* ws: explicit */
+  prefixop         ::=  "!" | "-"                                                                                                                                         /* ws: explicit */
+  relop            ::=  "<=" | "<" | "===" | "==" | "!=" | ">=" | ">"                                                                                                     /* ws: explicit */
+  addop            ::=  "+" | "-"                                                                                                                                         /* ws: explicit */
+
+  char             ::=  escape | [^#xa#x26#x22]                                                                                                                           /* ws: explicit */
+
+  strlit           ::=  '"' char* '"' | "'" char* "'"                                                                                                                     /* ws: explicit */
+  intlit           ::=  digit+                                                                                                                                            /* ws: explicit */
+  floatlit         ::=  digit* "." digit+                                                                                                                                 /* ws: explicit */
+  numlit           ::=  floatlit | intlit                                                                                                                                 /* ws: explicit */
+  boollit          ::= "true" |  "false"                                                                                                                                  /* ws: explicit */
+
+  escape           ::=  "\n" | '\"' | "\'"                                                                                                                                /* ws: explicit */
+
+
+  keyword          ::=  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very" | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined")    /* ws: explicit */
+
+  id               ::=  letter idrest*                                                                                                                                    /* ws: explicit */
+  idrest           ::=  "_" | alnum                                                                                                                                       /* ws: explicit */
