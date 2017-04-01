@@ -1,4 +1,4 @@
-class TryCatchFinallyStatement {
+class TryCatchFinally {
 
   constructor(trybody, id, catchbody, finallybody) {
     this.trybody = trybody;
@@ -13,4 +13,4 @@ class TryCatchFinallyStatement {
 
 }
 
-module.exports = TryCatchFinallyStatement;
+module.exports = TryCatchFinally;

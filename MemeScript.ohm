@@ -38,7 +38,7 @@ MemeScript {
 
   While            =  "yo, I'mma let you finish" "(" Exp ")" "but" Body
 
-  For              =  "one does not simply" Body "without" "(" VarDec Exp ";" Assignment ")"
+  For              =  "one does not simply" Body "without" "(" VarInit Exp ";" Assignment ")"
 
   TryCatch         =  "Chuck Norris doesn't" Body "he" "(" id ")" Body
   TryCatchFinally  =  "Chuck Norris doesn't" Body "or" "(" id ")" Body "he" Body
@@ -49,7 +49,7 @@ MemeScript {
 
   Return           =  "i can haz" Exp ";"
   Print            =  "dicks.out" "(" Exp ")" ";"
-  Error            =  "console.error" "(" Exp ")" ";"
+  Error            =  "RIP" "(" Exp ")" ";"
   Alert            =  "here comes dat boi" "(" Exp ")" ";"
 
   Exp              =  Exp "||" Exp1                                    -- binary
@@ -106,7 +106,7 @@ MemeScript {
   escape           =  "\\n" | "\\\"" | "\\'"
 
   keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
-                      | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined" | "very") ~idrest
+                      | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined" | "RIP") ~idrest
 
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum

@@ -49,10 +49,10 @@ yo, I'mma let you finish (c > 10) but {
 
 Chuck Norris doesn't {
   one does not simply {
-    here comes dat boi("You cannot assign and declare on the same line!");
-  } without (ermahgerd d; d > 10; d = d + 10;)
+    here comes dat boi("You can now assign and declare on the same line!");
+  } without (ermahgerd d = 0; d > 10; d = d + 10;)
 } or (err) {
-  console.error(err);
+  RIP(err);
 } he {
   this is bill (b) {
     bill has a "clock" {

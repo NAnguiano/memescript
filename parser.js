@@ -13,9 +13,9 @@ const ObjectDeclaration = require('./entities/objectdeclaration');
 const ObjectConstructor = require('./entities/objectconstructor');
 const ObjectMethods = require('./entities/objectmethods');
 const FunctionDeclaration = require('./entities/functiondeclaration');
-const WhileStatement = require('./entities/whilestatement');
-const TryCatchStatement = require('./entities/trycatchstatement');
-const TryCatchFinallyStatement = require('./entities/trycatchfinallystatement');
+const WhileLoop = require('./entities/whileloop');
+const TryCatch = require('./entities/trycatch');
+const TryCatchFinally = require('./entities/trycatchfinally');
 const ForLoop = require('./entities/forstatement');
 const SwitchStatement = require('./entities/switchstatement');
 const SwitchCase = require('./entities/switchcase');
@@ -28,7 +28,6 @@ const FunctionCall = require('./entities/functioncall');
 const FunctionArguments = require('./entities/functionarguments');
 const ReturnStatement = require('./entities/returnstatement');
 const PrintStatement = require('./entities/printstatement');
-const ErrorStatement = require('./entities/printerror');
 const Alert = require('./entities/alert');
 const BinaryExpression = require('./entities/binaryexpression');
 const UnaryExpression = require('./entities/unaryexpression');
@@ -50,166 +49,166 @@ const fs = require('fs');
 
 const grammar = ohm.grammar(fs.readFileSync('./MemeScript.ohm'));
 
-/* eslint-disable no-unused-vars, no-new, arrow-body-style, no-underscore-dangle */
+// In some cases, using sourceString will not return the proper value. We'll use this
+// to get it accurately.
+/* eslint-disable no-underscore-dangle */
+const getProperValue = (v) => {
+  const sourceString = v._baseInterval.sourceString;
+  const startIndex = v._baseInterval.startIdx;
+  const endIndex = v._baseInterval.endIdx;
+  return sourceString.substring(startIndex, endIndex);
+};
+/* eslint-enable no-underscore-dangle */
+
+/* eslint-disable no-unused-vars, no-new, arrow-body-style */
 const semantics = grammar.createSemantics().addOperation('ast', {
-  Program: (b) => {
-    return new Program(b.ast());
+  Program: (block) => {
+    return new Program(block.ast());
   },
-  Block: (s) => {
-    return new Block(s.ast());
+  Block: (stmnt) => {
+    return new Block(stmnt.ast());
   },
-  Stmnt_funcall: (e, _) => {
-    return e.ast();
+  Stmnt_funcall: (call, _) => {
+    return call.ast();
   },
-  Body: (b1, b, b2) => {
-    return new Body(b.ast());
+  Body: (_1, block, _2) => {
+    return new Body(block.ast());
   },
-  ConstInit: (o, i, _, e, s) => {
-    return new ConstantInitialization(i.sourceString, e.ast());
+  ConstInit: (_1, id, _2, exp, _3) => {
+    return new ConstantInitialization(id.sourceString, exp.ast());
   },
-  VarInit: (e, i, _, v, s) => {
-    return new VariableInitialization(i.sourceString, v.ast());
+  VarInit: (_1, id, _2, exp, _3) => {
+    return new VariableInitialization(id.sourceString, exp.ast());
   },
-  VarDec: (e, i, _) => {
-    return new VariableDeclaration(i.sourceString);
+  VarDec: (_1, id, _2) => {
+    return new VariableDeclaration(id.sourceString);
   },
-  ObjDec: (w, i, rcb, c, o, lcb) => {
-    return new ObjectDeclaration(i.sourceString, c.ast(), o.ast());
+  ObjDec: (_1, id, _2, objconst, objmethods, _3) => {
+    return new ObjectDeclaration(id.sourceString, objconst.ast(), objmethods.ast());
   },
-  ObjConst: (s, lp, p, rp, b) => {
-    return new ObjectConstructor(p.ast(), b.ast());
+  ObjConst: (_1, _2, params, _3, body) => {
+    return new ObjectConstructor(params.ast(), body.ast());
   },
-  ObjMethods: (s, i, lp, p, rp, b) => {
-    return new ObjectMethods(i.sourceString, p.ast(), b.ast());
+  ObjMethods: (_1, id, _2, params, _3, body) => {
+    return new ObjectMethods(id.sourceString, params.ast(), body.ast());
   },
-  FunDec: (y, i, rp, p, lp, _, b) => {
-    return new FunctionDeclaration(i.sourceString, p.ast(), b.ast());
+  FunDec: (_1, id, _2, params, _3, _4, body) => {
+    return new FunctionDeclaration(id.sourceString, params.ast(), body.ast());
   },
-  Assignment: (i, q, e, _) => {
-    return new Assignment(i.sourceString, e.ast());
+  Assignment: (id, _1, exp, _2) => {
+    return new Assignment(id.sourceString, exp.ast());
   },
-  Call: (i, rp, a, lp) => {
-    return new FunctionCall(i.sourceString, a.ast());
+  Call: (id, _1, args, _2) => {
+    return new FunctionCall(id.sourceString, args.ast());
   },
-  Args: (e, c, r) => {
-    return new FunctionArguments(e.ast(), r.ast());
+  Args: (exp, _, exprest) => {
+    return new FunctionArguments(exp.ast(), exprest.ast());
   },
-  Var_subscript: (v, rb, e, _) => {
-    return new VariableSubscript(v.ast(), e.ast());
+  Var_subscript: (var_, _1, exp, _2) => {
+    return new VariableSubscript(var_.ast(), exp.ast());
   },
-  Var_select: (v, p, i) => {
-    return new VariableSelect(v.ast(), i.sourceString);
+  Var_select: (var_, _, id) => {
+    return new VariableSelect(var_.ast(), id.sourceString);
   },
-  Var: (e) => {
-    return e.ast();
+  Var: (callOrId) => {
+    return callOrId.ast();
   },
-  Switch: (s, p1, e, p2, b1, c, d, b2) => {
-    return new SwitchStatement(e.ast(), c.ast(), d.ast());
+  Switch: (_1, _2, exp, _3, _4, switchCase, switchDefault, _5) => {
+    return new SwitchStatement(exp.ast(), switchCase.ast(), switchDefault.ast());
   },
-  SwitchCase: (intro, l, b1, b, end, b2) => {
-    return new SwitchCase(l.ast(), b.ast());
+  SwitchCase: (_1, literal, _2, block, _3, _4) => {
+    return new SwitchCase(literal.ast(), block.ast());
   },
-  SwitchDefault: (intro, b1, b, end, b2) => {
-    return new SwitchDefault(b.ast());
+  SwitchDefault: (_1, _2, block, _3, _4) => {
+    return new SwitchDefault(block.ast());
   },
-  If: (intro, p1, e, p2, segue, b, elseif, elseStmnt) => {
-    return new IfStatement(e.ast(), b.ast(), elseif.ast(), elseStmnt.ast());
+  If: (_1, _2, exp, _3, _4, body, elseif, else_) => {
+    return new IfStatement(exp.ast(), body.ast(), elseif.ast(), else_.ast());
   },
-  ElseIf: (intro, p1, e, p2, b) => {
-    return new ElseIfStatement(e.ast(), b.ast());
+  ElseIf: (_1, _2, exp, _3, body) => {
+    return new ElseIfStatement(exp.ast(), body.ast());
   },
-  Else: (intro, b) => {
-    return new ElseStatement(b.ast());
+  Else: (_, body) => {
+    return new ElseStatement(body.ast());
   },
-  TryCatch: (intro, trybody, segue, lp, err, rp, catchbody) => {
-    return new TryCatchStatement(trybody.ast(), err.ast(), catchbody.ast());
+  TryCatch: (_1, tryBody, _2, _3, id, _4, catchBody) => {
+    return new TryCatch(tryBody.ast(), id.sourceString, catchBody.ast());
   },
-  TryCatchFinally: (intro, trybody, segue, lp, err, rp, cb, segue2, finallybody) => {
-    return new TryCatchFinallyStatement(trybody.ast(), err.ast(), cb.ast(), finallybody.ast());
+  TryCatchFinally: (_1, trybody, _2, _3, id, _4, catchBody, _5, finallyBody) => {
+    return new TryCatchFinally(trybody.ast(), id.sourceString, catchBody.ast(), finallyBody.ast());
   },
-  While: (y, rp, e, lp, _, b) => {
-    return new WhileStatement(e.ast(), b.ast());
+  While: (_1, _2, exp, _3, _4, body) => {
+    return new WhileLoop(exp.ast(), body.ast());
   },
-  For: (o, b, w, lp, v, e, s, i, rp) => {
-    return new ForLoop(b.ast(), v.ast(), e.ast(), i.ast());
+  For: (_1, body, _2, _3, varInit, exp, _4, assignment, _5) => {
+    return new ForLoop(body.ast(), varInit.ast(), exp.ast(), assignment.ast());
   },
-  Return: (i, e, _) => {
-    return new ReturnStatement(e.ast());
+  Return: (_1, exp, _2) => {
+    return new ReturnStatement(exp.ast());
   },
-  Print: (d, lp, e, rp, s) => {
-    return new PrintStatement(e.ast());
+  Print: (_1, _2, exp, _3, _4) => {
+    return new PrintStatement(exp.ast());
   },
-  Error: (c, lp, e, rp, s) => {
-    return new ErrorStatement(e.ast());
+  Error: (_1, _2, exp, _3, _4) => {
+    return new PrintStatement(exp.ast(), true);
   },
-  Alert: (h, lp, e, rp, s) => {
-    return new Alert(e.ast());
+  Alert: (_1, _2, exp, _3, _4) => {
+    return new Alert(exp.ast());
   },
-  Exp_binary: (l, _, r) => {
-    return new BinaryExpression('||', l.ast(), r.ast());
+  Exp_binary: (leftExp, _, rightExp) => {
+    return new BinaryExpression('||', leftExp.ast(), rightExp.ast());
   },
-  Exp1_binary: (l, _, r) => {
-    return new BinaryExpression('&&', l.ast(), r.ast());
+  Exp1_binary: (leftExp, _, rightExp) => {
+    return new BinaryExpression('&&', leftExp.ast(), rightExp.ast());
   },
-  Exp2_binary: (l, o, r) => {
-    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
+  Exp2_binary: (leftExp, operator, rightExp) => {
+    return new BinaryExpression(operator.sourceString, leftExp.ast(), rightExp.ast());
   },
-  Exp3_binary: (l, o, r) => {
-    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
+  Exp3_binary: (leftExp, operator, rightExp) => {
+    return new BinaryExpression(operator.sourceString, leftExp.ast(), rightExp.ast());
   },
-  Exp4_binary: (l, o, r) => {
-    return new BinaryExpression(o.sourceString, l.ast(), r.ast());
+  Exp4_binary: (leftExp, operator, rightExp) => {
+    return new BinaryExpression(operator.sourceString, leftExp.ast(), rightExp.ast());
   },
-  Exp5_unary: (p, e) => {
-    return new UnaryExpression(p.sourceString, e.ast());
+  Exp5_unary: (prefix, exp) => {
+    return new UnaryExpression(prefix.sourceString, exp.ast());
   },
-  Exp6_parens: (l, e, r) => {
-    return e.ast();
+  Exp6_parens: (_1, exp, _2) => {
+    return exp.ast();
   },
-  Params: (p1, c, pm) => {
-    return new Parameters(p1.ast(), pm.ast());
+  Params: (param, _, paramRest) => {
+    return new Parameters(param.ast(), paramRest.ast());
   },
-  Param: (i) => {
-    return new Param(i.sourceString);
+  Param: (id) => {
+    return new Param(id.sourceString);
   },
-  OptionalParam: (i, q, e) => {
-    return new OptionalParam(i.sourceString, e.ast());
+  OptionalParam: (id, _, exp) => {
+    return new OptionalParam(id.sourceString, exp.ast());
   },
-  SplatParam: (i, _) => {
-    return new SplatParam(i.sourceString);
+  SplatParam: (id, _) => {
+    return new SplatParam(id.sourceString);
   },
-  Literal_null: (s) => {
-    return new Null(s);
+  Literal_null: (null_) => {
+    return new Null();
   },
-  Literal_str: (q, s, _) => {
-    const sourceString = s._baseInterval.sourceString;
-    const startIndex = s._baseInterval.startIdx;
-    const endIndex = s._baseInterval.endIdx;
-    return new StringLiteral(sourceString.substring(startIndex, endIndex));
+  Literal_str: (_1, string, _2) => {
+    return new StringLiteral(getProperValue(string));
   },
-  Literal_int: (i) => {
-    const sourceString = i._baseInterval.sourceString;
-    const startIndex = i._baseInterval.startIdx;
-    const endIndex = i._baseInterval.endIdx;
-    return new IntegerLiteral(sourceString.substring(startIndex, endIndex));
+  Literal_int: (int) => {
+    return new IntegerLiteral(getProperValue(int));
   },
-  Literal_float: (f1, p, f2) => {
-    const sourceString = f1._baseInterval.sourceString;
-    const startIndex = f1._baseInterval.startIdx;
-    const endIndex = f1._baseInterval.endIdx;
-    return new FloatLiteral(sourceString.substring(startIndex, endIndex));
+  Literal_float: (float, _1, _2) => {
+    // You can get the entire float value from just the first part.
+    return new FloatLiteral(getProperValue(float));
   },
-  Literal_bool: (b) => {
-    return new BooleanLiteral(b.sourceString);
+  Literal_bool: (bool) => {
+    return new BooleanLiteral(bool.sourceString);
   },
-  id: (l, r) => {
-    const sourceString = r._baseInterval.sourceString;
-    const startIndex = r._baseInterval.startIdx;
-    const endIndex = r._baseInterval.endIdx;
-    return `${sourceString.substring(startIndex, endIndex)}`;
+  id: (_, rest) => {
+    return `${getProperValue(rest)}`;
   },
 });
-/* eslint-enable no-unused-vars, no-new, arrow-body-style, no-underscore-dangle */
+/* eslint-enable no-unused-vars, no-new, arrow-body-style */
 
 const parse = (text) => {
   const match = grammar.match(text);

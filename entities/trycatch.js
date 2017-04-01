@@ -1,4 +1,4 @@
-class TryCatchStatement {
+class TryCatch {
 
   constructor(trybody, id, catchbody) {
     this.trybody = trybody;
@@ -12,4 +12,4 @@ class TryCatchStatement {
 
 }
 
-module.exports = TryCatchStatement;
+module.exports = TryCatch;

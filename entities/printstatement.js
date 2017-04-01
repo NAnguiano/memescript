@@ -1,11 +1,12 @@
 class PrintStatement {
 
-  constructor(expression) {
+  constructor(expression, error = false) {
     this.expression = expression;
+    this.error = error;
   }
 
   toString() {
-    return `(Print ${this.expression})`;
+    return `(${(this.error) ? 'Error' : 'Print'} ${this.expression})`;
   }
 
 }

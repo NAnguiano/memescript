@@ -1,4 +1,4 @@
-class WhileStatement {
+class WhileLoop {
 
   constructor(condition, body) {
     this.condition = condition;
@@ -11,4 +11,4 @@ class WhileStatement {
 
 }
 
-module.exports = WhileStatement;
+module.exports = WhileLoop;
