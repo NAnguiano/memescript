@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./tests/test.js",
     "lint": "./node_modules/.bin/eslint *.js & ./node_modules/.bin/eslint ./entities/*.js & ./node_modules/.bin/eslint ./tests/*.js",
-    "start": "node memescript.js -a ./tests/testFiles/goodPrograms/everything.meme"
+    "start": "node memescript.js -a ./tests/testFiles/goodPrograms/everything.meme",
+    "current": "node memescript.js -a ./tests/testFiles/goodPrograms/function.meme"
   },
   "repository": {
     "type": "git",

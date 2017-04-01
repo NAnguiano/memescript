@@ -13,7 +13,7 @@ MemeScript {
                    |  TryCatch
                    |  TryCatchFinally
                    |  Switch
-                   |  Call
+                   |  Call ";"                                         -- funcall
                    |  Assignment
                    |  Return
                    |  Print
@@ -75,7 +75,7 @@ MemeScript {
                    |  intlit                                           -- int
 
   Assignment       =  id "=" Exp ";"
-  Call             =  id "(" Args ")" ";"
+  Call             =  id "(" Args ")"
 
   Args             =  (Exp ("," Exp)*)?
   Var              =  Var "[" Exp "]"                                  -- subscript
@@ -106,7 +106,7 @@ MemeScript {
   escape           =  "\\n" | "\\\"" | "\\'"
 
   keyword          =  ("you" | "but" | "without" | "ermahgerd" | "he" | "wow" | "such" | "very"
-                      | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined") ~idrest
+                      | "so" | "much" | "dicks" | "false" | "true" | "null" | "undefined" | "very") ~idrest
 
   id               =  ~keyword letter idrest*
   idrest           =  "_" | alnum

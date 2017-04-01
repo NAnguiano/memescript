@@ -58,6 +58,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Block: (s) => {
     return new Block(s.ast());
   },
+  Stmnt_funcall: (e, _) => {
+    return e.ast();
+  },
   Body: (b1, b, b2) => {
     return new Body(b.ast());
   },
@@ -85,7 +88,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Assignment: (i, q, e, _) => {
     return new Assignment(i.sourceString, e.ast());
   },
-  Call: (i, rp, a, lp, _) => {
+  Call: (i, rp, a, lp) => {
     return new FunctionCall(i.sourceString, a.ast());
   },
   Args: (e, c, r) => {
@@ -96,6 +99,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Var_select: (v, p, i) => {
     return new VariableSelect(v.ast(), i.sourceString);
+  },
+  Var: (e) => {
+    return e.ast();
   },
   Switch: (s, p1, e, p2, b1, c, d, b2) => {
     return new SwitchStatement(e.ast(), c.ast(), d.ast());

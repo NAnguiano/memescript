@@ -6,5 +6,15 @@ me, an intellectual: {
     a = 10;
     i can haz 10;
   }
+  fsdfsf(4);
   i can haz "hello";
 }
+
+you: potato()
+me, an intellectual: {
+  i can haz "potato";
+}
+
+z = nothing(2, 2, 2);
+
+potato();
