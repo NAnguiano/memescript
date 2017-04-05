@@ -113,5 +113,5 @@ RIP.
 FUUUUUUUUUUU-
 WHY YOU NO WORK
 ```
-
+Full set of Railroad Diagrams for our syntax, [here.](https://rawgit.com/NAnguiano/memescript/gh-pages/docs/diagram.xhtml)
 For more examples and to read the grammar, please check out [our repo.](https://github.com/NAnguiano/memescript/)
