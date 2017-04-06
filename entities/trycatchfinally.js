@@ -1,10 +1,21 @@
+const Context = require('../semantics/context');
+const Type = require('../semantics/type');
+
 class TryCatchFinally {
 
   constructor(trybody, id, catchbody, finallybody) {
     this.trybody = trybody;
-    this.catchbody = catchbody;
     this.err = id;
+    this.catchbody = catchbody;
     this.finallybody = finallybody;
+  }
+
+  analyze(context) {
+    this.trybody.analyze(context);
+    const catchContext = new Context({ parent: context, inFunction: context.inFunction });
+    catchContext.initialize(this.err, Type.OBJECT, false);
+    this.catchbody.analyze(catchContext);
+    this.finallybody.analyze(context);
   }
 
   toString() {
