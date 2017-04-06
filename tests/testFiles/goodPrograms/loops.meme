@@ -4,3 +4,10 @@ one does not simply {
   b = 20;
   ermahgerd g = b + i + c;
 } without (ermahgerd c = 1; c > 10; c = c + 1)
+
+ermahgerd a = 10;
+ermahgerd b = 15;
+yo, I'mma let you finish (a > b) but {
+  ermahgerd c = 12;
+  b = b - c;
+}
