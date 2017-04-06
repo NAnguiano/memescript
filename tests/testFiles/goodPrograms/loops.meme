@@ -7,7 +7,8 @@ one does not simply {
 
 ermahgerd a = 10;
 ermahgerd b = 15;
+
 yo, I'mma let you finish (a > b) but {
-  ermahgerd c = 12;
-  b = b - c;
+  ermahgerd d = 12;
+  b = b + d;
 }
