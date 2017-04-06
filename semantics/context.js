@@ -2,10 +2,11 @@ const Type = require('./type');
 
 class Variable {
 
-  constructor(id, type, isConstant, func = null) {
+  constructor(id, type, isConstant, func = null, obj = null) {
     this.id = id;
     this.type = type;
     this.func = func;
+    this.obj = obj;
     this.isConstant = isConstant;
   }
 
@@ -13,11 +14,18 @@ class Variable {
 
 class Context {
 
-  constructor({ parent = null, inFunction = false, functionId = null, inLoop = false } = {}) {
+  constructor({
+                parent = null,
+                inFunction = false,
+                functionId = null,
+                inLoop = false,
+                inObject = false,
+              } = {}) {
     this.parent = parent;
     this.inFunction = inFunction;
     this.functionId = functionId;
     this.inLoop = inLoop;
+    this.inObject = inObject;
     this.variablesInScope = Object.create(null);
   }
 
@@ -43,6 +51,13 @@ class Context {
       throw new Error(`${id} has already been declared.`);
     }
     this.variablesInScope[id] = new Variable(id, Type.NULL, true, func);
+  }
+
+  initializeObject(id, obj) {
+    if (id in this.variablesInScope) {
+      throw new Error(`${id} has already been declared.`);
+    }
+    this.variablesInScope[id] = new Variable(id, Type.OBJECT, true, null, obj);
   }
 
   setFunctionType(id, type) {

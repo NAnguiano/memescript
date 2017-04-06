@@ -15,17 +15,15 @@ wow doge {
   }
 }
 
-you: think(thought, h, p = 2, p...)
+you: think(thought, h, p = 2, p2...)
 me, an intellectual: {
   dicks.out("You had a thought.");
-  dicks.out("It was about" + thought);
   here comes dat boi("you decide to never think again.");
 }
 
-you: think(thought, h, a = 10)
+you: thinkagain(thought, h, a = 10)
 me, an intellectual: {
   dicks.out("You had a thought.");
-  dicks.out("It was about" + thought);
   here comes dat boi("you decide to never think again.");
 }
 
@@ -33,9 +31,9 @@ ermahgerd haveThoughts;
 haveThoughts = true;
 
 I don't always (haveThoughts) but when I do {
-  think("puppies");
+  think("puppies", "cats");
 } but sometimes I (!haveThoughts) {
-  think("nothing ):");
+  thinkagain("nothing", "):");
 } otherwise I do {
   dicks.out("Nothing, because this code is unreachable");
 }
@@ -50,7 +48,7 @@ yo, I'mma let you finish (c > 10) but {
 Chuck Norris doesn't {
   one does not simply {
     here comes dat boi("You can now assign and declare on the same line!");
-  } without (ermahgerd d = 0; d > 10; d = d + 10;)
+  } without (ermahgerd d = 0; d > 10; d = d + 10)
 } or (err) {
   RIP(err);
 } he {
@@ -68,18 +66,18 @@ Chuck Norris doesn't {
       be like bill;
     }
   }
-  i can haz 10;
+  RIP(10);
 }
 
 ermahgerd math;
 
 math = 0;
-math = 0 || 1;
-math = 0 && 1;
+math = true || false;
+math = 0 > 1 && 1 < 0;
 math = 1 + 2;
 math = 2 - 3;
 math = 2.2 * 3.3;
-math = !10;
+math = !haveThoughts;
 math = -2 / -3;
 math = 5 % 100;
 math = 3 === 2;

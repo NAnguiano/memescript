@@ -1,0 +1,15 @@
+wow testClass {
+  such (p1, p2, p3) {
+  	dicks.out(p1);
+    dicks.out(p2);
+    dicks.out(p3);
+  }
+
+  so shine () {
+  	dicks.out("Double rainbow");
+  }
+
+  so woah () {
+    ermahgerd x = 10;
+  }
+}
