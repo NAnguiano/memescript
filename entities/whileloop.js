@@ -12,7 +12,11 @@ class WhileLoop {
     if (!type.isBoolean()) {
       throw new Error('While loop condition must be a boolean.');
     }
-    const innerContext = new Context({ parent: context, inLoop: true });
+    const innerContext = new Context({
+      parent: context,
+      inLoop: true,
+      inFunction: context.inFunction,
+    });
     this.body.analyze(innerContext);
   }
 

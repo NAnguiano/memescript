@@ -12,3 +12,6 @@ yo, I'mma let you finish (a > b) but {
   ermahgerd d = 12;
   b = b + d;
 }
+
+yo, I'mma let you finish (true) but {
+}

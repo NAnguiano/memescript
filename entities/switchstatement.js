@@ -6,6 +6,11 @@ class SwitchStatement {
     this.switchDefault = switchDefault;
   }
 
+  analyze(context) {
+    this.switchCases.forEach(sc => sc.analyze(context));
+    this.switchDefault.analyze(context);
+  }
+
   toString() {
     return `(Switch ${this.expression} ${this.switchCases.join(' ')} ${this.switchDefault})`;
   }

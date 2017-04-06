@@ -10,7 +10,11 @@ class ForStatement {
   }
 
   analyze(context) {
-    const innerContext = new Context({ parent: context, inLoop: true });
+    const innerContext = new Context({
+      parent: context,
+      inLoop: true,
+      inFunction: context.inFunction,
+    });
     this.initialization.analyze(innerContext);
     const conditionType = this.condition.analyze(innerContext);
     if (!conditionType.isBoolean()) {
