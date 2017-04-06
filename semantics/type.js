@@ -43,6 +43,19 @@ class Type {
     return true;
   }
 
+  convertTo(type) {
+    if (this.type === OBJECT_ID) {
+      throw new Error('Objects cannot be converted to primitive types.');
+    }
+    if (this.type === type.type) {
+      return;
+    }
+    if (type.type === OBJECT_ID) {
+      throw new Error('Primitive types cannot be converted to objects.');
+    }
+    this.type = type.type;
+  }
+
 }
 
 const BOOL = new Type(BOOLEAN_ID);

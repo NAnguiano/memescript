@@ -14,7 +14,7 @@ MemeScript {
                    |  TryCatchFinally
                    |  Switch
                    |  Call ";"                                         -- funcall
-                   |  Assignment
+                   |  Assignment ";"                                   -- assign
                    |  Return
                    |  Print
                    |  Error
@@ -74,7 +74,7 @@ MemeScript {
                    |  (digit* "." digit+)                              -- float
                    |  intlit                                           -- int
 
-  Assignment       =  id "=" Exp ";"
+  Assignment       =  id "=" Exp
   Call             =  id "(" Args ")"
 
   Args             =  (Exp ("," Exp)*)?

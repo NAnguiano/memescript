@@ -6,7 +6,7 @@ class SplatParam {
   }
 
   analyze(context) {
-    // Do nothing.
+    // Nothing to analyze. Intentionally left blank.
   }
 
   toString() {

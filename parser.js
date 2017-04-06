@@ -16,7 +16,7 @@ const FunctionDeclaration = require('./entities/functiondeclaration');
 const WhileLoop = require('./entities/whileloop');
 const TryCatch = require('./entities/trycatch');
 const TryCatchFinally = require('./entities/trycatchfinally');
-const ForLoop = require('./entities/forstatement');
+const ForLoop = require('./entities/forloop');
 const SwitchStatement = require('./entities/switchstatement');
 const SwitchCase = require('./entities/switchcase');
 const SwitchDefault = require('./entities/switchdefault');
@@ -42,6 +42,7 @@ const IntegerLiteral = require('./entities/integerliteral');
 const FloatLiteral = require('./entities/floatliteral');
 const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
+const Id = require('./entities/id');
 
 const error = require('./error');
 const ohm = require('ohm-js');
@@ -71,6 +72,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Stmnt_funcall: (call, _) => {
     return call.ast();
   },
+  Stmnt_assign: (assign, _) => {
+    return assign.ast();
+  },
   Body: (_1, block, _2) => {
     return new Body(block.ast());
   },
@@ -95,7 +99,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   FunDec: (_1, id, _2, params, _3, _4, body) => {
     return new FunctionDeclaration(id.sourceString, params.ast(), body.ast());
   },
-  Assignment: (id, _1, exp, _2) => {
+  Assignment: (id, _, exp) => {
     return new Assignment(id.sourceString, exp.ast());
   },
   Call: (id, _1, args, _2) => {
@@ -205,7 +209,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
     return new BooleanLiteral(bool.sourceString);
   },
   id: (_, rest) => {
-    return `${getProperValue(rest)}`;
+    return new Id(`${getProperValue(rest)}`);
   },
 });
 /* eslint-enable no-unused-vars, no-new, arrow-body-style */

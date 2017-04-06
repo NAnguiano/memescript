@@ -4,6 +4,10 @@ class Alert {
     this.expression = expression;
   }
 
+  analyze(context) {
+    this.expression.analyze(context);
+  }
+
   toString() {
     return `(Alert ${this.expression})`;
   }
