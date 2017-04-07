@@ -13,7 +13,7 @@ class FunctionCall {
     if (!functionDeclaration.func) {
       throw new Error(`${this.id} is not a function.`);
     }
-    this.args.analyze();
+    this.args.analyze(context);
     // TODO: Clean this up.. yikes
     const numRequiredParams = functionDeclaration.func.numRequiredParams;
     const numParams = functionDeclaration.func.parameters.length;
@@ -26,8 +26,8 @@ class FunctionCall {
     }
     if (numArgs > numRequiredParams) {
       for (let i = numRequiredParams; i < numArgs; i += 1) {
-        const argType = this.args.args[i].analyze();
-        const paramType = functionDeclaration.func.parameters.params[i].expression.analyze();
+        const argType = this.args.args[i].analyze(context);
+        const paramType = functionDeclaration.func.parameters.params[i].expression.analyze(context);
         if (!argType.isEquivalentTypeTo(paramType)) {
           throw new Error(`Optional parameter ${functionDeclaration.func.parameters.params[i].id} is expected to be of type ${paramType.type}, not ${argType.type}`);
         }

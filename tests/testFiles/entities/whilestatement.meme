@@ -1,5 +1,4 @@
-yo, I'mma let you finish (a > b) but {
+yo, I'mma let you finish (5 > 6) but {
   ermahgerd c;
-  c = 12;
-  b = b - c;
+  c = 12 - 10;
 }

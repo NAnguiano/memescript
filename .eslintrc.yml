@@ -3,3 +3,5 @@ plugins:
   - import
 rules:
   no-console: off
+env:
+  jasmine: true

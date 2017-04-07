@@ -16,7 +16,7 @@ wow testClass {
 
 wow testClass2 {
   such (beep = true) {
-  	here comes dat boi(beep)
+  	here comes dat boi(beep);
   }
 }
 

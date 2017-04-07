@@ -1,8 +1,8 @@
 you: getB (b, c, a, o)
 me, an intellectual: {
-  i can haz bagel;
+  i can haz "bagel";
 }
 
-getB();
-getB(a, b, c, d);
-getB(a > b);
+getB(10, 11, 12, 13);
+getB("a", 'b', "c", "d");
+getB(4 > 5, 13212, 12, 2);

@@ -36,7 +36,7 @@ this is bill (b) {
     be like bill;
   }
   bill is smart {
-    RIP("So many b's!");
+    RIP("So many b\'s!");
   	be like bill;
   }
 }

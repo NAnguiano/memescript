@@ -21,7 +21,7 @@ I don't always (a) but when I do {
 }
 
 I don't always (a) but when I do {
-  here comes dat boi("Shouldn't have got here??");
+  here comes dat boi("Shouldn\'t have got here??");
 } otherwise I do {
   here comes dat boi("Always get here!");
 }
@@ -29,5 +29,5 @@ I don't always (a) but when I do {
 I don't always (true || 3 >= 2) but when I do {
   dicks.out("yay!");
 } otherwise I do {
-  RIP("We shouldn't get here.");
+  RIP("We shouldn\'t get here.");
 }
