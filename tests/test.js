@@ -90,6 +90,31 @@ const SEMANTIC_ERROR_TESTS = [
   'callfunctionwithtoofewargs.meme',
   'callfunctionwithtoomanyargs.meme',
   'addboolandnum.meme',
+  'declareconstantwithoutinit.meme',
+  'assigntoundeclaredvariable.meme',
+  'addnullandstring.meme',
+  'multiplystrings.meme',
+  'stringlessthanbool.meme',
+  'addnumandstring.meme',
+  'logicalandnumbers.meme',
+  'reinitializeconstant.meme',
+  'ifwithnonbooleanconditional.meme',
+  'elseifwithnonbooleanconditional.meme',
+  'forloopwithnonbooleanconditional.meme',
+  'whileloopwithnonbooleanconditional.meme',
+  'callfunctionbeforedeclaration.meme',
+  'callvarasfunction.meme',
+  'giveoptionalparamwrongtype.meme',
+  'assignfunctiontoexistingvar.meme',
+  'usevarbeforedecl.meme',
+  'giveobjmethodsofsamename.meme',
+  'optionalparambeforerequiredparam.meme',
+  'splatparaminmiddle.meme',
+  'returnnotinfunction.meme',
+  'functionreturntwodifftypes.meme',
+  'usebangonstring.meme',
+  'usenegateonbool.meme',
+  'redeclarevar.meme',
 ];
 
 describe('AST Tests', () => {
@@ -105,15 +130,16 @@ describe('Semantic Analyzer Tests', () => {
   GOOD_SEMANTIC_TESTS.forEach((program) => {
     it(`${program} should compile without errors`, () => {
       fs.readFileSync(`./tests/testFiles/goodPrograms/${program}`, 'utf-8', (err, text) => {
+        if (err) return;
         const parsedProgram = parse(text);
         assert.isUndefined(parsedProgram.analyze());
       });
     });
   });
   SEMANTIC_ERROR_TESTS.forEach((program) => {
-    const evaluatedProgram = fs.readFile(`./tests/testFiles/semanticErrors/${program}`);
     it(`${program} should throw an Error`, () => {
       fs.readFileSync(`./tests/testFiles/semanticErrors/${program}`, 'utf-8', (err, text) => {
+        if (err) return;
         const parsedProgram = parse(text);
         assert.throws(parsedProgram.analyze(), Error);
       });

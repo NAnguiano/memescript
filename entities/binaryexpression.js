@@ -32,7 +32,6 @@ class BinaryExpression {
       case '===':
       case '==':
       case '!=':
-        // Maybe force to be same type?...
         return Type.BOOL;
       default:
         if (!leftType.isAddableTo(rightType)) {
