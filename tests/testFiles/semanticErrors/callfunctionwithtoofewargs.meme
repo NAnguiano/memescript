@@ -1,0 +1,6 @@
+you: sample(a, b, c)
+me, an intellectual: {
+  dicks.out("This function has three parameters.");
+}
+
+sample();

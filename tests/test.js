@@ -2,6 +2,7 @@
 
 const parse = require('../parser.js');
 const assert = require('chai').assert;
+const fs = require('fs');
 
 const AST_TESTS = [
   ['overlyattachedgirlfriend.jpg b; b = 20;',
@@ -66,11 +67,56 @@ const AST_TESTS = [
     '(Program (Block (While talking (Block (Alert "INFINITE LOOP, BABY")))))'],
 ];
 
-describe('Entity Tests', () => {
-  console.log('Entity tests replaced with node util statement.');
+const GOOD_SEMANTIC_TESTS = [
+  'assignmentandinitialization.meme',
+  'everything.meme',
+  'expressions.meme',
+  'function.meme',
+  'if.meme',
+  'loops.meme',
+  'object.meme',
+  'random.meme',
+  'switch.meme',
+  'try.meme',
+  'alert.meme',
+  'expressions.meme',
+];
+
+const SEMANTIC_ERROR_TESTS = [
+  'useundefinedvariable.meme',
+  'reassignconstant.meme',
+  'reinitializevariable.meme',
+  'returnoutsidefunction.meme',
+  'callfunctionwithtoofewargs.meme',
+  'callfunctionwithtoomanyargs.meme',
+  'addboolandnum.meme',
+];
+
+describe('AST Tests', () => {
+  console.log('AST tests replaced with node util statement.');
   // AST_TESTS.forEach(([program, ast]) => {
   //   it(`should compile ${program} to ${ast}`, () => {
   //     assert.equal(parse(program), ast);
   //   });
   // });
+});
+
+describe('Semantic Analyzer Tests', () => {
+  GOOD_SEMANTIC_TESTS.forEach((program) => {
+    it(`${program} should compile without errors`, () => {
+      fs.readFileSync(`./tests/testFiles/goodPrograms/${program}`, 'utf-8', (err, text) => {
+        const parsedProgram = parse(text);
+        assert.isUndefined(parsedProgram.analyze());
+      });
+    });
+  });
+  SEMANTIC_ERROR_TESTS.forEach((program) => {
+    const evaluatedProgram = fs.readFile(`./tests/testFiles/semanticErrors/${program}`);
+    it(`${program} should throw an Error`, () => {
+      fs.readFileSync(`./tests/testFiles/semanticErrors/${program}`, 'utf-8', (err, text) => {
+        const parsedProgram = parse(text);
+        assert.throws(parsedProgram.analyze(), Error);
+      });
+    });
+  });
 });

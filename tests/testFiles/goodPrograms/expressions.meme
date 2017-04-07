@@ -1,4 +1,13 @@
 ermahgerd a = 2.2;
+ermahgerd b = 2 / 2;
+b = 7 * 21.2;
+b = 89.23232 % .01
+b = b >= 2;
 a = 5 || 5;
 a = 5 && 5;
 a = 5 + 5;
+a = "H";
+a = a + "hhhh";
+a = true;
+a = a || false;
+a = 4 >= 3;

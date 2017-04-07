@@ -3,7 +3,7 @@ one does not simply {
   ermahgerd b;
   b = 20;
   ermahgerd g = b + i + c;
-} without (ermahgerd c = 1; c > 10; c = c + 1)
+} without (ermahgerd c = 1; c < 10; c = c + 1)
 
 ermahgerd a = 10;
 ermahgerd b = 15;
@@ -15,3 +15,14 @@ yo, I'mma let you finish (a > b) but {
 
 yo, I'mma let you finish (true) but {
 }
+
+one does not simply {
+} without (ermahgerd c = 10; c >= 5; c = c - 1)
+
+one does not simply {
+  one does not simply {
+    yo, I'mma let you finish (c > d) but {
+      RIP("Infinite loop?");
+    }
+  } without (ermahgerd d = 1; d <= 10; d = d + 1)
+} without (ermahgerd c = 10; c >= 5; c = c - 1)

@@ -5,8 +5,9 @@
 
 const argv = require('yargs')
              .usage('$0 [-a] [-o] [-i] [--target [x86|c|js]]')
-             .boolean(['a', 'o', 'i'])
+             .boolean(['a', 's', 'o', 'i'])
              .describe('a', 'Show abstract syntax tree after parsing using node inspector, then stop.')
+             .describe('s', 'Show abstract syntax tree after parsing using toString, then stop.')
              .describe('o', 'Do optimizations')
              .describe('i', 'generate and show the intermediate code, then stop.')
              .describe('target', 'generate code for x86, C, or JavaScript')
@@ -25,11 +26,14 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
   if (error.count > 0) return;
   if (argv.a) {
     console.log(util.inspect(program, { depth: null }));
-    // console.log(program.toString());
-    // return;
+    return;
   }
-  /* program.analyze();
-  if (error.count > 0) return;
+  if (argv.s) {
+    console.log(program.toString());
+    return;
+  }
+  program.analyze();
+  /* if (error.count > 0) return;
   if (argv.o) {
     program = program.optimize;
   }

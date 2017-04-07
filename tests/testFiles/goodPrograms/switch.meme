@@ -20,3 +20,23 @@ this is bill (b) {
   	be like bill;
   }
 }
+
+this is bill (b) {
+  bill is smart {
+    be like bill;
+  }
+}
+
+this is bill (b) {
+  bill is a 40 {
+    dicks.out("We should get here!");
+    be like bill;
+  }
+  bill has a 2 {
+    be like bill;
+  }
+  bill is smart {
+    RIP("So many b's!");
+  	be like bill;
+  }
+}

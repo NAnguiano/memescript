@@ -13,3 +13,23 @@ wow testClass {
     ermahgerd x = 10;
   }
 }
+
+wow testClass2 {
+  such (beep = true) {
+  	here comes dat boi(beep)
+  }
+}
+
+wow testClass3 {
+  such () {
+  }
+}
+
+wow testClass4 {
+  such (a = "noooo") {
+  }
+
+  so YAY(b) {
+    dicks.out("We should probably make a this keyword");
+  }
+}

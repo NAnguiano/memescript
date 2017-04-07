@@ -1,4 +1,14 @@
-overlyattachedgirlfriend.jpg x = 23.4 + -23 + 12.4 - 2 * 23 / 2;
-ermahgerd y = 0;
+overlyattachedgirlfriend.jpg a = 23.4 + -23 + 12.4 - 2 * 23 / 2;
+ermahgerd.jpg b = true;
+overlyattachedgirlfriend.jpg c = null;
+ermahgerd d = b;
+overlyattachedgirlfriend.jpg e = "Hello I am a constant!";
+ermahgerd f = 'dddd';
+overlyattachedgirlfriend.jpg g = 'The cow says "moo!"';
+ermahgerd h = 4 >= 2;
+overlyattachedgirlfriend.jpg i = h || b;
+ermahgerd j = "sdkflskdfs";
+overlyattachedgirlfriend.jpg k = f + j;
+ermahgerd y = .232322323212810932801;
 ermahgerd z;
-z = "hello " + "world!";
+z = "hello " + 'world!';

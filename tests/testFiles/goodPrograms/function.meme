@@ -15,6 +15,22 @@ me, an intellectual: {
   i can haz "potato";
 }
 
+you: blank()
+me, an intellectual: {
+}
+
+you: optionalOnly(a = 2, b = 3, c = 23, d = 0.2, e = .222, f = "Hi!", g = false)
+me, an intellectual: {
+  dicks.out("This function has only optional variables, like " + f);
+}
+
+you: splatOnly(z...)
+me, an intellectual: {
+  RIP("This has only splat param!");
+}
+
 z = nothing(2, 2, 2);
 
 potato();
+
+splatOnly();
