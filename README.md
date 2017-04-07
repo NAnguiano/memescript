@@ -112,7 +112,7 @@ let newStack = new Stack();
 * Using the '%', '/', '\*', or '-' operators on non-numeric operands
 * Using the '>', '<', '>=', and '<=' operators on non-numeric operands.
 * Using the '+' operator on operands that are not two strings or two numbers
-* Using the '| |' and '&&' operators on non-boolean operands
+* Using the '&#124;&#124;' and '&&' operators on non-boolean operands
 * Using the '!' operator on a non-boolean operand
 * Using the '-' operator (as in -2) on a non-numeric operand
 * Having a conditional on an if or if-else statment that is not of type boolean
