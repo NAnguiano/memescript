@@ -11,6 +11,8 @@ class ObjectConstructor {
     // Ensure the parameters are in the proper order.
     this.params.analyze(context);
 
+    this.numRequiredParams = 0;
+
     // Finally, declare.
     this.params.params.forEach((p) => {
       if (p.type === 'optional') {

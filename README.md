@@ -148,7 +148,7 @@ ermahgerd newStack = very Stack();                           let newStack = new 
 * Functions must be declared before they are called.
 * Variables cannot be called as functions unless they are a function.
 * Function variable names cannot be overloaded, as functions are declared as constants.
-* Functions must be called with at least the number of required parameters allowed.
+* Functions must be called with the exact number of required parameters, at minimum.
 * Functions cannot be called with more parameters than they have in the declaration, including optional parameters and splat parameters.
 * Optional parameters given a value must be given a value of the same type as the original value's type.
 * Optional parameters must be declared after all required (not optional) parameters.
@@ -156,3 +156,8 @@ ermahgerd newStack = very Stack();                           let newStack = new 
 * Return statements must be used in functions.
 * All return statements in a function must return the same type.
 * Object Methods must be declared with different names, as they are declared as constants.
+* Objects must be declared before they are initialized.
+* Variables cannot be initialized as objects unless they are objects.
+* Objects must be initialized with the exact number of required parameters, at minimum.
+* Objects cannot be called with more parameters than they have in their constructor, including optional parameters and splat parameters.
+* Dot and bracket notation can only be used on a variable with type object.

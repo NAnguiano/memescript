@@ -27,6 +27,10 @@ class Type {
     return this.type === STRING_ID;
   }
 
+  isObject() {
+    return this.type === OBJECT_ID;
+  }
+
   isEquivalentTypeTo(type) {
     if (this.type === INT_ID || this.type === FLOAT_ID) {
       return type.type === INT_ID || type.type === FLOAT_ID;

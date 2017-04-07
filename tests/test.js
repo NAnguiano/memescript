@@ -65,6 +65,12 @@ const SEMANTIC_ERROR_TESTS = [
   'usebangonstring.meme',
   'usenegateonbool.meme',
   'redeclarevar.meme',
+  'declareobjbeforeuse.meme',
+  'initializevarasobject.meme',
+  'initobjwithtoofewargs.meme',
+  'initobjwithtoomanyargs.meme',
+  'usedotnontationonstring.meme',
+  'usedotnontationonnumber.meme',
 ];
 
 describe('AST Tests', () => {

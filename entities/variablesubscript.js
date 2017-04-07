@@ -5,6 +5,14 @@ class VariableSubscript {
     this.expression = expression;
   }
 
+  analyze(context) {
+    const type = this.variable.analyze(context);
+    if (!type.isObject()) {
+      throw new Error(`Can only use bracket notation on type Object, not ${type.type}.`);
+    }
+    this.expression.analyze(context);
+  }
+
   toString() {
     return `(Subscript ${this.variable} ${this.expression})`;
   }

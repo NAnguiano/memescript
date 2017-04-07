@@ -12,6 +12,7 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 const ObjectDeclaration = require('./entities/objectdeclaration');
 const ObjectConstructor = require('./entities/objectconstructor');
 const ObjectMethods = require('./entities/objectmethods');
+const ObjectInitialization = require('./entities/objectinitialization');
 const FunctionDeclaration = require('./entities/functiondeclaration');
 const WhileLoop = require('./entities/whileloop');
 const TryCatch = require('./entities/trycatch');
@@ -96,6 +97,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   ObjMethods: (_1, id, _2, params, _3, body) => {
     return new ObjectMethods(id.sourceString, params.ast(), body.ast());
   },
+  ObjInit: (_1, id, _2, params, _3) => {
+    return new ObjectInitialization(id.sourceString, params.ast());
+  },
   FunDec: (_1, id, _2, params, _3, _4, body) => {
     return new FunctionDeclaration(id.sourceString, params.ast(), body.ast());
   },
@@ -114,8 +118,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Var_select: (var_, _, id) => {
     return new VariableSelect(var_.ast(), id.sourceString);
   },
-  Var: (callOrId) => {
-    return callOrId.ast();
+  Var: (expr) => {
+    return expr.ast();
   },
   Switch: (_1, _2, exp, _3, _4, switchCase, switchDefault, _5) => {
     return new SwitchStatement(exp.ast(), switchCase.ast(), switchDefault.ast());

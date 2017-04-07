@@ -29,6 +29,7 @@ MemeScript {
   ObjDec           =  "wow" id "{" ObjConst ObjMethods* "}"
   ObjConst         =  "such" "(" Params ")" Body
   ObjMethods       =  "so" id "(" Params ")" Body
+  ObjInit          =  "very" id "(" Args ")"
 
   FunDec           =  "you:" id "(" Params ")" "me, an intellectual:" Body
 
@@ -81,6 +82,7 @@ MemeScript {
   Var              =  Var "[" Exp "]"                                  -- subscript
                    |  Var "." id                                       -- select
                    |  Call
+                   |  ObjInit
                    |  id
 
   Params           =  ((OptionalParam | SplatParam | Param) ("," (OptionalParam | SplatParam | Param))*)?
