@@ -24,137 +24,135 @@ Expressions are evaluated eagerly, and only infix notation is allowed. Operators
 
 ### Function Declarations
 ```
-you: add(x, y)                                      function add(x, y) {
-me, an intellectual: {                                  return x + y;
-  i can haz x + y;                                  }
+you: add(x, y)                                               function add(x, y) {
+me, an intellectual: {                                           return x + y;
+  i can haz x + y;                                           }
 }
 
-you: add(x = 10, y = 10)                            function add(x = 10, y = 10) {
-me, an intellectual: {                                  console.error(x + y);
-  RIP(x + y);                                     }
+you: add(x = 10, y = 10)                                     function add(x = 10, y = 10) {
+me, an intellectual: {                                           console.error(x + y);
+  RIP(x + y);                                                }
 }
 
-you: add(x, y...)                                   function add(x, y...) {                         
-me, an intellectual: {                                  alert(y);
-  here come dat boi (y);                                console.log("For Harambe");
-  dicks.out("For Harambe");                         }
+you: add(x, y...)                                            function add(x, y...) {                         
+me, an intellectual: {                                           alert(y);
+  here come dat boi (y);                                         console.log("For Harambe");
+  dicks.out("For Harambe");                                  }
 }
 ```
 
 ### If Statement
 ```
-I don't always (homework.isFinished())              if (homework.isFinished()) {
-but when I do {                                         me.goToSleep();
-  me.goToSleep();                                   }
-}
+I don't always (homework.isFinished()) but when I do {       if (homework.isFinished()) {
+    me.goToSleep();                                              me.goToSleep();
+}                                                            }
+
 ```
 
 ### If-ElseIf-Else Statement
 ```
-I don't always (homework.isFinished())              if (homework.isFinished() {
-but when I do {                                         me.goToSleep();
-  me.goToSleep();                                   } else if (homework.procrastinating()) {
-} but sometimes I (homework.procrastinating()) {        me.procrastinate();
-  me.procrastinate();                               } else {
-} otherwise I do {                                      me.readBook();
-  me.readBook();                                    }
-}
+I don't always (homework.isFinished()) but when I do {       if (homework.isFinished() {
+    me.goToSleep();                                              me.goToSleep();
+} but sometimes I (homework.procrastinating()) {             } else if (homework.procrastinating()) {
+    me.procrastinate();                                          me.procrastinate();
+} otherwise I do {                                           } else {
+    me.readBook();                                               me.readBook();
+}                                                            }
 ```
 
 ### Switch Statement
 ```
-this is bill (x) {                                  switch (x) {
-  bill has a "banana" {                                 case "banana":
-    me.eat(x);                                              me.eat(x);
-    be like bill;                                           break;
-  } bill is a "cheeseburger" {                          case "cheeseburger":
-    me.eat(x);                                              me.eat(x);
-    be like bill;                                           break;
-  } bill is smart {                                     default:
-    me.buyFood();                                           me.buyFood();
-    be like bill;                                           break;
-  }                                                 }
+this is bill (x) {                                           switch (x) {
+  bill has a "banana" {                                          case "banana":
+    me.eat(x);                                                       me.eat(x);
+    be like bill;                                                    break;
+  } bill is a "cheeseburger" {                                   case "cheeseburger":
+    me.eat(x);                                                       me.eat(x);
+    be like bill;                                                    break;
+  } bill is smart {                                              default:
+    me.buyFood();                                                    me.buyFood();
+    be like bill;                                                    break;
+  }                                                          }
 }
 ```
 
 ### While Loop
 ```
-yo, I'mma let you finish (weather.isRaining())      while (weather.isRaining()) {
-but {                                                   me.stayInside();
-  me.stayInside();                                  }
-}
+yo, I'mma let you finish (weather.isRaining()) but {         while (weather.isRaining()) {
+    me.stayInside();                                             me.stayInside();
+}                                                            }
 ```
 
 ### Variable Declaration
 ```
-ermahgerd book = 0;                                 let book = 0;
-overlyattachedgirlfriend.jpg book = 0;              const book = 0;
+ermahgerd book = 0;                                          let book = 0;
+overlyattachedgirlfriend.jpg book = 0;                       const book = 0;
 ```
 
 ### Try, Catch, and Finally
 ```
-Chuck Norris doesn't {                              try {
-  dicks.out("testing testing");                          console.log("testing testing");
-} or (err) {                                        } catch (err) {
-  RIP(err);                                              console.error(err);
-} he {                                              } finally {
-  dicks.out("testing testing");                         console.log("testing testing");
-}                                                   }
+Chuck Norris doesn't {                                       try {
+  dicks.out("testing testing");                                   console.log("testing testing");
+} or (err) {                                                 } catch (err) {
+  RIP(err);                                                       console.error(err);
+} he {                                                       } finally {
+  dicks.out("testing testing");                                  console.log("testing testing");
+}                                                            }
 
-Chuck Norris doesn't {                              try {
-  ermahgerd me;                                         let me = null;
-  me = null;                                            me.wakeUp();  
-  me.wakeUp();                                      } catch (err) {
-} he (err) {                                            console.error(err);
-  console.error(err);                               }
+Chuck Norris doesn't {                                       try {
+  ermahgerd me;                                                  let me = null;
+  me = null;                                                     me.wakeUp();  
+  me.wakeUp();                                               } catch (err) {
+} he (err) {                                                     console.error(err);
+  console.error(err);                                        }
 }
 ```
 
 ### For Loop
 ```
-one does not simply {                               for (let i = 0; i < 10; i++) {
-  me.doHomework();                                      me.doHomework();
-  me.manageTimeProperly();                              me.manageTimeProperly();
-  me.goToSleep();                                       me.goToSleep();
-} without (ermahgerd i = 10; i < 10; i = i + 1)             }
+one does not simply {                                        for (let i = 0; i < 10; i++) {
+  me.doHomework();                                               me.doHomework();
+  me.manageTimeProperly();                                       me.manageTimeProperly();
+  me.goToSleep();                                                me.goToSleep();
+} without (ermahgerd i = 10; i < 10; i = i + 1)              }
 ```
 
 ### Objects
 ```
-wow Stack {                                         class Stack {                  
-  such (length = 0) {                                   constructor (length = 0) {
-    much.length = length;                                   this.length = length;
-  }                                                     }
-  so getLength() {                                      getLength {
-    i can haz much.length;                                  return this.length;
-  }                                                     }
-}                                                   }
+wow Stack {                                                  class Stack {                  
+  such (length = 0) {                                            constructor (length = 0) {
+    much.length = length;                                            this.length = length;
+  }                                                              }
+  so getLength() {                                               getLength {
+    i can haz much.length;                                           return this.length;
+  }                                                              }
+}                                                            }
 
-ermahgerd newStack = very Stack();                  let newStack = new Stack();
+ermahgerd newStack = very Stack();                           let newStack = new Stack();
 ```
 
 ### Static Semantic Rules
-# Values cannot be assigned to variables that are not declared (ex. a = 10;, if a is not yet declared).
-# Constants cannot be reassigned.
-# Variables cannot be reinitialized (ex. ermahgerd a = 10; ermahgerd a = "hi";).
-# Variables cannot be redeclared.
-# Variables must be declared before they are used.
-# The '%', '/', '\*', and '-' operators can only be used on numeric operands.
-# The '>', '<', '>=', and '<=' operators can only be used on numeric operands.
-# The '+' operator can only be used on two strings or two numbers.
-# The '||' and '&&' operators require boolean operands.
-# The '!' operator requires a boolean operand.
-# The '-' operator (as in -2, not 5 - 2) requires a numeric operand.
-# The conditional of if and else-if statements must be of boolean type.
-# The conditional of for and while loops must be of boolean type.
-# Functions must be declared before they are called.
-# Variables cannot be called as functions unless they are a function.
-# Function variable names cannot be overloaded, as functions are declared as constants.
-# Functions must be called with at least the number of required parameters allowed.
-# Functions cannot be called with more parameters than they have in the declaration, including optional parameters and splat parameters.
-# Optional parameters given a value must be given a value of the same type as the original value's type.
-# Optional parameters must be declared after all required (not optional) parameters.
-# Splat parameters must come at the end of the parameter list.
-# Return statements must be used in functions.
-# All return statements in a function must return the same type.
-# Object Methods must be declared with different names, as they are declared as constants.
+* Values cannot be assigned to variables that are not declared (ex. a = 10;, if a is not yet declared).
+* Constants cannot be reassigned.
+* Variables cannot be reinitialized (ex. ermahgerd a = 10; ermahgerd a = "hi";).
+* Variables cannot be redeclared.
+* Variables must be declared before they are used.
+* The '%', '/', '\*', and '-' operators can only be used on numeric operands.
+* The '>', '<', '>=', and '<=' operators can only be used on numeric operands.
+* The '+' operator can only be used on two strings or two numbers.
+* The '||' and '&&' operators require boolean operands.
+* The '!' operator requires a boolean operand.
+* The '-' operator (as in -2, not 5 - 2) requires a numeric operand.
+* The conditional of if and else-if statements must be of boolean type.
+* The conditional of for and while loops must be of boolean type.
+* Functions must be declared before they are called.
+* Variables cannot be called as functions unless they are a function.
+* Function variable names cannot be overloaded, as functions are declared as constants.
+* Functions must be called with at least the number of required parameters allowed.
+* Functions cannot be called with more parameters than they have in the declaration, including optional parameters and splat parameters.
+* Optional parameters given a value must be given a value of the same type as the original value's type.
+* Optional parameters must be declared after all required (not optional) parameters.
+* Splat parameters must come at the end of the parameter list.
+* Return statements must be used in functions.
+* All return statements in a function must return the same type.
+* Object Methods must be declared with different names, as they are declared as constants.
