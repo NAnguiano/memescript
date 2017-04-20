@@ -40,14 +40,23 @@ const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
 const Id = require('./entities/id');
 
+function emit(line) {
+  console.log(line);
+}
+
 Object.assign(Program.prototype, {
-
   gen() { return this.block.gen(); }
-
 });
 
 Object.assign(Block.prototype, {
-  
   gen() { this.statements.forEach(s => s.gen(); }
+});
 
+Object.assign(SwitchStatement.prototype, {
+  gen() {
+    emit(`switch (${this.expression.gen()}) {`);
+    this.switchCases.forEach((switchCase) => { emit(switchCase.gen()); });
+    emit(this.switchDefault.gen());
+    emit('}');
+  }
 });
