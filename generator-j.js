@@ -60,3 +60,18 @@ Object.assign(SwitchStatement.prototype, {
     emit('}');
   }
 });
+
+Object.assign(SwitchCase.prototype, {
+  gen() {
+    emit(`case ${this.literal}:`);
+    this.block.gen();
+    emit('break;');
+  }
+});
+
+Object.assign(SwitchDefault.prototype, {
+  gen() {
+    emit('default:');
+    this.block.gen();
+  }
+}); 
