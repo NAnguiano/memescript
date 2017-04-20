@@ -39,3 +39,15 @@ const FloatLiteral = require('./entities/floatliteral');
 const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
 const Id = require('./entities/id');
+
+Object.assign(Program.prototype, {
+
+  gen() { return this.block.gen(); }
+
+});
+
+Object.assign(Block.prototype, {
+  
+  gen() { this.statements.forEach(s => s.gen(); }
+
+});
