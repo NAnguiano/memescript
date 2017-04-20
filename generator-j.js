@@ -74,4 +74,15 @@ Object.assign(SwitchDefault.prototype, {
     emit('default:');
     this.block.gen();
   }
-}); 
+});
+
+Object.assign(IfStatement.prototype, {
+  gen() {
+    emit(`if (${this.expression.gen()}) {`);
+    this.block.gen();
+    emit('}');
+
+    if (this.elseifStatement.length > 0) this.elseifStatement.gen();
+    if (this.elseStatement.length > 0) this.elseStatement.gen();
+  }
+});
