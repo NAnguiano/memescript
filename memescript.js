@@ -17,6 +17,7 @@ const fs = require('fs');
 const parse = require('./parser');
 const util = require('util');
 const error = require('./error');
+require('./generator');
 
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
   const program = parse(text); // change to let once we do optimization
