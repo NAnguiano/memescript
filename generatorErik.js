@@ -40,6 +40,11 @@ const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
 const Id = require('./entities/id');
 
+
+function emit(line) {
+  console.log(line);
+}
+
 Object.assign(Program.prototype, {
 
   gen() { return this.block.gen(); }
@@ -51,3 +56,17 @@ Object.assign(Block.prototype, {
   gen() { this.statements.forEach(s => s.gen(); }
 
 });
+
+Object.assign(BinaryExpression.prototype, {
+  gen() {
+    emit (`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
+  },
+});
+
+Object.assign(UnaryExpression.prototype, {
+  gen() {
+    emit(`${this.prefix.gen()} ${this.expression.gen()}`);
+  },
+
+});
+
