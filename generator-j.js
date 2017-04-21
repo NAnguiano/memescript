@@ -40,23 +40,32 @@ const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
 const Id = require('./entities/id');
 
+/* From Ray Toal's PlainScript compiler */
+const indentPadding = 2;
+let indentLevel = 0;
+
 function emit(line) {
-  console.log(line);
+  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
 }
+/* End */
 
 Object.assign(Program.prototype, {
-  gen() { return this.block.gen(); }
+  gen() { this.block.gen(); }
 });
 
 Object.assign(Block.prototype, {
-  gen() { this.statements.forEach(s => s.gen(); }
+  gen() { this.statements.forEach(s => s.gen()); }
 });
 
 Object.assign(SwitchStatement.prototype, {
   gen() {
     emit(`switch (${this.expression.gen()}) {`);
-    this.switchCases.forEach((switchCase) => { emit(switchCase.gen()); });
-    emit(this.switchDefault.gen());
+
+    indentLevel += 1;
+    this.switchCases.forEach(switchCase => switchCase.gen());
+    this.switchDefault.gen();
+    indentLevel -= 1;
+
     emit('}');
   }
 });
@@ -64,7 +73,11 @@ Object.assign(SwitchStatement.prototype, {
 Object.assign(SwitchCase.prototype, {
   gen() {
     emit(`case ${this.literal}:`);
+    
+    indentLevel += 1;
     this.block.gen();
+    indentLevel -= 1;
+
     emit('break;');
   }
 });
@@ -72,17 +85,40 @@ Object.assign(SwitchCase.prototype, {
 Object.assign(SwitchDefault.prototype, {
   gen() {
     emit('default:');
+
+    indentLevel += 1;
     this.block.gen();
+    indentLevel -= 1;
   }
 });
 
 Object.assign(IfStatement.prototype, {
   gen() {
     emit(`if (${this.expression.gen()}) {`);
+    
+    indentLevel += 1;
     this.block.gen();
+    indentLevel -= 1;
+
     emit('}');
 
-    if (this.elseifStatement.length > 0) this.elseifStatement.gen();
-    if (this.elseStatement.length > 0) this.elseStatement.gen();
+    if (this.elseifStatement.length > 0) {
+      this.elseifStatement.forEach(elseifStatement => elseifStatement.gen());
+    }
+    if (this.elseStatement.length > 0) {
+      this.elseStatement.gen();
+    }
+  }
+});
+
+Object.assign(ElseIfStatement.prototype, {
+  gen() {
+    emit(`else if(${this.expression.gen()}) {`);
+    
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
   }
 });
