@@ -52,14 +52,14 @@ Object.assign(Program.prototype, {
 
 Object.assign(Block.prototype, {
   
-  gen() { this.statements.forEach(s => s.gen(); }
+  gen() { this.statements.forEach(s => s.gen();) }
 
 });
 
 
 Object.assign(Body.prototype, {
 
-  gen() { this.statements.forEach(s => s.gen(); }
+  gen() { this.statements.forEach(s => s.gen();) }
 
 });
 
@@ -86,42 +86,42 @@ Object.assign(ConstantInitialization.prototype, {
 
 Object.assign(VariableInitialization.prototype, {
   gen() {
-    emit(`var (${this.id.gen()}) = (${this.expression.gen()}`);
+    emit(`var ${this.id.gen()} = ${this.expression.gen()}`);
     //this.expression.forEach((expression) => { emit(expression.gen()); });
   }
 });
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
-    emit(`var (${this.id.gen()}));
-  }
-})
+    emit(`var ${this.id.gen()});
+  },
+});
 
 Object.assign(ObjectDeclaration.prototype, {
   gen() {
-  	emit(`Object (${this.id.gen()}) {`);
+  	emit(`class (${this.id.gen()}) {`);
     this.objectParams.forEach((constructor) => { emit(constructor.gen()); });
     emit(this.methods.forEach(m => m.gen()););
     emit('}');
   },
-})
+});
 
 Object.assign(ObjectConstructor.prototype, {
   gen() {
-    emit(`constructor (${this.params.gen()}) {`);
-    this.objectParams.forEach((constructor) => { emit(constructor.gen()); });
-    emit(this.methods.forEach(m => m.gen()););
+    emit(`objConst (${this.params.gen()}) {`);
+    this.body.gen(); //this looks terrible and wrong
     emit('}');
   },
-})
+});
 
 
 Object.assign(ObjectMethods.prototype, {
   gen() {
-    const id = this.id.map(i => i.gen());
-    const initialize = this.initialize.map(v => v.gen());
+    emit(`${this.id.gen()} (${this.params.gen()}) {`);
+    this.body.gen(); //this looks terrible and wrong
+    emit('}');
   },
-})
+});
 
 
 
