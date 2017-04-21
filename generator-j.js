@@ -140,7 +140,7 @@ Object.assign(Assignment.prototype, {
 });
 
 Object.assign(FunctionCall.prototype, {
-  gen() { emit(`${this.id.gen()}(${this.args.gen()});`); },
+  gen() { emit(`${this.id.gen()}(${this.args.gen()})`); },
 });
 
 Object.assign(FunctionArguments.prototype, {
