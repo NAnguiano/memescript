@@ -34,7 +34,7 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const OptionalParam = require('./entities/optionalparam');
 // const SplatParam = require('./entities/splatparam');
 // const StringLiteral = require('./entities/stringliteral');
-// const IntegerLiteral = require('./entities/integerliteral');
+const IntegerLiteral = require('./entities/integerliteral');
 // const FloatLiteral = require('./entities/floatliteral');
 // const BooleanLiteral = require('./entities/booleanliteral');
 // const Null = require('./entities/null');
@@ -63,15 +63,15 @@ Object.assign(Block.prototype, {
 
 Object.assign(ConstantInitialization.prototype, {
   gen() {
-    // TODO emit(`const ${this.id} = ${this.expression.gen()};`);
+    emit(`const ${this.id}_ = ${this.expression.gen()};`);
     // Once we get expressions working, we'll replace with the above.
-    emit(`const ${this.id}_ = EXP;`);
+    // emit(`const ${this.id}_ = EXP;`);
   },
 });
 
 Object.assign(VariableInitialization.prototype, {
   gen() {
-    // TODO emit(`var ${this.id} = ${this.expression.gen()};`);
+    // TODO emit(`var ${this.id}_ = ${this.expression.gen()};`);
     // Once we get expressions working, we'll replace with the above.
     emit(`var ${this.id}_ = EXP;`);
   },
@@ -107,7 +107,6 @@ Object.assign(VariableDeclaration.prototype, {
 //     emit('}');
 //   },
 // });
-//
 //
 // Object.assign(ObjectMethods.prototype, {
 //   gen() {
@@ -238,3 +237,20 @@ Object.assign(VariableDeclaration.prototype, {
 //   gen() { emit(`alert(${this.expression.gen()});`); },
 // });
 //
+// Object.assign(BinaryExpression.prototype, {
+//   gen() {
+//     emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
+//   },
+// });
+//
+// Object.assign(UnaryExpression.prototype, {
+//   gen() {
+//     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
+//   },
+// });
+
+Object.assign(IntegerLiteral.prototype, {
+  gen() {
+    return this.value;
+  },
+});
