@@ -122,3 +122,38 @@ Object.assign(ElseIfStatement.prototype, {
     emit('}');
   }
 });
+
+Object.assign(ElseStatement.prototype, {
+  gen() {
+    emit('else {');
+    
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  }
+});
+
+Object.assign(Assignment.prototype, {
+  gen() { emit(`${this.id.gen()} = ${this.expression.gen()};`); }
+});
+
+Object.assign(FunctionCall.prototype, {
+  gen() { emit(`${this.id.gen()}(${this.args.gen()});`); }
+});
+
+Object.assign(FunctionArguments.prototype, {
+  gen() {
+    let args = '';
+    this.args.forEach(arg => args += (arg + ', '));
+    args = args.substring(0, args.length - 2);
+    return args;
+  }
+});
+
+Object.assign(ReturnStatement.prototype, {
+  gen() {
+    emit(`Return ${this.expression.gen()});
+  }
+});
