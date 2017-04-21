@@ -1,8 +1,8 @@
 const Program = require('./entities/program');
 const Block = require('./entities/block');
 // const Body = require('./entities/body');
-// const ConstantInitialization = require('./entities/constantinitialization');
-// const VariableInitialization = require('./entities/variableinitialization');
+const ConstantInitialization = require('./entities/constantinitialization');
+const VariableInitialization = require('./entities/variableinitialization');
 const VariableDeclaration = require('./entities/variabledeclaration');
 // const ObjectDeclaration = require('./entities/objectdeclaration');
 // const ObjectConstructor = require('./entities/objectconstructor');
@@ -60,22 +60,26 @@ Object.assign(Block.prototype, {
 // Object.assign(Body.prototype, {
 //   gen() { this.statements.forEach(s => s.gen()); },
 // });
-//
-// Object.assign(ConstantInitialization.prototype, {
-//   gen() {
-//     emit(`const ${this.id.gen()} = ${this.expression.gen()};`);
-//   },
-// });
-//
-// Object.assign(VariableInitialization.prototype, {
-//   gen() {
-//     emit(`var ${this.id.gen()} = ${this.expression.gen()};`);
-//   },
-// });
+
+Object.assign(ConstantInitialization.prototype, {
+  gen() {
+    // TODO emit(`const ${this.id} = ${this.expression.gen()};`);
+    // Once we get expressions working, we'll replace with the above.
+    emit(`const ${this.id}_ = EXP;`);
+  },
+});
+
+Object.assign(VariableInitialization.prototype, {
+  gen() {
+    // TODO emit(`var ${this.id} = ${this.expression.gen()};`);
+    // Once we get expressions working, we'll replace with the above.
+    emit(`var ${this.id}_ = EXP;`);
+  },
+});
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
-    emit(`var ${this.id};`);
+    emit(`var ${this.id}_;`);
   },
 });
 
@@ -200,7 +204,7 @@ Object.assign(VariableDeclaration.prototype, {
 // });
 //
 // Object.assign(FunctionCall.prototype, {
-//   gen() { emit(`${this.id.gen()}(${this.args.gen()});`); },
+//   gen() { emit(`${this.id.gen()}(${this.args.gen()})`); },
 // });
 //
 // Object.assign(FunctionArguments.prototype, {
