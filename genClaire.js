@@ -7,12 +7,12 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 const ObjectDeclaration = require('./entities/objectdeclaration');
 const ObjectConstructor = require('./entities/objectconstructor');
 const ObjectMethods = require('./entities/objectmethods');
-// const ObjectInitialization = require('./entities/objectinitialization');
-// const FunctionDeclaration = require('./entities/functiondeclaration');
-// const WhileLoop = require('./entities/whileloop');
-// const TryCatch = require('./entities/trycatch');
-// const TryCatchFinally = require('./entities/trycatchfinally');
-// const ForLoop = require('./entities/forloop');
+const ObjectInitialization = require('./entities/objectinitialization');
+const FunctionDeclaration = require('./entities/functiondeclaration');
+const WhileLoop = require('./entities/whileloop');
+const TryCatch = require('./entities/trycatch');
+const TryCatchFinally = require('./entities/trycatchfinally');
+const ForLoop = require('./entities/forloop');
 // const SwitchStatement = require('./entities/switchstatement');
 // const SwitchCase = require('./entities/switchcase');
 // const SwitchDefault = require('./entities/switchdefault');
@@ -108,11 +108,11 @@ Object.assign(ObjectConstructor.prototype, {
 Object.assign(ObjectMethods.prototype, {
   gen() {
     emit(`${this.id.gen()} (${this.params.gen()}) {`);
-    
+
     indentLevel += 1;
     this.body.gen();
     indentLevel -= 1;
-    
+
     emit('}');
   },
 });
@@ -126,23 +126,23 @@ Object.assign(ObjectInitialization.prototype, {
 Object.assign(FunctionDeclaration.prototype, {
   gen() {
     emit(`func ${this.id.gen()} (${this.params.gen()}) {`);
-    
+
     indentLevel += 1;
     this.body.gen();
     indentLevel -= 1;
-    
+
     emit('}');
   },
 });
 
-Object.assign(WhileStatement.prototype, {
+Object.assign(WhileLoop.prototype, {
   gen() {
     emit(`while (${this.condition.gen()}) {`);
-    
+
     indentLevel += 1;
     this.body.gen();
     indentLevel -= 1;
-    
+
     emit('}');
   },
 });
@@ -150,20 +150,20 @@ Object.assign(WhileStatement.prototype, {
 Object.assign(TryCatch.prototype, {
   gen() {
     emit('try {');
-    
+
     indentLevel += 1;
     this.trybody.gen();
     indentLevel -= 1;
-    
+
     emit('}');
 
     emit(` catch (${this.err.gen()}) { `);
-    
+
     indentLevel += 1;
     this.catchbody.gen();
     indentLevel -= 1;
-    
-    emit('}');    
+
+    emit('}');
   },
 });
 
@@ -171,40 +171,35 @@ Object.assign(TryCatch.prototype, {
 Object.assign(TryCatchFinally.prototype, {
   gen() {
     emit('try {');
-    
+
     indentLevel += 1;
     this.trybody.gen();
     indentLevel -= 1;
-    
+
     emit('}');
-    
+
     emit(` catch (${this.err.gen()}) { `);
-    
+
     indentLevel += 1;
     this.catchbody.gen();
     indentLevel -= 1;
-    
+
     emit('}');
 
     emit(' finally {');
     this.finallybody.gen();
-    emit('}');   
+    emit('}');
   },
 });
 
 Object.assign(ForLoop.prototype, {
   gen() {
     emit(`for (${this.initialization.gen()}; ${this.condition.gen()}; ${this.iterator.gen()}) {`);
-    
+
     indentLevel += 1;
     this.body.gen();
     indentLevel -= 1;
-    
+
     emit('}');
   },
 });
-
-
-
-
-

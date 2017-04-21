@@ -120,6 +120,94 @@ Object.assign(VariableDeclaration.prototype, {
 //   },
 // });
 //
+// Object.assign(ObjectInitialization.prototype, {
+//   gen() {
+//     emit(`new ${this.id.gen()} (${this.args.gen()})`);
+//   },
+// });
+//
+// Object.assign(FunctionDeclaration.prototype, {
+//   gen() {
+//     emit(`func ${this.id.gen()} (${this.params.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+//
+// Object.assign(WhileLoop.prototype, {
+//   gen() {
+//     emit(`while (${this.condition.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(TryCatch.prototype, {
+//   gen() {
+//     emit('try {');
+//
+//     indentLevel += 1;
+//     this.trybody.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//
+//     emit(` catch (${this.err.gen()}) { `);
+//
+//     indentLevel += 1;
+//     this.catchbody.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+//
+// Object.assign(TryCatchFinally.prototype, {
+//   gen() {
+//     emit('try {');
+//
+//     indentLevel += 1;
+//     this.trybody.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//
+//     emit(` catch (${this.err.gen()}) { `);
+//
+//     indentLevel += 1;
+//     this.catchbody.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//
+//     emit(' finally {');
+//     this.finallybody.gen();
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(ForLoop.prototype, {
+//   gen() {
+//   emit(`for (${this.initialization.gen()}; ${this.condition.gen()}; ${this.iterator.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
 // Object.assign(SwitchStatement.prototype, {
 //   gen() {
 //     emit(`switch (${this.expression.gen()}) {`);
