@@ -157,3 +157,17 @@ Object.assign(ReturnStatement.prototype, {
     emit(`Return ${this.expression.gen()});
   }
 });
+
+Object.assign(PrintStatement.prototype, {
+  gen() {
+    if (this.error) {
+      emit(`console.error(${this.expression.gen()});`);
+    } else {
+      emit(`console.log(${this.expression.gen()});`);
+    }
+  }
+});
+
+Object.assign(Alert.prototype, {
+  gen() { emit(`alert(${this.expression.gen()});`); }
+});
