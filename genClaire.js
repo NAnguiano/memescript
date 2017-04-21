@@ -40,76 +40,66 @@ const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
 const Id = require('./entities/id');
 
+/* From Ray Toal's PlainScript compiler */
+const indentPadding = 2;
+let indentLevel = 0;
+
 function emit(line) {
-  console.log(line);
+  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
 }
+/* End */
 
 Object.assign(Program.prototype, {
-
-  gen() { return this.block.gen(); }
-
+  gen() { this.block.gen(); },
 });
 
 Object.assign(Block.prototype, {
-  
-  gen() { this.statements.forEach(s => s.gen();) }
-
+  gen() { this.statements.forEach(s => s.gen()); },
 });
-
 
 Object.assign(Body.prototype, {
-
   gen() { this.statements.forEach(s => s.gen();) }
-
-});
-
-Object.assign(SwitchStatement.prototype, {
-  gen() {
-    emit(`switch (${this.expression.gen()}) {`);
-    this.switchCases.forEach((switchCase) => { emit(switchCase.gen()); });
-    emit(this.switchDefault.gen());
-    emit('}');
-  }
 });
 
 Object.assign(ConstantInitialization.prototype, {
   gen() {
-    emit(`const (${this.id.gen()}) = (${this.expression.gen()}`);
-    //this.expression.forEach((expression) => { emit(expression.gen()); });
+    emit(`const ${this.id.gen()} = ${this.expression.gen()};`);
   }
-
-  /*gen() {
-    const id = this.id.map(i => i.gen());
-    const initialize = this.initialize.map(c => c.gen());
-  },*/
 });
 
 Object.assign(VariableInitialization.prototype, {
   gen() {
-    emit(`var ${this.id.gen()} = ${this.expression.gen()}`);
-    //this.expression.forEach((expression) => { emit(expression.gen()); });
+    emit(`var ${this.id.gen()} = ${this.expression.gen()};`);
   }
 });
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
-    emit(`var ${this.id.gen()});
+    emit(`var ${this.id.gen()};`);
   },
 });
 
 Object.assign(ObjectDeclaration.prototype, {
   gen() {
-  	emit(`class (${this.id.gen()}) {`);
-    this.objectParams.forEach((constructor) => { emit(constructor.gen()); });
-    emit(this.methods.forEach(m => m.gen()););
+  	emit(`class ${this.id.gen()} {`);
+    
+    indentLevel += 1;
+    this.constructor.gen();
+    this.methods.forEach(m => m.gen());
+    indentLevel -= 1;
+    
     emit('}');
   },
 });
 
 Object.assign(ObjectConstructor.prototype, {
   gen() {
-    emit(`objConst (${this.params.gen()}) {`);
-    this.body.gen(); //this looks terrible and wrong
+    emit(`constructor (${this.params.gen()}) {`);
+    
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+    
     emit('}');
   },
 });
@@ -118,7 +108,11 @@ Object.assign(ObjectConstructor.prototype, {
 Object.assign(ObjectMethods.prototype, {
   gen() {
     emit(`${this.id.gen()} (${this.params.gen()}) {`);
-    this.body.gen(); //this looks terrible and wrong
+    
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+    
     emit('}');
   },
 });
