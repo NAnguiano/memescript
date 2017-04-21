@@ -3,7 +3,7 @@ const Block = require('./entities/block');
 // const Body = require('./entities/body');
 // const ConstantInitialization = require('./entities/constantinitialization');
 // const VariableInitialization = require('./entities/variableinitialization');
-const VariableDeclaration = require('./entities/variabledeclaration');
+// const VariableDeclaration = require('./entities/variabledeclaration');
 // const ObjectDeclaration = require('./entities/objectdeclaration');
 // const ObjectConstructor = require('./entities/objectconstructor');
 // const ObjectMethods = require('./entities/objectmethods');
@@ -40,22 +40,136 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const Null = require('./entities/null');
 // const Id = require('./entities/id');
 
-function emit(line) {
-  console.log(line);
-}
+/* From Ray Toal's PlainScript compiler */
+// const indentPadding = 2;
+// let indentLevel = 0;
+//
+// function emit(line) {
+//   console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+// }
+/* End */
 
 Object.assign(Program.prototype, {
-  gen() { return this.block.gen(); },
+  gen() { this.block.gen(); },
 });
 
 Object.assign(Block.prototype, {
-  gen() {
-    this.statements.forEach(s => s.gen());
-  },
+  gen() { this.statements.forEach(s => s.gen()); },
 });
 
-Object.assign(VariableDeclaration.prototype, {
-  gen() {
-    emit(`var ${this.id};\n`);
-  },
-});
+// Object.assign(SwitchStatement.prototype, {
+//   gen() {
+//     emit(`switch (${this.expression.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.switchCases.forEach(switchCase => switchCase.gen());
+//     this.switchDefault.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(SwitchCase.prototype, {
+//   gen() {
+//     emit(`case ${this.literal}:`);
+//
+//     indentLevel += 1;
+//     this.block.gen();
+//     indentLevel -= 1;
+//
+//     emit('break;');
+//   },
+// });
+//
+// Object.assign(SwitchDefault.prototype, {
+//   gen() {
+//     emit('default:');
+//
+//     indentLevel += 1;
+//     this.block.gen();
+//     indentLevel -= 1;
+//   },
+// });
+//
+// Object.assign(IfStatement.prototype, {
+//   gen() {
+//     emit(`if (${this.expression.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.block.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//
+//     if (this.elseifStatement.length > 0) {
+//       this.elseifStatement.forEach(elseifStatement => elseifStatement.gen());
+//     }
+//     if (this.elseStatement.length > 0) {
+//       this.elseStatement.gen();
+//     }
+//   },
+// });
+//
+// Object.assign(ElseIfStatement.prototype, {
+//   gen() {
+//     emit(`else if(${this.expression.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(ElseStatement.prototype, {
+//   gen() {
+//     emit('else {');
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(Assignment.prototype, {
+//   gen() { emit(`${this.id.gen()} = ${this.expression.gen()};`); },
+// });
+//
+// Object.assign(FunctionCall.prototype, {
+//   gen() { emit(`${this.id.gen()}(${this.args.gen()});`); },
+// });
+//
+// Object.assign(FunctionArguments.prototype, {
+//   gen() {
+//     let args = '';
+//     this.args.forEach((arg) => {
+//       args += `${arg}, `;
+//     });
+//     args = args.substring(0, args.length - 2);
+//     return args;
+//   },
+// });
+//
+// Object.assign(ReturnStatement.prototype, {
+//   gen() {
+//     emit(`Return ${this.expression.gen()}`);
+//   },
+// });
+//
+// Object.assign(PrintStatement.prototype, {
+//   gen() {
+//     if (this.error) {
+//       emit(`console.error(${this.expression.gen()});`);
+//     } else {
+//       emit(`console.log(${this.expression.gen()});`);
+//     }
+//   },
+// });
+//
+// Object.assign(Alert.prototype, {
+//   gen() { emit(`alert(${this.expression.gen()});`); },
+// });
