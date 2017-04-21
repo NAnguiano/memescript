@@ -3,7 +3,7 @@ const Block = require('./entities/block');
 // const Body = require('./entities/body');
 // const ConstantInitialization = require('./entities/constantinitialization');
 // const VariableInitialization = require('./entities/variableinitialization');
-// const VariableDeclaration = require('./entities/variabledeclaration');
+const VariableDeclaration = require('./entities/variabledeclaration');
 // const ObjectDeclaration = require('./entities/objectdeclaration');
 // const ObjectConstructor = require('./entities/objectconstructor');
 // const ObjectMethods = require('./entities/objectmethods');
@@ -41,12 +41,12 @@ const Block = require('./entities/block');
 // const Id = require('./entities/id');
 
 /* From Ray Toal's PlainScript compiler */
-// const indentPadding = 2;
-// let indentLevel = 0;
-//
-// function emit(line) {
-//   console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
-// }
+const indentPadding = 2;
+const indentLevel = 0; // will become let
+
+function emit(line) {
+  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+}
 /* End */
 
 Object.assign(Program.prototype, {
@@ -57,6 +57,66 @@ Object.assign(Block.prototype, {
   gen() { this.statements.forEach(s => s.gen()); },
 });
 
+// Object.assign(Body.prototype, {
+//   gen() { this.statements.forEach(s => s.gen()); },
+// });
+//
+// Object.assign(ConstantInitialization.prototype, {
+//   gen() {
+//     emit(`const ${this.id.gen()} = ${this.expression.gen()};`);
+//   },
+// });
+//
+// Object.assign(VariableInitialization.prototype, {
+//   gen() {
+//     emit(`var ${this.id.gen()} = ${this.expression.gen()};`);
+//   },
+// });
+
+Object.assign(VariableDeclaration.prototype, {
+  gen() {
+    emit(`var ${this.id};`);
+  },
+});
+
+// Object.assign(ObjectDeclaration.prototype, {
+//   gen() {
+//     emit(`class ${this.id.gen()} {`);
+//
+//     indentLevel += 1;
+//     this.constructor.gen();
+//     this.methods.forEach(m => m.gen());
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(ObjectConstructor.prototype, {
+//   gen() {
+//     emit(`constructor (${this.params.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+//
+// Object.assign(ObjectMethods.prototype, {
+//   gen() {
+//     emit(`${this.id.gen()} (${this.params.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
 // Object.assign(SwitchStatement.prototype, {
 //   gen() {
 //     emit(`switch (${this.expression.gen()}) {`);
@@ -173,63 +233,4 @@ Object.assign(Block.prototype, {
 // Object.assign(Alert.prototype, {
 //   gen() { emit(`alert(${this.expression.gen()});`); },
 // });
-
-// Object.assign(Body.prototype, {
-//   gen() { this.statements.forEach(s => s.gen()); },
-// });
 //
-// Object.assign(ConstantInitialization.prototype, {
-//   gen() {
-//     emit(`const ${this.id.gen()} = ${this.expression.gen()};`);
-//   },
-// });
-//
-// Object.assign(VariableInitialization.prototype, {
-//   gen() {
-//     emit(`var ${this.id.gen()} = ${this.expression.gen()};`);
-//   },
-// });
-//
-// Object.assign(VariableDeclaration.prototype, {
-//   gen() {
-//     emit(`var ${this.id.gen()};`);
-//   },
-// });
-//
-// Object.assign(ObjectDeclaration.prototype, {
-//   gen() {
-//     emit(`class ${this.id.gen()} {`);
-//
-//     indentLevel += 1;
-//     this.constructor.gen();
-//     this.methods.forEach(m => m.gen());
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(ObjectConstructor.prototype, {
-//   gen() {
-//     emit(`constructor (${this.params.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-//
-// Object.assign(ObjectMethods.prototype, {
-//   gen() {
-//     emit(`${this.id.gen()} (${this.params.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
