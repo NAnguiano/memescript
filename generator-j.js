@@ -113,7 +113,7 @@ Object.assign(IfStatement.prototype, {
 
 Object.assign(ElseIfStatement.prototype, {
   gen() {
-    emit(`else if(${this.expression.gen()}) {`);
+    emit(` else if(${this.expression.gen()}) {`);
 
     indentLevel += 1;
     this.body.gen();
@@ -125,7 +125,7 @@ Object.assign(ElseIfStatement.prototype, {
 
 Object.assign(ElseStatement.prototype, {
   gen() {
-    emit('else {');
+    emit(' else {');
 
     indentLevel += 1;
     this.body.gen();
