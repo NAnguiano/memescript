@@ -173,3 +173,63 @@ Object.assign(Block.prototype, {
 // Object.assign(Alert.prototype, {
 //   gen() { emit(`alert(${this.expression.gen()});`); },
 // });
+
+// Object.assign(Body.prototype, {
+//   gen() { this.statements.forEach(s => s.gen()); },
+// });
+//
+// Object.assign(ConstantInitialization.prototype, {
+//   gen() {
+//     emit(`const ${this.id.gen()} = ${this.expression.gen()};`);
+//   },
+// });
+//
+// Object.assign(VariableInitialization.prototype, {
+//   gen() {
+//     emit(`var ${this.id.gen()} = ${this.expression.gen()};`);
+//   },
+// });
+//
+// Object.assign(VariableDeclaration.prototype, {
+//   gen() {
+//     emit(`var ${this.id.gen()};`);
+//   },
+// });
+//
+// Object.assign(ObjectDeclaration.prototype, {
+//   gen() {
+//     emit(`class ${this.id.gen()} {`);
+//
+//     indentLevel += 1;
+//     this.constructor.gen();
+//     this.methods.forEach(m => m.gen());
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+// Object.assign(ObjectConstructor.prototype, {
+//   gen() {
+//     emit(`constructor (${this.params.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
+//
+//
+// Object.assign(ObjectMethods.prototype, {
+//   gen() {
+//     emit(`${this.id.gen()} (${this.params.gen()}) {`);
+//
+//     indentLevel += 1;
+//     this.body.gen();
+//     indentLevel -= 1;
+//
+//     emit('}');
+//   },
+// });
