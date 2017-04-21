@@ -75,7 +75,11 @@ Object.assign(VariableInitialization.prototype, {
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
+<<<<<<< HEAD
+    emit(`var ${this.id.gen()}`);
+=======
     emit(`var ${this.id.gen()};`);
+>>>>>>> 40f10b1356f7fe84ef5ef327dd3611c97f5e07e6
   },
 });
 
@@ -92,8 +96,14 @@ Object.assign(ObjectDeclaration.prototype, {
   },
 });
 
+//you don't need to gen id
+
 Object.assign(ObjectConstructor.prototype, {
   gen() {
+
+    emit(`objConst (${this.params.gen()}) {`);
+    this.body.gen(); 
+
     emit(`constructor (${this.params.gen()}) {`);
 
     indentLevel += 1;
@@ -109,10 +119,68 @@ Object.assign(ObjectMethods.prototype, {
   gen() {
     emit(`${this.id.gen()} (${this.params.gen()}) {`);
 
-    indentLevel += 1;
-    this.body.gen();
-    indentLevel -= 1;
+    this.body.gen(); 
+  },
+});
 
+Object.assign(ObjectInitialization.prototype, {
+  gen() {
+    emit(`let ${this.id.gen()} = (${this.args.gen()})`);
+  },
+});
+
+Object.assign(FunctionDeclaration.prototype, {
+  gen() {
+    emit(`funct (${this.params.gen()}) {`);
+    this.body.gen(); 
+  },
+});
+
+Object.assign(WhileStatement.prototype, {
+  gen() {
+    emit(`while (${this.condition.gen()}) {`);
+    genStatementList(this.body);
     emit('}');
   },
 });
+
+Object.assign(TryCatch.prototype, {
+  gen() {
+    emit(`try { ${this.trybody.gen()}`);
+    emit('}');
+
+    emit(`catch (${this.err.gen()}) { `);
+    this.catchbody.forEach(e => e.gen());
+    emit('}');    
+  },
+});
+
+
+Object.assign(TryCatchFinally.prototype, {
+  gen() {
+    emit(`try { ${this.trybody.gen()}`);
+    emit('}');
+
+    emit(`catch (${this.err.gen()}) { `);
+    this.catchbody.forEach(e => e.gen());
+    emit('}'); 
+
+    emit(`finally { ${this.finallybody.gen()}`);
+    emit('}');   
+  },
+});
+
+Object.assign(ForLoop.prototype, {
+  gen() {
+    emit(`for (${this.body.gen()}) {`);
+    this.initialization.gen());
+    this.condition.gen());
+    this.iterator.gen());
+    emit('}');
+  },
+});
+
+
+
+
+
