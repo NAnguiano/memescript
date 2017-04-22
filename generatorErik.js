@@ -34,7 +34,7 @@ const Param = require('./entities/param');
 const OptionalParam = require('./entities/optionalparam');
 const SplatParam = require('./entities/splatparam');
 const StringLiteral = require('./entities/stringliteral');
-const IntegerLiteral = require('./entities/integerliteral');
+//const IntegerLiteral = require('./entities/integerliteral');
 const FloatLiteral = require('./entities/floatliteral');
 const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
@@ -67,6 +67,77 @@ Object.assign(UnaryExpression.prototype, {
   gen() {
     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
   },
-
 });
 
+Object.assign(VariableSubscript.prototype, {
+  gen() {
+    emit(`${this.variable.gen()} [ ${this.expression.gen()} ]`);
+  },
+});
+
+Object.assign(VariableSelect.prototype, {
+  gen() {
+    emit(`${this.variable.gen()} . ${this.id.gen()}`);
+  },
+});
+
+Object.assign(Parameters.prototype, {
+  gen() {
+    emit('(')
+    let para = '';
+    this.para.forEach((para) => {
+      para += `${para}, `;
+    });
+    para = para.substring(0,para.length - 1);
+    return para
+    emit(')')
+  },
+});
+
+Object.assign(Param.prototype, {
+  gen(){
+    emit(`${this.id.gen()}`)
+  },
+});
+
+Object.assign(OptionalParam.prototype, {
+  gen(){
+    emit(`${this.id.gen()} = ${this.expression.gen()}`)
+  },
+});
+
+Object.assign(SplatParam.prototype, {
+  gen(){
+    emit(`${this.id.gen()}`)
+  },
+});
+
+Object.assign(StringLiteral.prototype, {
+  gen(){
+    emit(`${this.value.gen()}`)
+  },
+});
+
+Object.assign(FloatLiteral.prototype, {
+  gen(){
+    emit(`${this.value.gen()}`)
+  },
+});
+
+Object.assign(BooleanLiteral.prototype, {
+  gen(){
+    emit(`${this.value.gen()}`)
+  },
+});
+
+Object.assign(Null.prototype, {
+  gen(){
+   emit('null') 
+  },
+});
+
+Object.assign(Id.prototype,{
+  gen(){
+    emit(`${this.id.gen()}`)
+  }
+})
