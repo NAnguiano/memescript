@@ -7,6 +7,7 @@ class SwitchStatement {
   }
 
   analyze(context) {
+    this.expression.analyze(context);
     this.switchCases.forEach(sc => sc.analyze(context));
     this.switchDefault.analyze(context);
   }
