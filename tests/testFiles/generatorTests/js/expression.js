@@ -1,0 +1,18 @@
+let exp_ = 10;
+exp_ = 1 + 2;
+exp_ = 'hi' + "Hello";
+exp_ = 10 * 20.2;
+exp_ = 1 / 2;
+exp_ = 9.2 % 4;
+exp_ = 3 - 3;
+exp_ = 1 <= 2;
+exp_ = 1 >= 2;
+exp_ = 32.2 < 1;
+exp_ = 0 > 0;
+exp_ = true || false;
+exp_ = true && true;
+exp_ = exp_ === exp_;
+exp_ = 2 == 2;
+exp_ = 2 != "hi";
+exp_ = -2;
+exp_ = !false;

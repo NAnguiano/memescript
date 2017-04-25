@@ -43,15 +43,23 @@ const Id = require('./entities/id');
 /* From Ray Toal's PlainScript compiler */
 const indentPadding = 2;
 let indentLevel = 0;
+let log = true; // I'm bad and I should feel bad for doing this.
+let generatedString = ''; // Ughhh
 
 function emit(line) {
-  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+  if (log) {
+    console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+  }
+  generatedString += `${' '.repeat(indentPadding * indentLevel)}${line}\n`;
 }
 /* End */
 
 Object.assign(Program.prototype, {
-  gen() {
+  gen(display = true) {
+    log = display;
+    generatedString = '';
     this.block.gen();
+    return generatedString;
   },
 });
 
@@ -394,13 +402,13 @@ Object.assign(StringLiteral.prototype, {
 
 Object.assign(IntegerLiteral.prototype, {
   gen() {
-    return this.value;
+    return parseInt(this.value.toString(), 10);
   },
 });
 
 Object.assign(FloatLiteral.prototype, {
   gen() {
-    return this.value;
+    return parseFloat(this.value.toString());
   },
 });
 

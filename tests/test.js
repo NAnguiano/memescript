@@ -74,9 +74,10 @@ const SEMANTIC_ERROR_TESTS = [
   'usedotnontationonnumber.meme',
 ];
 
-// const CODE_GENERATOR_TESTS = [
-//   ['constinit.meme', 'const a_ = 10;'],
-// ];
+const CODE_GENERATOR_TESTS = [
+  'constinit',
+  'expression',
+];
 
 describe('AST Tests', () => {
   console.log('AST tests replaced with node util statement.');
@@ -120,17 +121,18 @@ describe('Semantic Analyzer Tests', () => {
   });
 });
 
-// describe('Code Generation Tests', () => {
-//   CODE_GENERATOR_TESTS.forEach(([program, js]) => {
-//     it(`${program} should generate ${js}`, (done) => {
-//       fs.readFile(`./tests/testFiles/generatorTests/${program}`, 'utf-8', (err, text) => {
-//         if (err) return;
-//         const parsedProgram = parse(text);
-//         assert.doesNotThrow(() => parsedProgram.analyze(), Error);
-//         const generatedProgram = parsedProgram.gen();
-//         assert.equal(generatedProgram, js);
-//         done();
-//       });
-//     });
-//   });
-// });
+describe('Code Generation Tests', () => {
+  CODE_GENERATOR_TESTS.forEach((program) => {
+    it(`${program}.meme should generate ${program}.js`, (done) => {
+      fs.readFile(`./tests/testFiles/generatorTests/meme/${program}.meme`, 'utf-8', (err, text) => {
+        if (err) return;
+        const parsedProgram = parse(text);
+        assert.doesNotThrow(() => parsedProgram.analyze(), Error);
+        const generatedProgram = parsedProgram.gen(false);
+        const jsText = fs.readFileSync(`./tests/testFiles/generatorTests/js/${program}.js`, 'utf-8');
+        assert.equal(generatedProgram, jsText);
+        done();
+      });
+    });
+  });
+});
