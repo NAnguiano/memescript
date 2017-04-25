@@ -1,3 +1,6 @@
 I don't always (true) but when I do {
-  ermahgerd a = 10;
+  ermahgerd a = true;
+  I don't always (a) but when I do {
+    a = 10;
+  }
 }

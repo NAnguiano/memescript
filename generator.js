@@ -19,7 +19,7 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 const IfStatement = require('./entities/ifstatement');
 // const ElseIfStatement = require('./entities/elseifstatement');
 // const ElseStatement = require('./entities/elsestatement');
-// const Assignment = require('./entities/assignment');
+const Assignment = require('./entities/assignment');
 // const FunctionCall = require('./entities/functioncall');
 // const FunctionArguments = require('./entities/functionarguments');
 // const ReturnStatement = require('./entities/returnstatement');
@@ -281,11 +281,11 @@ Object.assign(IfStatement.prototype, {
 //     emit('}');
 //   },
 // });
-//
-// Object.assign(Assignment.prototype, {
-//   gen() { emit(`${this.id.gen()} = ${this.expression.gen()};`); },
-// });
-//
+
+Object.assign(Assignment.prototype, {
+  gen() { emit(`${this.id}_ = ${this.expression.gen()};`); },
+});
+
 // Object.assign(FunctionCall.prototype, {
 //   gen() { emit(`${this.id.gen()}(${this.args.gen()})`); },
 // });
@@ -421,6 +421,6 @@ Object.assign(Null.prototype, {
 
 Object.assign(Id.prototype, {
   gen() {
-    return this.id;
+    return `${this.id}_`;
   },
 });
