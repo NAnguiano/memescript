@@ -3,3 +3,12 @@ one does not simply {
   ermahgerd b;
   b = 20;
 } without (ermahgerd c = 1; c > 10; c = c + 1)
+
+yo, I'mma let you finish (5 > 6) but {
+  ermahgerd c;
+  c = 12 - 10;
+  yo, I'mma let you finish (false) but {
+    ermahgerd d;
+    d = c;
+  }
+}

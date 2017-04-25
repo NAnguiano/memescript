@@ -8,8 +8,8 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const ObjectConstructor = require('./entities/objectconstructor');
 // const ObjectMethods = require('./entities/objectmethods');
 // const ObjectInitialization = require('./entities/objectinitialization');
-// const FunctionDeclaration = require('./entities/functiondeclaration');
-// const WhileLoop = require('./entities/whileloop');
+const FunctionDeclaration = require('./entities/functiondeclaration');
+const WhileLoop = require('./entities/whileloop');
 // const TryCatch = require('./entities/trycatch');
 // const TryCatchFinally = require('./entities/trycatchfinally');
 const ForLoop = require('./entities/forloop');
@@ -29,8 +29,8 @@ const BinaryExpression = require('./entities/binaryexpression');
 const UnaryExpression = require('./entities/unaryexpression');
 // const VariableSubscript = require('./entities/variablesubscript');
 // const VariableSelect = require('./entities/variableselect');
-// const Parameters = require('./entities/parameters');
-// const Param = require('./entities/param');
+const Parameters = require('./entities/parameters');
+const Param = require('./entities/param');
 // const OptionalParam = require('./entities/optionalparam');
 // const SplatParam = require('./entities/splatparam');
 const StringLiteral = require('./entities/stringliteral');
@@ -124,32 +124,31 @@ Object.assign(VariableDeclaration.prototype, {
 //     emit(`new ${this.id.gen()} (${this.args.gen()})`);
 //   },
 // });
-//
-// Object.assign(FunctionDeclaration.prototype, {
-//   gen() {
-//     emit(`func ${this.id.gen()} (${this.params.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-//
-// Object.assign(WhileLoop.prototype, {
-//   gen() {
-//     emit(`while (${this.condition.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
+
+Object.assign(FunctionDeclaration.prototype, {
+  gen() {
+    emit(`func ${this.id} (${this.parameters.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(WhileLoop.prototype, {
+  gen() {
+    emit(`while (${this.condition.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
 // Object.assign(TryCatch.prototype, {
 //   gen() {
 //     emit('try {');
@@ -352,26 +351,24 @@ Object.assign(UnaryExpression.prototype, {
 //     emit(`${this.variable.gen()} . ${this.id.gen()}`);
 //   },
 // });
-//
-// Object.assign(Parameters.prototype, {
-//   gen() {
-//     emit('(');
-//     let para = '';
-//     this.para.forEach((par) => {
-//       para += `${par}, `;
-//     });
-//     para = para.substring(0, para.length - 1);
-//     emit(para);
-//     emit(')');
-//   },
-// });
-//
-// Object.assign(Param.prototype, {
-//   gen() {
-//     emit(`${this.id.gen()}`);
-//   },
-// });
-//
+
+Object.assign(Parameters.prototype, {
+  gen() {
+    let para = '';
+    this.params.forEach((par) => {
+      para += `${par.id}, `;
+    });
+    para = para.substring(0, para.length - 2);
+    return para;
+  },
+});
+
+Object.assign(Param.prototype, {
+  gen() {
+    return this.id;
+  },
+});
+
 // Object.assign(OptionalParam.prototype, {
 //   gen() {
 //     emit(`${this.id} = ${this.expression.gen()}`);
