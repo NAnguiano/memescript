@@ -336,9 +336,95 @@ Object.assign(VariableDeclaration.prototype, {
 //     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
 //   },
 // });
+//
+// Object.assign(BinaryExpression.prototype, {
+//   gen() {
+//     emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
+//   },
+// });
+//
+// Object.assign(UnaryExpression.prototype, {
+//   gen() {
+//     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
+//   },
+// });
+//
+// Object.assign(VariableSubscript.prototype, {
+//   gen() {
+//     emit(`${this.variable.gen()} [ ${this.expression.gen()} ]`);
+//   },
+// });
+//
+// Object.assign(VariableSelect.prototype, {
+//   gen() {
+//     emit(`${this.variable.gen()} . ${this.id.gen()}`);
+//   },
+// });
+//
+// Object.assign(Parameters.prototype, {
+//   gen() {
+//     emit('(');
+//     let para = '';
+//     this.para.forEach((par) => {
+//       para += `${par}, `;
+//     });
+//     para = para.substring(0, para.length - 1);
+//     emit(para);
+//     emit(')');
+//   },
+// });
+//
+// Object.assign(Param.prototype, {
+//   gen() {
+//     emit(`${this.id.gen()}`);
+//   },
+// });
+//
+// Object.assign(OptionalParam.prototype, {
+//   gen() {
+//     emit(`${this.id} = ${this.expression.gen()}`);
+//   },
+// });
+//
+// Object.assign(SplatParam.prototype, {
+//   gen() {
+//     emit(`${this.id}`);
+//   },
+// });
+//
+// Object.assign(StringLiteral.prototype, {
+//   gen() {
+//     emit(`${this.value}`);
+//   },
+// });
+//
 
 Object.assign(IntegerLiteral.prototype, {
   gen() {
     return this.value;
   },
 });
+
+// Object.assign(FloatLiteral.prototype, {
+//   gen() {
+//     emit(`${this.value}`);
+//   },
+// });
+//
+// Object.assign(BooleanLiteral.prototype, {
+//   gen() {
+//     emit(`${this.value}`);
+//   },
+// });
+//
+// Object.assign(Null.prototype, {
+//   gen() {
+//     emit('null');
+//   },
+// });
+//
+// Object.assign(Id.prototype, {
+//   gen() {
+//     emit(`${this.id.gen()}`);
+//   },
+// });
