@@ -50,7 +50,9 @@ function emit(line) {
 /* End */
 
 Object.assign(Program.prototype, {
-  gen() { this.block.gen(); },
+  gen() {
+    this.block.gen();
+  },
 });
 
 Object.assign(Block.prototype, {

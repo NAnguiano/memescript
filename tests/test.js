@@ -1,6 +1,7 @@
-const parse = require('../parser.js');
+const parse = require('../parser');
 const assert = require('chai').assert;
 const fs = require('fs');
+require('../generator');
 
 const GOOD_SEMANTIC_TESTS = [
   'assignmentandinitialization.meme',
@@ -73,6 +74,10 @@ const SEMANTIC_ERROR_TESTS = [
   'usedotnontationonnumber.meme',
 ];
 
+// const CODE_GENERATOR_TESTS = [
+//   ['constinit.meme', 'const a_ = 10;'],
+// ];
+
 describe('AST Tests', () => {
   console.log('AST tests replaced with node util statement.');
   // AST_TESTS.forEach(([program, ast]) => {
@@ -114,3 +119,18 @@ describe('Semantic Analyzer Tests', () => {
     });
   });
 });
+
+// describe('Code Generation Tests', () => {
+//   CODE_GENERATOR_TESTS.forEach(([program, js]) => {
+//     it(`${program} should generate ${js}`, (done) => {
+//       fs.readFile(`./tests/testFiles/generatorTests/${program}`, 'utf-8', (err, text) => {
+//         if (err) return;
+//         const parsedProgram = parse(text);
+//         assert.doesNotThrow(() => parsedProgram.analyze(), Error);
+//         const generatedProgram = parsedProgram.gen();
+//         assert.equal(generatedProgram, js);
+//         done();
+//       });
+//     });
+//   });
+// });

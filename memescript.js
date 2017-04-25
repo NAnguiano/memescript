@@ -8,8 +8,8 @@ const argv = require('yargs')
              .boolean(['a', 's', 'o', 'i'])
              .describe('a', 'Show abstract syntax tree after parsing using node inspector, then stop.')
              .describe('s', 'Show abstract syntax tree after parsing using toString, then stop.')
-             .describe('o', 'Do optimizations')
-             .describe('i', 'generate and show the intermediate code, then stop.')
+            //  .describe('o', 'Do optimizations')
+            //  .describe('i', 'generate and show the intermediate code, then stop.')
              .demand(1)
              .argv;
 
@@ -20,7 +20,7 @@ const error = require('./error');
 require('./generator');
 
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
-  const program = parse(text); // change to let once we do optimization
+  const program = parse(text);
   if (error.count > 0) return;
   if (argv.a) {
     console.log(util.inspect(program, { depth: null }));
