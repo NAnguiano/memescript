@@ -23,8 +23,8 @@ const Assignment = require('./entities/assignment');
 // const FunctionCall = require('./entities/functioncall');
 // const FunctionArguments = require('./entities/functionarguments');
 // const ReturnStatement = require('./entities/returnstatement');
-// const PrintStatement = require('./entities/printstatement');
-// const Alert = require('./entities/alert');
+const PrintStatement = require('./entities/printstatement');
+const Alert = require('./entities/alert');
 // const BinaryExpression = require('./entities/binaryexpression');
 // const UnaryExpression = require('./entities/unaryexpression');
 // const VariableSubscript = require('./entities/variablesubscript');
@@ -306,21 +306,21 @@ Object.assign(Assignment.prototype, {
 //     emit(`Return ${this.expression.gen()}`);
 //   },
 // });
-//
-// Object.assign(PrintStatement.prototype, {
-//   gen() {
-//     if (this.error) {
-//       emit(`console.error(${this.expression.gen()});`);
-//     } else {
-//       emit(`console.log(${this.expression.gen()});`);
-//     }
-//   },
-// });
-//
-// Object.assign(Alert.prototype, {
-//   gen() { emit(`alert(${this.expression.gen()});`); },
-// });
-//
+
+Object.assign(PrintStatement.prototype, {
+  gen() {
+    if (this.error) {
+      emit(`console.error(${this.expression.gen()});`);
+    } else {
+      emit(`console.log(${this.expression.gen()});`);
+    }
+  },
+});
+
+Object.assign(Alert.prototype, {
+  gen() { emit(`alert(${this.expression.gen()});`); },
+});
+
 // Object.assign(BinaryExpression.prototype, {
 //   gen() {
 //     emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);

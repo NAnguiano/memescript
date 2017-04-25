@@ -7,4 +7,18 @@ I don't always (true) but when I do {
 } but sometimes I (aa) {
 } but sometimes I (false) {
 } otherwise I do {
+  ermahgerd c = 10.0;
+  here comes dat boi(c);
+}
+
+ermahgerd aaaaaa = true;
+ermahgerd bbbbb = 10;
+I don't always (aaaaaa) but when I do {
+  RIP(bbbbb);
+} but sometimes I (true) {
+  dicks.out("HUE");
+} but sometimes I (false) {
+  overlyattachedgirlfriend.jpg heyo = null;
+} otherwise I do {
+  dicks.out(heyo);
 }
