@@ -161,3 +161,6 @@ ermahgerd newStack = very Stack();                           let newStack = new 
 * Objects must be initialized with the exact number of required parameters, at minimum.
 * Objects cannot be called with more parameters than they have in their constructor, including optional parameters and splat parameters.
 * Dot and bracket notation can only be used on a variable with type object.
+
+### Grammar
+To read the complete grammar, please go [here.](https://raw.githubusercontent.com/NAnguiano/memescript/master/MemeScript.ohm)
