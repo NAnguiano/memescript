@@ -13,9 +13,9 @@ const WhileLoop = require('./entities/whileloop');
 // const TryCatch = require('./entities/trycatch');
 // const TryCatchFinally = require('./entities/trycatchfinally');
 const ForLoop = require('./entities/forloop');
-// const SwitchStatement = require('./entities/switchstatement');
-// const SwitchCase = require('./entities/switchcase');
-// const SwitchDefault = require('./entities/switchdefault');
+const SwitchStatement = require('./entities/switchstatement');
+const SwitchCase = require('./entities/switchcase');
+const SwitchDefault = require('./entities/switchdefault');
 const IfStatement = require('./entities/ifstatement');
 const ElseIfStatement = require('./entities/elseifstatement');
 const ElseStatement = require('./entities/elsestatement');
@@ -206,40 +206,43 @@ Object.assign(ForLoop.prototype, {
   },
 });
 
-// Object.assign(SwitchStatement.prototype, {
-//   gen() {
-//     emit(`switch (${this.expression.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.switchCases.forEach(switchCase => switchCase.gen());
-//     this.switchDefault.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(SwitchCase.prototype, {
-//   gen() {
-//     emit(`case ${this.literal}:`);
-//
-//     indentLevel += 1;
-//     this.block.gen();
-//     indentLevel -= 1;
-//
-//     emit('break;');
-//   },
-// });
-//
-// Object.assign(SwitchDefault.prototype, {
-//   gen() {
-//     emit('default:');
-//
-//     indentLevel += 1;
-//     this.block.gen();
-//     indentLevel -= 1;
-//   },
-// });
+Object.assign(SwitchStatement.prototype, {
+  gen() {
+    emit(`switch (${this.expression.gen()}) {`);
+
+    indentLevel += 1;
+    this.switchCases.forEach(switchCase => switchCase.gen());
+    this.switchDefault.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(SwitchCase.prototype, {
+  gen() {
+    emit(`case ${this.literal}:`);
+
+    indentLevel += 1;
+    if (this.block.length > 0) {
+      this.block[0].gen();
+    }
+    emit('break;');
+    indentLevel -= 1;
+  },
+});
+
+Object.assign(SwitchDefault.prototype, {
+  gen() {
+    emit('default:');
+
+    indentLevel += 1;
+    if (this.block.length > 0) {
+      this.block[0].gen();
+    }
+    indentLevel -= 1;
+  },
+});
 
 Object.assign(IfStatement.prototype, {
   gen() {
