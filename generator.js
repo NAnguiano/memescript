@@ -17,8 +17,8 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const SwitchCase = require('./entities/switchcase');
 // const SwitchDefault = require('./entities/switchdefault');
 const IfStatement = require('./entities/ifstatement');
-// const ElseIfStatement = require('./entities/elseifstatement');
-// const ElseStatement = require('./entities/elsestatement');
+const ElseIfStatement = require('./entities/elseifstatement');
+const ElseStatement = require('./entities/elsestatement');
 const Assignment = require('./entities/assignment');
 // const FunctionCall = require('./entities/functioncall');
 // const FunctionArguments = require('./entities/functionarguments');
@@ -253,34 +253,34 @@ Object.assign(IfStatement.prototype, {
       this.elseifStatement.forEach(elseifStatement => elseifStatement.gen());
     }
     if (this.elseStatement.length > 0) {
-      this.elseStatement.gen();
+      this.elseStatement[0].gen();
     }
   },
 });
 
-// Object.assign(ElseIfStatement.prototype, {
-//   gen() {
-//     emit(` else if(${this.expression.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(ElseStatement.prototype, {
-//   gen() {
-//     emit(' else {');
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
+Object.assign(ElseIfStatement.prototype, {
+  gen() {
+    emit(`else if(${this.expression.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(ElseStatement.prototype, {
+  gen() {
+    emit('else {');
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
 
 Object.assign(Assignment.prototype, {
   gen() { emit(`${this.id}_ = ${this.expression.gen()};`); },

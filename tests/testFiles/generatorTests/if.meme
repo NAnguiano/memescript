@@ -1,6 +1,10 @@
+ermahgerd aa = false;
 I don't always (true) but when I do {
   ermahgerd a = true;
   I don't always (a) but when I do {
     a = 10;
   }
+} but sometimes I (aa) {
+} but sometimes I (false) {
+} otherwise I do {
 }
