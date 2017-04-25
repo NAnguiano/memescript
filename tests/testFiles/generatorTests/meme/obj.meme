@@ -16,7 +16,7 @@ wow testClass {
 
 ermahgerd aa = very testClass(10, 11, 12);
 ermahgerd cc = aa.shine;
-ermahgerd tt = cc[0];
+ermahgerd tt = aa[0];
 
 wow testClass2 {
   such (beep = true) {
@@ -46,4 +46,4 @@ wow testClass4 {
 ermahgerd b = very testClass4();
 overlyattachedgirlfriend.jpg maybe = very testClass4('d');
 ermahgerd c = maybe.hi;
-ermahgerd t = b[0];
+ermahgerd t = maybe[0];

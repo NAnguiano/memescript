@@ -78,6 +78,13 @@ const CODE_GENERATOR_TESTS = [
   'constinit',
   'expression',
   'func',
+  'if',
+  'loop',
+  'obj',
+  'switch',
+  'try',
+  'varinit',
+  'helloworld',
 ];
 
 describe('AST Tests', () => {

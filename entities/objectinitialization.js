@@ -1,3 +1,5 @@
+const Type = require('../semantics/type');
+
 class ObjectInitialization {
 
   constructor(id, args) {
@@ -36,7 +38,7 @@ class ObjectInitialization {
         }
       }
     }
-    return objectDeclaration.type;
+    return Type.OBJECT;
   }
 
   toString() {

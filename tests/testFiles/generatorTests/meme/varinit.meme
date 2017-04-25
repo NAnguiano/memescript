@@ -8,3 +8,4 @@ ermahgerd g = true;
 ermahgerd h = false;
 ermahgerd i = null;
 ermahgerd j = a;
+ermahgerd k;

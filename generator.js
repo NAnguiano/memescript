@@ -169,7 +169,7 @@ Object.assign(TryCatch.prototype, {
 
     emit('}');
 
-    emit(`catch (${this.err}_) { `);
+    emit(`catch (${this.err}_) {`);
 
     indentLevel += 1;
     this.catchbody.gen();
@@ -189,7 +189,7 @@ Object.assign(TryCatchFinally.prototype, {
 
     emit('}');
 
-    emit(`catch (${this.err}_) { `);
+    emit(`catch (${this.err}_) {`);
 
     indentLevel += 1;
     this.catchbody.gen();
@@ -198,7 +198,9 @@ Object.assign(TryCatchFinally.prototype, {
     emit('}');
 
     emit('finally {');
+    indentLevel += 1;
     this.finallybody.gen();
+    indentLevel -= 1;
     emit('}');
   },
 });

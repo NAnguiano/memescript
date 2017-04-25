@@ -13,3 +13,6 @@ wow testClass {
     ermahgerd x = 10;
   }
 }
+
+ermahgerd b = very testClass(1, 2, 3);
+ermahgerd a = b[0];
