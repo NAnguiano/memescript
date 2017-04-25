@@ -22,7 +22,7 @@ const ElseStatement = require('./entities/elsestatement');
 const Assignment = require('./entities/assignment');
 // const FunctionCall = require('./entities/functioncall');
 // const FunctionArguments = require('./entities/functionarguments');
-// const ReturnStatement = require('./entities/returnstatement');
+const ReturnStatement = require('./entities/returnstatement');
 const PrintStatement = require('./entities/printstatement');
 const Alert = require('./entities/alert');
 const BinaryExpression = require('./entities/binaryexpression');
@@ -32,7 +32,7 @@ const UnaryExpression = require('./entities/unaryexpression');
 const Parameters = require('./entities/parameters');
 const Param = require('./entities/param');
 const OptionalParam = require('./entities/optionalparam');
-// const SplatParam = require('./entities/splatparam');
+const SplatParam = require('./entities/splatparam');
 const StringLiteral = require('./entities/stringliteral');
 const IntegerLiteral = require('./entities/integerliteral');
 const FloatLiteral = require('./entities/floatliteral');
@@ -307,12 +307,12 @@ Object.assign(Assignment.prototype, {
 //     return args;
 //   },
 // });
-//
-// Object.assign(ReturnStatement.prototype, {
-//   gen() {
-//     emit(`Return ${this.expression.gen()}`);
-//   },
-// });
+
+Object.assign(ReturnStatement.prototype, {
+  gen() {
+    emit(`return ${this.expression.gen()};`);
+  },
+});
 
 Object.assign(PrintStatement.prototype, {
   gen() {
@@ -375,11 +375,11 @@ Object.assign(OptionalParam.prototype, {
   },
 });
 
-// Object.assign(SplatParam.prototype, {
-//   gen() {
-//     emit(`${this.id}`);
-//   },
-// });
+Object.assign(SplatParam.prototype, {
+  gen() {
+    return `...${this.id}_`;
+  },
+});
 
 Object.assign(StringLiteral.prototype, {
   gen() {
