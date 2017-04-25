@@ -4,10 +4,10 @@ const Body = require('./entities/body');
 const ConstantInitialization = require('./entities/constantinitialization');
 const VariableInitialization = require('./entities/variableinitialization');
 const VariableDeclaration = require('./entities/variabledeclaration');
-// const ObjectDeclaration = require('./entities/objectdeclaration');
-// const ObjectConstructor = require('./entities/objectconstructor');
-// const ObjectMethods = require('./entities/objectmethods');
-// const ObjectInitialization = require('./entities/objectinitialization');
+const ObjectDeclaration = require('./entities/objectdeclaration');
+const ObjectConstructor = require('./entities/objectconstructor');
+const ObjectMethods = require('./entities/objectmethods');
+const ObjectInitialization = require('./entities/objectinitialization');
 const FunctionDeclaration = require('./entities/functiondeclaration');
 const WhileLoop = require('./entities/whileloop');
 const TryCatch = require('./entities/trycatch');
@@ -82,48 +82,48 @@ Object.assign(VariableDeclaration.prototype, {
   },
 });
 
-// Object.assign(ObjectDeclaration.prototype, {
-//   gen() {
-//     emit(`class ${this.id.gen()} {`);
-//
-//     indentLevel += 1;
-//     this.constructor.gen();
-//     this.methods.forEach(m => m.gen());
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(ObjectConstructor.prototype, {
-//   gen() {
-//     emit(`constructor (${this.params.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(ObjectMethods.prototype, {
-//   gen() {
-//     emit(`${this.id.gen()} (${this.params.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-// Object.assign(ObjectInitialization.prototype, {
-//   gen() {
-//     emit(`new ${this.id.gen()} (${this.args.gen()})`);
-//   },
-// });
+Object.assign(ObjectDeclaration.prototype, {
+  gen() {
+    emit(`class ${this.id}_ {`);
+
+    indentLevel += 1;
+    this.constructor.gen();
+    this.methods.forEach(m => m.gen());
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(ObjectConstructor.prototype, {
+  gen() {
+    emit(`constructor (${this.params.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(ObjectMethods.prototype, {
+  gen() {
+    emit(`${this.id}_ (${this.parameters.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(ObjectInitialization.prototype, {
+  gen() {
+    return `new ${this.id}_(${this.args.gen()})`;
+  },
+});
 
 Object.assign(FunctionDeclaration.prototype, {
   gen() {
