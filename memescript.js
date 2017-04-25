@@ -4,7 +4,7 @@
 */
 
 const argv = require('yargs')
-             .usage('$0 [-a] [-o] [-i] [--target [x86|c|js]]')
+             .usage('$0 [-a] [-s]')
              .boolean(['a', 's', 'o', 'i'])
              .describe('a', 'Show abstract syntax tree after parsing using node inspector, then stop.')
              .describe('s', 'Show abstract syntax tree after parsing using toString, then stop.')
