@@ -356,7 +356,7 @@ Object.assign(Parameters.prototype, {
   gen() {
     let para = '';
     this.params.forEach((par) => {
-      para += `${par.id}, `;
+      para += `${par.gen()}, `;
     });
     para = para.substring(0, para.length - 2);
     return para;
@@ -365,7 +365,7 @@ Object.assign(Parameters.prototype, {
 
 Object.assign(Param.prototype, {
   gen() {
-    return this.id;
+    return `${this.id}_`;
   },
 });
 
