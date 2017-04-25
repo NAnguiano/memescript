@@ -1,30 +1,30 @@
 const Program = require('./entities/program');
 const Block = require('./entities/block');
-const Body = require('./entities/body');
-const ConstantInitialization = require('./entities/constantinitialization');
-const VariableInitialization = require('./entities/variableinitialization');
-const VariableDeclaration = require('./entities/variabledeclaration');
-const ObjectDeclaration = require('./entities/objectdeclaration');
-const ObjectConstructor = require('./entities/objectconstructor');
-const ObjectMethods = require('./entities/objectmethods');
-const ObjectInitialization = require('./entities/objectinitialization');
-const FunctionDeclaration = require('./entities/functiondeclaration');
-const WhileLoop = require('./entities/whileloop');
-const TryCatch = require('./entities/trycatch');
-const TryCatchFinally = require('./entities/trycatchfinally');
-const ForLoop = require('./entities/forloop');
-const SwitchStatement = require('./entities/switchstatement');
-const SwitchCase = require('./entities/switchcase');
-const SwitchDefault = require('./entities/switchdefault');
-const IfStatement = require('./entities/ifstatement');
-const ElseIfStatement = require('./entities/elseifstatement');
-const ElseStatement = require('./entities/elsestatement');
-const Assignment = require('./entities/assignment');
-const FunctionCall = require('./entities/functioncall');
-const FunctionArguments = require('./entities/functionarguments');
-const ReturnStatement = require('./entities/returnstatement');
-const PrintStatement = require('./entities/printstatement');
-const Alert = require('./entities/alert');
+// const Body = require('./entities/body');
+// const ConstantInitialization = require('./entities/constantinitialization');
+// const VariableInitialization = require('./entities/variableinitialization');
+// const VariableDeclaration = require('./entities/variabledeclaration');
+// const ObjectDeclaration = require('./entities/objectdeclaration');
+// const ObjectConstructor = require('./entities/objectconstructor');
+// const ObjectMethods = require('./entities/objectmethods');
+// const ObjectInitialization = require('./entities/objectinitialization');
+// const FunctionDeclaration = require('./entities/functiondeclaration');
+// const WhileLoop = require('./entities/whileloop');
+// const TryCatch = require('./entities/trycatch');
+// const TryCatchFinally = require('./entities/trycatchfinally');
+// const ForLoop = require('./entities/forloop');
+// const SwitchStatement = require('./entities/switchstatement');
+// const SwitchCase = require('./entities/switchcase');
+// const SwitchDefault = require('./entities/switchdefault');
+// const IfStatement = require('./entities/ifstatement');
+// const ElseIfStatement = require('./entities/elseifstatement');
+// const ElseStatement = require('./entities/elsestatement');
+// const Assignment = require('./entities/assignment');
+// const FunctionCall = require('./entities/functioncall');
+// const FunctionArguments = require('./entities/functionarguments');
+// const ReturnStatement = require('./entities/returnstatement');
+// const PrintStatement = require('./entities/printstatement');
+// const Alert = require('./entities/alert');
 const BinaryExpression = require('./entities/binaryexpression');
 const UnaryExpression = require('./entities/unaryexpression');
 const VariableSubscript = require('./entities/variablesubscript');
@@ -34,7 +34,7 @@ const Param = require('./entities/param');
 const OptionalParam = require('./entities/optionalparam');
 const SplatParam = require('./entities/splatparam');
 const StringLiteral = require('./entities/stringliteral');
-//const IntegerLiteral = require('./entities/integerliteral');
+// const IntegerLiteral = require('./entities/integerliteral');
 const FloatLiteral = require('./entities/floatliteral');
 const BooleanLiteral = require('./entities/booleanliteral');
 const Null = require('./entities/null');
@@ -47,19 +47,21 @@ function emit(line) {
 
 Object.assign(Program.prototype, {
 
-  gen() { return this.block.gen(); }
+  gen() { return this.block.gen(); },
 
 });
 
 Object.assign(Block.prototype, {
-  
-  gen() { this.statements.forEach(s => s.gen(); }
+
+  gen() {
+    this.statements.forEach(s => s.gen());
+  },
 
 });
 
 Object.assign(BinaryExpression.prototype, {
   gen() {
-    emit (`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
+    emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
   },
 });
 
@@ -83,61 +85,61 @@ Object.assign(VariableSelect.prototype, {
 
 Object.assign(Parameters.prototype, {
   gen() {
-    emit('(')
+    emit('(');
     let para = '';
-    this.para.forEach((para) => {
-      para += `${para}, `;
+    this.para.forEach((par) => {
+      para += `${par}, `;
     });
-    para = para.substring(0,para.length - 1);
-    return para
-    emit(')')
+    para = para.substring(0, para.length - 1);
+    emit(para);
+    emit(')');
   },
 });
 
 Object.assign(Param.prototype, {
-  gen(){
-    emit(`${this.id.gen()}`)
+  gen() {
+    emit(`${this.id.gen()}`);
   },
 });
 
 Object.assign(OptionalParam.prototype, {
-  gen(){
-    emit(`${this.id.gen()} = ${this.expression.gen()}`)
+  gen() {
+    emit(`${this.id} = ${this.expression.gen()}`);
   },
 });
 
 Object.assign(SplatParam.prototype, {
-  gen(){
-    emit(`${this.id.gen()}`)
+  gen() {
+    emit(`${this.id}`);
   },
 });
 
 Object.assign(StringLiteral.prototype, {
-  gen(){
-    emit(`${this.value.gen()}`)
+  gen() {
+    emit(`${this.value}`);
   },
 });
 
 Object.assign(FloatLiteral.prototype, {
-  gen(){
-    emit(`${this.value.gen()}`)
+  gen() {
+    emit(`${this.value}`);
   },
 });
 
 Object.assign(BooleanLiteral.prototype, {
-  gen(){
-    emit(`${this.value.gen()}`)
+  gen() {
+    emit(`${this.value}`);
   },
 });
 
 Object.assign(Null.prototype, {
-  gen(){
-   emit('null') 
+  gen() {
+    emit('null');
   },
 });
 
-Object.assign(Id.prototype,{
-  gen(){
-    emit(`${this.id.gen()}`)
-  }
-})
+Object.assign(Id.prototype, {
+  gen() {
+    emit(`${this.id.gen()}`);
+  },
+});
