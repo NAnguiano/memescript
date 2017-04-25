@@ -12,7 +12,7 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const WhileLoop = require('./entities/whileloop');
 // const TryCatch = require('./entities/trycatch');
 // const TryCatchFinally = require('./entities/trycatchfinally');
-// const ForLoop = require('./entities/forloop');
+const ForLoop = require('./entities/forloop');
 // const SwitchStatement = require('./entities/switchstatement');
 // const SwitchCase = require('./entities/switchcase');
 // const SwitchDefault = require('./entities/switchdefault');
@@ -25,8 +25,8 @@ const Assignment = require('./entities/assignment');
 // const ReturnStatement = require('./entities/returnstatement');
 const PrintStatement = require('./entities/printstatement');
 const Alert = require('./entities/alert');
-// const BinaryExpression = require('./entities/binaryexpression');
-// const UnaryExpression = require('./entities/unaryexpression');
+const BinaryExpression = require('./entities/binaryexpression');
+const UnaryExpression = require('./entities/unaryexpression');
 // const VariableSubscript = require('./entities/variablesubscript');
 // const VariableSelect = require('./entities/variableselect');
 // const Parameters = require('./entities/parameters');
@@ -68,8 +68,11 @@ Object.assign(ConstantInitialization.prototype, {
 });
 
 Object.assign(VariableInitialization.prototype, {
-  gen() {
-    emit(`let ${this.id}_ = ${this.expression.gen()};`);
+  gen(inLoop = false) {
+    if (!inLoop) {
+      emit(`let ${this.id}_ = ${this.expression.gen()};`);
+    }
+    return `let ${this.id}_ = ${this.expression.gen()}`;
   },
 });
 
@@ -191,19 +194,19 @@ Object.assign(VariableDeclaration.prototype, {
 //     emit('}');
 //   },
 // });
-//
-// Object.assign(ForLoop.prototype, {
-//   gen() {
-//   emit(`for (${this.initialization.gen()}; ${this.condition.gen()}; ${this.iterator.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.body.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
+
+Object.assign(ForLoop.prototype, {
+  gen() {
+    emit(`for (${this.initialization.gen(true)}; ${this.condition.gen()}; ${this.iterator.gen(true)}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
 // Object.assign(SwitchStatement.prototype, {
 //   gen() {
 //     emit(`switch (${this.expression.gen()}) {`);
@@ -283,7 +286,12 @@ Object.assign(ElseStatement.prototype, {
 });
 
 Object.assign(Assignment.prototype, {
-  gen() { emit(`${this.id}_ = ${this.expression.gen()};`); },
+  gen(inLoop = false) {
+    if (!inLoop) {
+      emit(`${this.id}_ = ${this.expression.gen()};`);
+    }
+    return `${this.id}_ = ${this.expression.gen()}`;
+  },
 });
 
 // Object.assign(FunctionCall.prototype, {
@@ -321,30 +329,18 @@ Object.assign(Alert.prototype, {
   gen() { emit(`alert(${this.expression.gen()});`); },
 });
 
-// Object.assign(BinaryExpression.prototype, {
-//   gen() {
-//     emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
-//   },
-// });
-//
-// Object.assign(UnaryExpression.prototype, {
-//   gen() {
-//     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
-//   },
-// });
-//
-// Object.assign(BinaryExpression.prototype, {
-//   gen() {
-//     emit(`${this.left.gen()} ${this.operator.gen()} ${this.right.gen()}`);
-//   },
-// });
-//
-// Object.assign(UnaryExpression.prototype, {
-//   gen() {
-//     emit(`${this.prefix.gen()} ${this.expression.gen()}`);
-//   },
-// });
-//
+Object.assign(BinaryExpression.prototype, {
+  gen() {
+    return `${this.left.gen()} ${this.operator} ${this.right.gen()}`;
+  },
+});
+
+Object.assign(UnaryExpression.prototype, {
+  gen() {
+    return `${this.prefix}${this.expression.gen()}`;
+  },
+});
+
 // Object.assign(VariableSubscript.prototype, {
 //   gen() {
 //     emit(`${this.variable.gen()} [ ${this.expression.gen()} ]`);

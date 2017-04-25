@@ -1,0 +1,18 @@
+ermahgerd exp = 10;
+exp = 1 + 2;
+exp = 'hi' + "Hello";
+exp = 10 * 20.2;
+exp = 1 / 2;
+exp = 9.2 % 4;
+exp = 3 - 3;
+exp = 1 <= 2;
+exp = 1 >= 2;
+exp = 032.2 < 1.0;
+exp = 0 > 0.0;
+exp = true || false;
+exp = true && true;
+exp = exp === exp;
+exp = 2 == 2;
+exp = 2 != "hi";
+exp = -2;
+exp = !false;
