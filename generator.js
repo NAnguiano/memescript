@@ -27,8 +27,8 @@ const PrintStatement = require('./entities/printstatement');
 const Alert = require('./entities/alert');
 const BinaryExpression = require('./entities/binaryexpression');
 const UnaryExpression = require('./entities/unaryexpression');
-// const VariableSubscript = require('./entities/variablesubscript');
-// const VariableSelect = require('./entities/variableselect');
+const VariableSubscript = require('./entities/variablesubscript');
+const VariableSelect = require('./entities/variableselect');
 const Parameters = require('./entities/parameters');
 const Param = require('./entities/param');
 const OptionalParam = require('./entities/optionalparam');
@@ -342,17 +342,17 @@ Object.assign(UnaryExpression.prototype, {
   },
 });
 
-// Object.assign(VariableSubscript.prototype, {
-//   gen() {
-//     emit(`${this.variable.gen()} [ ${this.expression.gen()} ]`);
-//   },
-// });
-//
-// Object.assign(VariableSelect.prototype, {
-//   gen() {
-//     emit(`${this.variable.gen()} . ${this.id.gen()}`);
-//   },
-// });
+Object.assign(VariableSubscript.prototype, {
+  gen() {
+    return `${this.variable.gen()}[${this.expression.gen()}]`;
+  },
+});
+
+Object.assign(VariableSelect.prototype, {
+  gen() {
+    return `${this.variable.gen()}.${this.id}_`;
+  },
+});
 
 Object.assign(Parameters.prototype, {
   gen() {

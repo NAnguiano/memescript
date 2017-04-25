@@ -7,8 +7,8 @@ class VariableSubscript {
 
   analyze(context) {
     const type = this.variable.analyze(context);
-    if (!type.isObject()) {
-      throw new Error(`Can only use bracket notation on type Object, not ${type.type}.`);
+    if (!type || !type.isObject()) {
+      throw new Error('Can only use bracket notation on type Object.');
     }
     this.expression.analyze(context);
   }

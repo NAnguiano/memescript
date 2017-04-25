@@ -14,4 +14,36 @@ wow testClass {
   }
 }
 
-ermahgerd a = very testClass(10, 11, 12);
+ermahgerd aa = very testClass(10, 11, 12);
+ermahgerd cc = aa.shine;
+ermahgerd tt = cc[0];
+
+wow testClass2 {
+  such (beep = true) {
+  	here comes dat boi(beep);
+  }
+}
+
+overlyattachedgirlfriend.jpg yay = very testClass2(false);
+ermahgerd asdasd = very testClass2();
+
+wow testClass3 {
+  such () {
+  }
+}
+
+ermahgerd z = very testClass3();
+
+wow testClass4 {
+  such (a = "noooo") {
+  }
+
+  so YAY(b) {
+    dicks.out("We should probably make a this keyword");
+  }
+}
+
+ermahgerd b = very testClass4();
+overlyattachedgirlfriend.jpg maybe = very testClass4('d');
+ermahgerd c = maybe.hi;
+ermahgerd t = b[0];
