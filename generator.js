@@ -301,7 +301,7 @@ Object.assign(FunctionArguments.prototype, {
   gen() {
     let args = '';
     this.args.forEach((arg) => {
-      args += `${arg}, `;
+      args += `${arg.gen()}, `;
     });
     args = args.substring(0, args.length - 2);
     return args;
