@@ -10,8 +10,8 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const ObjectInitialization = require('./entities/objectinitialization');
 const FunctionDeclaration = require('./entities/functiondeclaration');
 const WhileLoop = require('./entities/whileloop');
-// const TryCatch = require('./entities/trycatch');
-// const TryCatchFinally = require('./entities/trycatchfinally');
+const TryCatch = require('./entities/trycatch');
+const TryCatchFinally = require('./entities/trycatchfinally');
 const ForLoop = require('./entities/forloop');
 const SwitchStatement = require('./entities/switchstatement');
 const SwitchCase = require('./entities/switchcase');
@@ -149,50 +149,49 @@ Object.assign(WhileLoop.prototype, {
   },
 });
 
-// Object.assign(TryCatch.prototype, {
-//   gen() {
-//     emit('try {');
-//
-//     indentLevel += 1;
-//     this.trybody.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//
-//     emit(` catch (${this.err.gen()}) { `);
-//
-//     indentLevel += 1;
-//     this.catchbody.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//   },
-// });
-//
-//
-// Object.assign(TryCatchFinally.prototype, {
-//   gen() {
-//     emit('try {');
-//
-//     indentLevel += 1;
-//     this.trybody.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//
-//     emit(` catch (${this.err.gen()}) { `);
-//
-//     indentLevel += 1;
-//     this.catchbody.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//
-//     emit(' finally {');
-//     this.finallybody.gen();
-//     emit('}');
-//   },
-// });
+Object.assign(TryCatch.prototype, {
+  gen() {
+    emit('try {');
+
+    indentLevel += 1;
+    this.trybody.gen();
+    indentLevel -= 1;
+
+    emit('}');
+
+    emit(`catch (${this.err}_) { `);
+
+    indentLevel += 1;
+    this.catchbody.gen();
+    indentLevel -= 1;
+
+    emit('}');
+  },
+});
+
+Object.assign(TryCatchFinally.prototype, {
+  gen() {
+    emit('try {');
+
+    indentLevel += 1;
+    this.trybody.gen();
+    indentLevel -= 1;
+
+    emit('}');
+
+    emit(`catch (${this.err}_) { `);
+
+    indentLevel += 1;
+    this.catchbody.gen();
+    indentLevel -= 1;
+
+    emit('}');
+
+    emit('finally {');
+    this.finallybody.gen();
+    emit('}');
+  },
+});
 
 Object.assign(ForLoop.prototype, {
   gen() {
