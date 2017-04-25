@@ -33,12 +33,12 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const Param = require('./entities/param');
 // const OptionalParam = require('./entities/optionalparam');
 // const SplatParam = require('./entities/splatparam');
-// const StringLiteral = require('./entities/stringliteral');
+const StringLiteral = require('./entities/stringliteral');
 const IntegerLiteral = require('./entities/integerliteral');
-// const FloatLiteral = require('./entities/floatliteral');
-// const BooleanLiteral = require('./entities/booleanliteral');
-// const Null = require('./entities/null');
-// const Id = require('./entities/id');
+const FloatLiteral = require('./entities/floatliteral');
+const BooleanLiteral = require('./entities/booleanliteral');
+const Null = require('./entities/null');
+const Id = require('./entities/id');
 
 /* From Ray Toal's PlainScript compiler */
 const indentPadding = 2;
@@ -391,13 +391,13 @@ Object.assign(VariableDeclaration.prototype, {
 //     emit(`${this.id}`);
 //   },
 // });
-//
-// Object.assign(StringLiteral.prototype, {
-//   gen() {
-//     emit(`${this.value}`);
-//   },
-// });
-//
+
+Object.assign(StringLiteral.prototype, {
+  gen() {
+    return `${this.value}`;
+  },
+});
+
 
 Object.assign(IntegerLiteral.prototype, {
   gen() {
@@ -405,26 +405,26 @@ Object.assign(IntegerLiteral.prototype, {
   },
 });
 
-// Object.assign(FloatLiteral.prototype, {
-//   gen() {
-//     emit(`${this.value}`);
-//   },
-// });
-//
-// Object.assign(BooleanLiteral.prototype, {
-//   gen() {
-//     emit(`${this.value}`);
-//   },
-// });
-//
-// Object.assign(Null.prototype, {
-//   gen() {
-//     emit('null');
-//   },
-// });
-//
-// Object.assign(Id.prototype, {
-//   gen() {
-//     emit(`${this.id.gen()}`);
-//   },
-// });
+Object.assign(FloatLiteral.prototype, {
+  gen() {
+    return this.value;
+  },
+});
+
+Object.assign(BooleanLiteral.prototype, {
+  gen() {
+    return this.value;
+  },
+});
+
+Object.assign(Null.prototype, {
+  gen() {
+    return null;
+  },
+});
+
+Object.assign(Id.prototype, {
+  gen() {
+    return this.id;
+  },
+});
