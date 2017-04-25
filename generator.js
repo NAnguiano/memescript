@@ -20,8 +20,8 @@ const IfStatement = require('./entities/ifstatement');
 const ElseIfStatement = require('./entities/elseifstatement');
 const ElseStatement = require('./entities/elsestatement');
 const Assignment = require('./entities/assignment');
-// const FunctionCall = require('./entities/functioncall');
-// const FunctionArguments = require('./entities/functionarguments');
+const FunctionCall = require('./entities/functioncall');
+const FunctionArguments = require('./entities/functionarguments');
 const ReturnStatement = require('./entities/returnstatement');
 const PrintStatement = require('./entities/printstatement');
 const Alert = require('./entities/alert');
@@ -293,20 +293,20 @@ Object.assign(Assignment.prototype, {
   },
 });
 
-// Object.assign(FunctionCall.prototype, {
-//   gen() { emit(`${this.id.gen()}(${this.args.gen()})`); },
-// });
-//
-// Object.assign(FunctionArguments.prototype, {
-//   gen() {
-//     let args = '';
-//     this.args.forEach((arg) => {
-//       args += `${arg}, `;
-//     });
-//     args = args.substring(0, args.length - 2);
-//     return args;
-//   },
-// });
+Object.assign(FunctionCall.prototype, {
+  gen() { emit(`${this.id}_(${this.args.gen()})`); },
+});
+
+Object.assign(FunctionArguments.prototype, {
+  gen() {
+    let args = '';
+    this.args.forEach((arg) => {
+      args += `${arg}, `;
+    });
+    args = args.substring(0, args.length - 2);
+    return args;
+  },
+});
 
 Object.assign(ReturnStatement.prototype, {
   gen() {
