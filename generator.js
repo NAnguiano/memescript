@@ -127,7 +127,7 @@ Object.assign(VariableDeclaration.prototype, {
 
 Object.assign(FunctionDeclaration.prototype, {
   gen() {
-    emit(`function ${this.id} (${this.parameters.gen()}) {`);
+    emit(`function ${this.id}_ (${this.parameters.gen()}) {`);
 
     indentLevel += 1;
     this.body.gen();
