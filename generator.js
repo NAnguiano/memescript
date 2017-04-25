@@ -31,7 +31,7 @@ const UnaryExpression = require('./entities/unaryexpression');
 // const VariableSelect = require('./entities/variableselect');
 const Parameters = require('./entities/parameters');
 const Param = require('./entities/param');
-// const OptionalParam = require('./entities/optionalparam');
+const OptionalParam = require('./entities/optionalparam');
 // const SplatParam = require('./entities/splatparam');
 const StringLiteral = require('./entities/stringliteral');
 const IntegerLiteral = require('./entities/integerliteral');
@@ -127,7 +127,7 @@ Object.assign(VariableDeclaration.prototype, {
 
 Object.assign(FunctionDeclaration.prototype, {
   gen() {
-    emit(`func ${this.id} (${this.parameters.gen()}) {`);
+    emit(`function ${this.id} (${this.parameters.gen()}) {`);
 
     indentLevel += 1;
     this.body.gen();
@@ -369,12 +369,12 @@ Object.assign(Param.prototype, {
   },
 });
 
-// Object.assign(OptionalParam.prototype, {
-//   gen() {
-//     emit(`${this.id} = ${this.expression.gen()}`);
-//   },
-// });
-//
+Object.assign(OptionalParam.prototype, {
+  gen() {
+    return `${this.id}_ = ${this.expression.gen()}`;
+  },
+});
+
 // Object.assign(SplatParam.prototype, {
 //   gen() {
 //     emit(`${this.id}`);

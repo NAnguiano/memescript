@@ -1,3 +1,4 @@
-you: fun(a, b, c)
+you: fun(a, b, c = 10)
 me, an intellectual: {
+  RIP(true);
 }
