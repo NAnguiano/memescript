@@ -1,6 +1,6 @@
 const Program = require('./entities/program');
 const Block = require('./entities/block');
-// const Body = require('./entities/body');
+const Body = require('./entities/body');
 const ConstantInitialization = require('./entities/constantinitialization');
 const VariableInitialization = require('./entities/variableinitialization');
 const VariableDeclaration = require('./entities/variabledeclaration');
@@ -16,7 +16,7 @@ const VariableDeclaration = require('./entities/variabledeclaration');
 // const SwitchStatement = require('./entities/switchstatement');
 // const SwitchCase = require('./entities/switchcase');
 // const SwitchDefault = require('./entities/switchdefault');
-// const IfStatement = require('./entities/ifstatement');
+const IfStatement = require('./entities/ifstatement');
 // const ElseIfStatement = require('./entities/elseifstatement');
 // const ElseStatement = require('./entities/elsestatement');
 // const Assignment = require('./entities/assignment');
@@ -42,7 +42,7 @@ const Id = require('./entities/id');
 
 /* From Ray Toal's PlainScript compiler */
 const indentPadding = 2;
-const indentLevel = 0; // will become let
+let indentLevel = 0; // will become let
 
 function emit(line) {
   console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
@@ -57,29 +57,25 @@ Object.assign(Block.prototype, {
   gen() { this.statements.forEach(s => s.gen()); },
 });
 
-// Object.assign(Body.prototype, {
-//   gen() { this.statements.forEach(s => s.gen()); },
-// });
+Object.assign(Body.prototype, {
+  gen() { this.statements.forEach(s => s.gen()); },
+});
 
 Object.assign(ConstantInitialization.prototype, {
   gen() {
     emit(`const ${this.id}_ = ${this.expression.gen()};`);
-    // Once we get expressions working, we'll replace with the above.
-    // emit(`const ${this.id}_ = EXP;`);
   },
 });
 
 Object.assign(VariableInitialization.prototype, {
   gen() {
-    // TODO emit(`var ${this.id}_ = ${this.expression.gen()};`);
-    // Once we get expressions working, we'll replace with the above.
-    emit(`var ${this.id}_ = EXP;`);
+    emit(`let ${this.id}_ = ${this.expression.gen()};`);
   },
 });
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
-    emit(`var ${this.id}_;`);
+    emit(`let ${this.id}_;`);
   },
 });
 
@@ -242,26 +238,26 @@ Object.assign(VariableDeclaration.prototype, {
 //     indentLevel -= 1;
 //   },
 // });
-//
-// Object.assign(IfStatement.prototype, {
-//   gen() {
-//     emit(`if (${this.expression.gen()}) {`);
-//
-//     indentLevel += 1;
-//     this.block.gen();
-//     indentLevel -= 1;
-//
-//     emit('}');
-//
-//     if (this.elseifStatement.length > 0) {
-//       this.elseifStatement.forEach(elseifStatement => elseifStatement.gen());
-//     }
-//     if (this.elseStatement.length > 0) {
-//       this.elseStatement.gen();
-//     }
-//   },
-// });
-//
+
+Object.assign(IfStatement.prototype, {
+  gen() {
+    emit(`if (${this.expression.gen()}) {`);
+
+    indentLevel += 1;
+    this.body.gen();
+    indentLevel -= 1;
+
+    emit('}');
+
+    if (this.elseifStatement.length > 0) {
+      this.elseifStatement.forEach(elseifStatement => elseifStatement.gen());
+    }
+    if (this.elseStatement.length > 0) {
+      this.elseStatement.gen();
+    }
+  },
+});
+
 // Object.assign(ElseIfStatement.prototype, {
 //   gen() {
 //     emit(` else if(${this.expression.gen()}) {`);
