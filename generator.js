@@ -42,7 +42,7 @@ const Id = require('./entities/id');
 
 /* From Ray Toal's PlainScript compiler */
 const indentPadding = 2;
-let indentLevel = 0; // will become let
+let indentLevel = 0;
 
 function emit(line) {
   console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
