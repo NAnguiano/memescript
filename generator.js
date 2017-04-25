@@ -73,16 +73,16 @@ Object.assign(Body.prototype, {
 
 Object.assign(ConstantInitialization.prototype, {
   gen() {
-    emit(`const ${this.id}_ = ${this.expression.gen()};`);
+    emit(`const ${this.id}_ = ${this.expression.gen(true)};`);
   },
 });
 
 Object.assign(VariableInitialization.prototype, {
   gen(inLoop = false) {
     if (!inLoop) {
-      emit(`let ${this.id}_ = ${this.expression.gen()};`);
+      emit(`let ${this.id}_ = ${this.expression.gen(true)};`);
     }
-    return `let ${this.id}_ = ${this.expression.gen()}`;
+    return `let ${this.id}_ = ${this.expression.gen(true)}`;
   },
 });
 
@@ -299,14 +299,19 @@ Object.assign(ElseStatement.prototype, {
 Object.assign(Assignment.prototype, {
   gen(inLoop = false) {
     if (!inLoop) {
-      emit(`${this.id}_ = ${this.expression.gen()};`);
+      emit(`${this.id}_ = ${this.expression.gen(true)};`);
     }
-    return `${this.id}_ = ${this.expression.gen()}`;
+    return `${this.id}_ = ${this.expression.gen(true)}`;
   },
 });
 
 Object.assign(FunctionCall.prototype, {
-  gen() { emit(`${this.id}_(${this.args.gen()})`); },
+  gen(inAssign = false) {
+    if (!inAssign) {
+      emit(`${this.id}_(${this.args.gen()});`);
+    }
+    return `${this.id}_(${this.args.gen()})`;
+  },
 });
 
 Object.assign(FunctionArguments.prototype, {

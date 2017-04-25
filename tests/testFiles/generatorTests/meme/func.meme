@@ -1,3 +1,4 @@
+ermahgerd e = 10;
 you: fun(a, b, c = 10, d...)
 me, an intellectual: {
   RIP(true);
@@ -15,3 +16,6 @@ me, an intellectual: {
 getB(10, 11, 12, 13);
 getB("a", 'b', "c", "d");
 getB(4 > 5, 13212, 12, 2);
+e = getB(1, 2, 3, 4);
+ermahgerd b = getB(0, 1, 2, 3);
+overlyattachedgirlfriend.jpg c = getB(5, 6, 7, 8);

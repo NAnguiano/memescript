@@ -77,6 +77,7 @@ const SEMANTIC_ERROR_TESTS = [
 const CODE_GENERATOR_TESTS = [
   'constinit',
   'expression',
+  'func',
 ];
 
 describe('AST Tests', () => {
