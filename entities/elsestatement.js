@@ -12,6 +12,10 @@ class ElseStatement {
     return `(ElseStatement ${this.body})`;
   }
 
+  optimize() {
+    this.body.optimize();
+  }
+
 }
 
 module.exports = ElseStatement;

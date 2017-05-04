@@ -20,6 +20,11 @@ class Assignment {
     return `(Assignment ${this.id} ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
+
 }
 
 module.exports = Assignment;

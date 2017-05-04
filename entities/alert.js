@@ -12,6 +12,11 @@ class Alert {
     return `(Alert ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
+
 }
 
 module.exports = Alert;

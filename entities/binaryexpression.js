@@ -61,6 +61,12 @@ class BinaryExpression {
     return (leftType.type === 'float' || rightType.type === 'float') ? Type.FLOAT : Type.INT;
   }
 
+  optimize() {
+    this.left.optimize();
+    this.right.optimize();
+    return this;
+  }
+
 }
 
 module.exports = BinaryExpression;

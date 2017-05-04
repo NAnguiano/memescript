@@ -13,6 +13,9 @@ class FunctionArguments {
     return `(FunctionArguments ${this.expression} ${this.args.join(' ')})`;
   }
 
+  optimize() {
+    this.argsforEach(a => a.optimize();
+  }
 }
 
 module.exports = FunctionArguments;

@@ -28,6 +28,12 @@ class ForStatement {
     return `(For ${this.body} ${this.initialization} ${this.condition} ${this.iterator})`;
   }
 
+  optimize() {
+    this.initialization = this.initialization.optimize();
+    this.condition = this.condition.optimize();
+    this.iterator = this.iterator.optimize();
+    this.body.optimize();
+  }
 }
 
 module.exports = ForStatement;

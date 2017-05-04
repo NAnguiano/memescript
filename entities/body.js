@@ -12,6 +12,10 @@ class Body {
     return `(Body ${this.statements.join(' ')})`;
   }
 
+  optimize() {
+    this.statements.forEach(s => s.optimize()).filter(s => s !== null);
+  }
+
 }
 
 module.exports = Body;

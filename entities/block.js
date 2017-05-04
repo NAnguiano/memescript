@@ -12,6 +12,10 @@ class Block {
     return `(Block ${this.statements.join(' ')})`;
   }
 
+  optimize() {
+    this.statements.forEach(s => s.optimize()).filter(s => s !== null);
+  }
+
 }
 
 module.exports = Block;

@@ -13,6 +13,10 @@ class BooleanLiteral {
   toString() {
     return this.value;
   }
+  
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = BooleanLiteral;

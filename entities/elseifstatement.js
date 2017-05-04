@@ -17,6 +17,12 @@ class ElseIfStatement {
     return `(ElseIfStatement ${this.expression} ${this.body})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    this.body.optimize();
+    return this;
+  }
+
 }
 
 module.exports = ElseIfStatement;

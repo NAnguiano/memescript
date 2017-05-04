@@ -27,6 +27,10 @@ class IfStatement {
   toString() {
     return `(IfStatement ${this.expression} ${this.body} ${this.elseifStatement.join(' ')} ${this.elseStatement})`;
   }
+
+  optimize() {
+    // Check if the if condition will always amount to false. Also check if there are any else ifs, and if there is an else.
+  }
 }
 
 module.exports = IfStatement;

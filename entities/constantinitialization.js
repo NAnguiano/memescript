@@ -17,6 +17,11 @@ class ConstantInitialization {
     return `(ConstInit ${this.id} ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
+
 }
 
 module.exports = ConstantInitialization;

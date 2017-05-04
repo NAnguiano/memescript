@@ -22,7 +22,7 @@ const error = require('./error');
 require('./generator');
 
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
-  const program = parse(text);
+  let program = parse(text);
   if (error.count > 0) return;
   if (argv.n) {
     console.log(util.inspect(program, { depth: null }));
@@ -42,10 +42,10 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
   }
   program.analyze();
   if (error.count > 0) return;
-  /* if (argv.o) {
+  if (argv.o) {
     program = program.optimize;
   }
-  if (argv.i) {
+  /* if (argv.i) {
     program.showSemanticGraph();
     return;
   } */
