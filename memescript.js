@@ -4,13 +4,13 @@
 */
 
 const argv = require('yargs')
-             .usage('$0 [-a] [-s] [-a] [-g]')
-             .boolean(['n', 's', 'a', 'g'])
+             .usage('$0 [-a] [-s] [-a] [-g] [-o]')
+             .boolean(['n', 's', 'a', 'g', 'o'])
              .describe('n', 'Show abstract syntax tree after parsing using node inspector, then stop.')
              .describe('s', 'Show abstract syntax tree after parsing using toString, then stop.')
              .describe('a', 'Analyze the program after parsing, then stop.')
              .describe('g', 'Generate the equivalent javascript after parsing, then stop. Note: Does not perform semantic analysis.')
-            //  .describe('o', 'Do optimizations')
+             .describe('o', 'Do optimizations')
             //  .describe('i', 'generate and show the intermediate code, then stop.')
              .demand(1)
              .argv;
@@ -41,9 +41,9 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
     return;
   }
   program.analyze();
-  if (error.count > 0) return;
+  // if (error.count > 0) return;
   if (argv.o) {
-    program = program.optimize;
+    program = program.optimize();
   }
   /* if (argv.i) {
     program.showSemanticGraph();

@@ -7,7 +7,8 @@
     "test": "mocha ./tests/test.js",
     "lint": "./node_modules/.bin/eslint *.js & ./node_modules/.bin/eslint ./entities/*.js & ./node_modules/.bin/eslint ./tests/*.js",
     "start": "node memescript.js -n ./tests/testFiles/goodPrograms/everything.meme",
-    "generate": "node memescript.js -g ./tests/testFiles/goodPrograms/helloworld.meme"
+    "generate": "node memescript.js -g ./tests/testFiles/goodPrograms/helloworld.meme",
+    "optimize": "node memescript.js -o ./tests/testFiles/goodPrograms/everything.meme"
   },
   "repository": {
     "type": "git",
