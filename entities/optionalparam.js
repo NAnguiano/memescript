@@ -13,6 +13,11 @@ class OptionalParam {
   toString() {
     return `(OptionalParam ${this.id} ${this.expression})`;
   }
+
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
 }
 
 module.exports = OptionalParam;

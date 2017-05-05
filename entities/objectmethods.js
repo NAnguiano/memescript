@@ -43,6 +43,12 @@ class ObjectMethods {
   toString() {
     return `ObjMethods ${this.id} ${this.params} ${this.body}`;
   }
+
+  optimize() {
+    this.parameters.optimize();
+    this.body.optimize();
+    return this;
+  }
 }
 
 module.exports = ObjectMethods;

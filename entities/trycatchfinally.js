@@ -22,6 +22,12 @@ class TryCatchFinally {
     return `(Try ${this.trybody} Catch ${this.err} ${this.catchbody} Finally ${this.finallybody})`;
   }
 
+  optimize() {
+    this.trybody.optimize();
+    this.catchbody.optimize();
+    this.finallybody.optimize();
+  }
+
 }
 
 module.exports = TryCatchFinally;

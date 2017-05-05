@@ -15,6 +15,10 @@ class Id {
     return `(Id ${this.id})`;
   }
 
+  optimize() {
+    return this;
+  }
+
 }
 
 module.exports = Id;

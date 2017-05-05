@@ -14,6 +14,11 @@ class Program {
     return `(Program ${this.block})`;
   }
 
+  optimize() {
+  	this.block.optimize();
+  	return this;
+  }
+
 }
 
 module.exports = Program;

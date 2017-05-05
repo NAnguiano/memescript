@@ -33,6 +33,7 @@ class ForStatement {
     this.condition = this.condition.optimize();
     this.iterator = this.iterator.optimize();
     this.body.optimize();
+    return this;
   }
 }
 

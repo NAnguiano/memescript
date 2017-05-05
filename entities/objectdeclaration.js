@@ -17,6 +17,12 @@ class ObjectDeclaration {
   toString() {
     return `ObjDec ${this.id} ${this.constructor} ${this.methods}`;
   }
+
+  optimize() {
+    this.constructor.optimize();
+    this.methods.forEach(m => m.optimize());
+    return this;
+  }
 }
 
 module.exports = ObjectDeclaration;

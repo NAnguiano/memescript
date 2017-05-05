@@ -12,6 +12,10 @@ class Param {
   toString() {
     return `(Param ${this.id})`;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = Param;

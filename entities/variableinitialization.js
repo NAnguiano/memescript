@@ -17,6 +17,10 @@ class VarInit {
     return `(VarInit ${this.id} ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+  }
+
 }
 
 module.exports = VarInit;

@@ -40,6 +40,11 @@ class FunctionCall {
     return `(FunCall ${this.id} ${this.args})`;
   }
 
+  optimize() {
+    this.args.optimize();
+    return this;
+  }
+
 }
 
 module.exports = FunctionCall;

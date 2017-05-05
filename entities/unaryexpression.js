@@ -25,6 +25,10 @@ class UnaryExpression {
     return `(UnaryExpression ${this.prefix} ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+  }
+
 }
 
 module.exports = UnaryExpression;

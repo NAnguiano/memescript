@@ -20,6 +20,11 @@ class ReturnStatement {
     return `(Return ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
+
 }
 
 module.exports = ReturnStatement;

@@ -30,6 +30,12 @@ class ObjectConstructor {
   toString() {
     return `ObjConstructor ${this.params} ${this.body}`;
   }
+
+  optimize() {
+    this.params.optimize();
+    this.body.optimize();
+    return this;
+  }
 }
 
 module.exports = ObjectConstructor;

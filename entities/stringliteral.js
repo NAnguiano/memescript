@@ -13,6 +13,10 @@ class StringLiteral {
   toString() {
     return this.value;
   }
+
+  optimize() {
+  	return this;
+  }
 }
 
 module.exports = StringLiteral;

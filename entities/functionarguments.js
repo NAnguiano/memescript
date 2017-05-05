@@ -14,7 +14,8 @@ class FunctionArguments {
   }
 
   optimize() {
-    this.argsforEach(a => a.optimize();
+    this.args.map(a => a.optimize());
+    return this;
   }
 }
 

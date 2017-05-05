@@ -12,6 +12,11 @@ class SwitchDefault {
     return `SwitchDefaut ${this.block}`;
   }
 
+  optimize() {
+  	this.block.optimize();
+  	return this;
+  }
+
 }
 
 module.exports = SwitchDefault;

@@ -13,7 +13,7 @@ class Body {
   }
 
   optimize() {
-    this.statements.forEach(s => s.optimize()).filter(s => s !== null);
+    this.statements.map(s => s.optimize()).filter(s => s !== null);
   }
 
 }

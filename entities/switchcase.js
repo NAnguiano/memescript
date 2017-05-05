@@ -14,6 +14,11 @@ class SwitchCase {
     return `(SwitchCase ${this.literal} ${this.block})`;
   }
 
+  optimize() {
+    this.block.optimize();
+    return this;
+  }
+
 }
 
 module.exports = SwitchCase;

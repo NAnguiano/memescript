@@ -14,6 +14,7 @@ class ElseStatement {
 
   optimize() {
     this.body.optimize();
+    return this;
   }
 
 }

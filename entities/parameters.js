@@ -18,6 +18,10 @@ class Parameters {
   toString() {
     return `(Parameters ${this.params.join(' ')})`;
   }
+
+  optimize() {
+    this.params.map(p => p.optimize()).filter(p => p !== null);
+  }
 }
 
 module.exports = Parameters;

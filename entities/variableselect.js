@@ -20,6 +20,10 @@ class VariableSelect {
     return `(Subscript ${this.variable} ${this.id})`;
   }
 
+  optimize() {
+    return this;
+  }
+
 }
 
 module.exports = VariableSelect;

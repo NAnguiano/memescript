@@ -62,8 +62,8 @@ class BinaryExpression {
   }
 
   optimize() {
-    this.left.optimize();
-    this.right.optimize();
+    this.left = this.left.optimize();
+    this.right = this.right.optimize();
     return this;
   }
 

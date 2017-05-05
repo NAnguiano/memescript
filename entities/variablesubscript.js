@@ -17,6 +17,11 @@ class VariableSubscript {
     return `(Subscript ${this.variable} ${this.expression})`;
   }
 
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
+
 }
 
 module.exports = VariableSubscript;

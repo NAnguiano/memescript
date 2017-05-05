@@ -20,6 +20,12 @@ class TryCatch {
     return `(Try ${this.trybody} Catch ${this.err} ${this.catchbody})`;
   }
 
+  optimize() {
+    this.trybody.optimize();
+    this.catchbody.optimize();
+    return this;
+  }
+
 }
 
 module.exports = TryCatch;

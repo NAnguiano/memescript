@@ -43,6 +43,12 @@ class FunctionDeclaration {
   toString() {
     return `(FunDec ${this.id} ${this.parameters} ${this.body})`;
   }
+
+  optimize() {
+    this.parameters.optimize();
+    this.body.optimize();
+    return this;
+  }
 }
 
 module.exports = FunctionDeclaration;

@@ -12,6 +12,10 @@ class SplatParam {
   toString() {
     return `(SplatParam ${this.id})`;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = SplatParam;
