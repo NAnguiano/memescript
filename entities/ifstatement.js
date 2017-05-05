@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 class IfStatement {
 
   constructor(expression, body, elseifStatement, elseStatement) {

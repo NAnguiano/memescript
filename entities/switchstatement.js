@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 class SwitchStatement {
 
   constructor(expression, switchCases, switchDefault) {

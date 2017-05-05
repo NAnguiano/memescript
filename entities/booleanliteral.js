@@ -13,7 +13,7 @@ class BooleanLiteral {
   toString() {
     return this.value;
   }
-  
+
   optimize() {
     return this;
   }

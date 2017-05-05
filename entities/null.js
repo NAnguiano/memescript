@@ -15,7 +15,7 @@ class Null {
   }
 
   optimize() {
-  	return this;
+    return this;
   }
 }
 

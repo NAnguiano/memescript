@@ -15,8 +15,8 @@ class Program {
   }
 
   optimize() {
-  	this.block.optimize();
-  	return this;
+    this.block.optimize();
+    return this;
   }
 
 }

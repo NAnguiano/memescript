@@ -13,8 +13,8 @@ class SwitchDefault {
   }
 
   optimize() {
-  	this.block.optimize();
-  	return this;
+    this.block.optimize();
+    return this;
   }
 
 }

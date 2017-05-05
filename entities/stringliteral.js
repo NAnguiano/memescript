@@ -15,7 +15,7 @@ class StringLiteral {
   }
 
   optimize() {
-  	return this;
+    return this;
   }
 }
 

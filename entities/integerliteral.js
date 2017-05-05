@@ -15,7 +15,7 @@ class IntegerLiteral {
   }
 
   optimize() {
-  	return this;
+    return this;
   }
 }
 
