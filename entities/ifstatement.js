@@ -34,8 +34,8 @@ class IfStatement {
     // Check if the if condition will always amount to false. Also check if there are any else ifs, and if there is an else.
     this.expression = this.expression.optimize();
     this.body.optimize();
-    if (this.elseifStatement.length > 0) this.elseifStatement.forEach(e => e.optimize()).filter(e => e !== null);
-    if (this.elseStatement !== null) this.elseStatement = this.elseStatement.optimize();
+    if (this.elseifStatement.length > 0) this.elseifStatement.forEach(e => e.optimize());
+    if (this.elseStatement.length > 0) this.elseStatement[0] = this.elseStatement[0].optimize();
     return this;
   }
 }

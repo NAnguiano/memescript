@@ -26,6 +26,7 @@ class TryCatchFinally {
     this.trybody.optimize();
     this.catchbody.optimize();
     this.finallybody.optimize();
+    return this;
   }
 
 }

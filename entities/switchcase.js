@@ -15,7 +15,7 @@ class SwitchCase {
   }
 
   optimize() {
-    this.block.optimize();
+    this.block.map(s => s.optimize()).filter(s => s !== null);
     return this;
   }
 

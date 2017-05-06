@@ -17,6 +17,10 @@ class VarDec {
     return `(VarDec ${this.id})`;
   }
 
+  optimize() {
+    return this;
+  }
+
 }
 
 module.exports = VarDec;

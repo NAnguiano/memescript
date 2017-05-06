@@ -1,3 +1,5 @@
+const BooleanLiteral = require('./booleanliteral');
+
 /* eslint-disable no-else-return */
 
 const Context = require('../semantics/context');

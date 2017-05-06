@@ -20,8 +20,8 @@ class SwitchStatement {
 
   optimize() {
     this.expression = this.expression.optimize();
-    if (this.switchCases.length > 0) this.switchCases.map(c => c.optimize()).filter(c => c !== null);
-    if (this.switchDefault !== null) this.switchDefault = this.switchDefault.optimize();
+    if (this.switchCases.length > 0) this.switchCases.map(c => c.optimize());
+    if (this.switchDefault > 0) this.switchDefault = this.switchDefault.optimize();
     return this;
   }
 
