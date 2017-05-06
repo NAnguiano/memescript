@@ -41,7 +41,7 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
     return;
   }
   program.analyze();
-  // if (error.count > 0) return;
+  if (error.count > 0) return;
   if (argv.o) {
     program = program.optimize();
   }

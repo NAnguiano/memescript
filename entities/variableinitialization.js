@@ -19,6 +19,7 @@ class VarInit {
 
   optimize() {
     this.expression = this.expression.optimize();
+    return this;
   }
 
 }

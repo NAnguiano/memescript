@@ -27,6 +27,7 @@ class UnaryExpression {
 
   optimize() {
     this.expression = this.expression.optimize();
+    return this;
   }
 
 }
