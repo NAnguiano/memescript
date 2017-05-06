@@ -1,3 +1,5 @@
+const BooleanLiteral = require('./booleanliteral');
+
 /* eslint-disable max-len */
 
 class IfStatement {
@@ -37,6 +39,17 @@ class IfStatement {
     if (this.elseifStatement.length > 0) this.elseifStatement.forEach(e => e.optimize());
     if (this.elseStatement.length > 0) this.elseStatement[0] = this.elseStatement[0].optimize();
     return this;
+
+    this.expression = this.expression.optimize();
+    if (this.expression instanceof BooleanLiteral && this.expression.value === false) {
+      if (this.elseifStatement.length === 0) {
+        if (this.elseStatement.length === 0) {
+          return null;
+        } else {
+          
+        }
+      }
+    }
   }
 }
 
