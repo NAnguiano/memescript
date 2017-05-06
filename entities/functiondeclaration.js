@@ -45,7 +45,7 @@ class FunctionDeclaration {
   }
 
   optimize() {
-    this.parameters.params.forEach(p => p.optimize());
+    this.parameters.optimize();
     this.body.optimize();
     return this;
   }
