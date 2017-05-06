@@ -19,6 +19,9 @@ class ElseIfStatement {
 
   optimize() {
     this.expression = this.expression.optimize();
+    if (this.expression.value === false) {
+      return null;
+    }
     this.body.optimize();
     return this;
   }
