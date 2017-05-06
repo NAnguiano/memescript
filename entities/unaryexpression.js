@@ -1,7 +1,4 @@
 const Type = require('../semantics/type');
-const BooleanLiteral = require('./booleanliteral')
-const FloatLiteral = require('./floatliteral')
-const IntLiteral = require('./integerliteral')
 
 class UnaryExpression {
 
@@ -30,16 +27,8 @@ class UnaryExpression {
 
   optimize() {
     this.expression = this.expression.optimize();
-    if (this.prefix === 'not' && this.expression instanceof BooleanLiteral) {
-      return BooleanLiteral(!this.expression.value);
-    } else if (this.prefix === '-' && this.expression instanceof FloatLiteral) {
-      return new FloatLiteral(-this.expression.value);
-    } else if (this.prefix === '-' && this.expression instanceof IntLiteral){
-      return new IntLiteral(-this.expression.value);
-    }
     return this;
   }
-
 }
 
 module.exports = UnaryExpression;
